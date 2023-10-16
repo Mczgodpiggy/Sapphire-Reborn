@@ -336,17 +336,10 @@ namespace Sapphire_LITE {
         {
             if (yn)
             {
-                if (configStatus.InvokeRequired)
+                await Task.Delay(1080).ContinueWith((task) =>
                 {
-                    var d = new SafeDelStatus(isConfigDeleted);
-                    configStatus.Invoke(d, new object[] { yn });
-                } else
-                {
-                    await Task.Delay(1080).ContinueWith((task) =>
-                    {
-                        configStatus.Visible = false;
-                    });
-                }
+                    configStatus.Visible = false;
+                });
             }
         }
 
