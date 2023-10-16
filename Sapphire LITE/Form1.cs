@@ -14,6 +14,8 @@ using System.Linq;
 using static Sapphire_LITE.Login;
 using Guna.UI2.AnimatorNS;
 using System.Security.AccessControl;
+using Timer = System.Timers.Timer;
+using System.Timers;
 
 namespace Sapphire_LITE {
     public partial class Form1 : Form {
@@ -69,6 +71,8 @@ namespace Sapphire_LITE {
                 ToolTip.SetToolTip(guna2ImageButton1, $"Logged in {Whitelist.username}");
             }
             reloadConfigs();
+            hold.Elapsed += new ElapsedEventHandler(holdDelete);
+            hold.Interval = 1000;
         }
 
         private void reloadConfigs()
@@ -83,7 +87,6 @@ namespace Sapphire_LITE {
             {
                 if (file.EndsWith(".sapphire"))
                 configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
-                Console.WriteLine(file.Replace(cdi.FullName + "\\", ""));
             }
         }
 
@@ -114,6 +117,14 @@ namespace Sapphire_LITE {
         #endregion
 
         #region Controls
+
+        private delegate void SafeDelCFG(object source, ElapsedEventArgs e);
+
+        private delegate void SafeDelStatus(bool yn);
+
+        private static int deletePressed = 0;
+
+        private readonly Timer hold = new Timer();
 
         Keys cfg_left_bind = Keys.None, cfg_right_bind = Keys.None;
 
@@ -282,6 +293,110 @@ namespace Sapphire_LITE {
             reloadConfigs();
         }
 
+        private static string deletedConfig = "";
+
+        private void holdDelete(object source, ElapsedEventArgs e)
+        {
+            DirectoryInfo di = new DirectoryInfo("Configs");
+            if (configList.InvokeRequired)
+            {
+                var d = new SafeDelCFG(holdDelete);
+                configList.Invoke(d, new object[] { source, e });
+            } else
+            {
+                if (configList.SelectedItem == null)
+                {
+                    return;
+                }
+                var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
+                if (dirr == null)
+                {
+                    configStatus.Text = "Config doesn't exist";
+                    configStatus.Visible = true;
+                    Task.Delay(1080).ContinueWith((task) =>
+                    {
+                        configStatus.Visible = false;
+                    });
+                    return;
+                }
+                File.Delete(dirr);
+                ConfigName.Text = "";
+                deletedConfig = configList.SelectedItem.ToString();
+                configStatus.Text = $"Successfully deleted ${deletedConfig}";
+                    configStatus.Visible = true;
+                isConfigDeleted(true);
+                reloadConfigs();
+            }
+            hold.Stop();
+        }
+
+        private void isConfigDeleted(bool yn)
+        {
+            if (yn)
+            {
+                if (configStatus.InvokeRequired)
+                {
+                    var d = new SafeDelStatus(isConfigDeleted);
+                    configStatus.Invoke(d, new object[] { yn });
+                } else
+                {
+                    Thread.Sleep(1000);
+                    configStatus.Visible = false;
+                }
+            }
+        }
+
+        private void holdDown(object sender, MouseEventArgs e)
+        {
+            hold.Start();
+        }
+
+        private void holdUp(object sender, MouseEventArgs e)
+        {
+            hold.Stop();
+        }
+
+        private void deleteConfig(object sender, MouseEventArgs e)
+        {
+            Task.Delay(3500).ContinueWith((task) =>
+            {
+                configStatus.Visible = false;
+            });
+            deletePressed += 1;
+            if (deletePressed < 2)
+            {
+                configStatus.Text = "Press again to confirm";
+                configStatus.Visible = true;
+                Task.Delay(690).ContinueWith((task) =>
+                {
+                    configStatus.Visible = false;
+                });
+                return;
+            }
+            DirectoryInfo di = new DirectoryInfo("Configs");
+            var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
+            if (dirr == null)
+            {
+                configStatus.Text = "Config doesn't exist";
+                configStatus.Visible = true;
+                Task.Delay(1080).ContinueWith((task) =>
+                {
+                    configStatus.Visible = false;
+                });
+                return;
+            }
+            File.Delete(dirr);
+            ConfigName.Text = "";
+            configStatus.Text = $"Successfully deleted ${configList.SelectedItem}";
+            configStatus.Visible = true;
+            deletePressed = 0;
+            Task.Delay(1080).ContinueWith((task) =>
+            {
+                configStatus.Visible = false;
+            });
+            reloadConfigs();
+        }
+
         private void CloseConfigWindow(object sender, MouseEventArgs e)
         {
             PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.VertSlide;
@@ -370,7 +485,7 @@ namespace Sapphire_LITE {
             rightMaxCpsText.Text = $"{crmax / 10.0}";
             rightMaxCpsSlider.Value = crmax;
             clicker.clicker.randomization_distribution = rand;
-            randomizationText.Text = $"{rand}";
+            randomizationText.Text = $"{rand}%";
             randomizationSlider.Value = rand;
             if (clenabled == true && clicker.clicker.left_enabled == false)
             {
