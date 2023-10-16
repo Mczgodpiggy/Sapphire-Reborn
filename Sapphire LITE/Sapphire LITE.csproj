@@ -8,7 +8,7 @@
     <ProjectGuid>{26FDA497-956D-4CD3-AA87-6FA83E1AD0CA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Sapphire_LITE</RootNamespace>
-    <AssemblyName>Sapphire LITE</AssemblyName>
+    <AssemblyName>Sapphire REBORN</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
