@@ -198,9 +198,9 @@
             this.configStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.configStatus.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.configStatus.ForeColor = System.Drawing.Color.Red;
-            this.configStatus.Location = new System.Drawing.Point(62, 148);
+            this.configStatus.Location = new System.Drawing.Point(41, 148);
             this.configStatus.Name = "configStatus";
-            this.configStatus.Size = new System.Drawing.Size(205, 18);
+            this.configStatus.Size = new System.Drawing.Size(250, 18);
             this.configStatus.TabIndex = 31;
             this.configStatus.Text = "Config doesn\'t exist";
             this.configStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

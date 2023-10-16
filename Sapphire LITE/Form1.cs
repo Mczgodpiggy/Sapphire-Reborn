@@ -73,6 +73,7 @@ namespace Sapphire_LITE {
             reloadConfigs();
             hold.Elapsed += new ElapsedEventHandler(holdDelete);
             hold.Interval = 1000;
+            hold.Stop();
         }
 
         private void reloadConfigs()
@@ -297,6 +298,7 @@ namespace Sapphire_LITE {
 
         private void holdDelete(object source, ElapsedEventArgs e)
         {
+            Console.WriteLine(true);
             DirectoryInfo di = new DirectoryInfo("Configs");
             if (configList.InvokeRequired)
             {
@@ -322,7 +324,7 @@ namespace Sapphire_LITE {
                 File.Delete(dirr);
                 ConfigName.Text = "";
                 deletedConfig = configList.SelectedItem.ToString();
-                configStatus.Text = $"Successfully deleted ${deletedConfig}";
+                configStatus.Text = $"Successfully deleted {deletedConfig}";
                     configStatus.Visible = true;
                 isConfigDeleted(true);
                 reloadConfigs();
@@ -330,7 +332,7 @@ namespace Sapphire_LITE {
             hold.Stop();
         }
 
-        private void isConfigDeleted(bool yn)
+        private async void isConfigDeleted(bool yn)
         {
             if (yn)
             {
@@ -340,8 +342,10 @@ namespace Sapphire_LITE {
                     configStatus.Invoke(d, new object[] { yn });
                 } else
                 {
-                    Thread.Sleep(1000);
-                    configStatus.Visible = false;
+                    await Task.Delay(1080).ContinueWith((task) =>
+                    {
+                        configStatus.Visible = false;
+                    });
                 }
             }
         }
