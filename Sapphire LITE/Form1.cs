@@ -121,8 +121,6 @@ namespace Sapphire_LITE {
 
         private delegate void SafeDelCFG(object source, ElapsedEventArgs e);
 
-        private delegate void SafeDelStatus(bool yn);
-
         private static int deletePressed = 0;
 
         private readonly Timer hold = new Timer();
