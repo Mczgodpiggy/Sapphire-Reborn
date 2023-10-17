@@ -23,16 +23,6 @@ namespace Sapphire_LITE {
         #region Initialization
 
         public Form1() {
-            string[] whitelist = { "S-1-5-21-3418972225-2525873918-165025094-1001", "BFEBFBFF000806C1" };
-            var mbs = new ManagementObjectSearcher("Select ProcessorId From Win32_processor");
-            ManagementObjectCollection mbsList = mbs.Get();
-            string id = "";
-            foreach (ManagementObject mo in mbsList.Cast<ManagementObject>())
-            {
-                id = mo["ProcessorId"].ToString();
-                break;
-            }
-            string hwid = System.Security.Principal.WindowsIdentity.GetCurrent().User.Value;
             InitializeComponent();
 
             Shadow.SetShadowForm(this);
@@ -50,26 +40,6 @@ namespace Sapphire_LITE {
             presetSelector.AutoRoundedCorners = true;
             presetSelector.Animated = true;
             dlResources();
-            if (hwid == whitelist[0])
-            {
-                ToolTip.SetToolTip(guna2ImageButton1, "Logged in as Mczgodpiggy");
-            }
-            if (hwid == whitelist[1])
-            {
-                ToolTip.SetToolTip(guna2ImageButton1, "Logged in as Zadge");
-            }
-            if (hwid != whitelist[0])
-            {
-                MessageBox.Show("If you have problems with the client please use the repair button before asking for support. Thanks!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            if (!whitelist.Contains(hwid) && Whitelist.through != true)
-            {
-                System.Windows.Forms.Clipboard.SetText(hwid);
-                MessageBox.Show("HWID not whitelisted your HWID has be copied to your clip board\nPlease contact the owner for support.\nThank you.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Application.Run(new Login());
-                Application.Exit();
-                ToolTip.SetToolTip(guna2ImageButton1, $"Logged in {Whitelist.username}");
-            }
             reloadConfigs();
             hold.Elapsed += new ElapsedEventHandler(holdDelete);
             hold.Interval = 1000;
