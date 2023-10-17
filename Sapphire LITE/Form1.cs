@@ -432,51 +432,6 @@ namespace Sapphire_LITE {
 
         private void configList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DirectoryInfo di = new DirectoryInfo("Configs");
-            var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
-            string[] cfg = File.ReadAllLines(dirr);
-            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
-            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
-            clicker.clicker.left_min_cps = clmin / 10;
-            leftMinCpsText.Text = $"{clmin / 10.0}";
-            leftMinCpsSlider.Value = clmin;
-            clicker.clicker.left_max_cps = clmax / 10;
-            leftMaxCpsText.Text = $"{clmax / 10.0}";
-            leftMaxCpsSlider.Value = clmax;
-            clicker.clicker.right_min_cps = crmin / 10;
-            rightMinCpsText.Text = $"{crmin / 10}";
-            rightMinCpsSlider.Value = crmin;
-            clicker.clicker.right_max_cps = crmax / 10;
-            rightMaxCpsText.Text = $"{crmax / 10.0}";
-            rightMaxCpsSlider.Value = crmax;
-            clicker.clicker.randomization_distribution = rand;
-            randomizationText.Text = $"{rand}%";
-            randomizationSlider.Value = rand;
-            if (clenabled == true && clicker.clicker.left_enabled == false)
-            {
-                toggleLeftClicker();
-                LACCheck.Checked = true;
-            }
-            else if (clenabled == false && clicker.clicker.left_enabled == true)
-            {
-                toggleLeftClicker();
-                LACCheck.Checked = false;
-            }
-            if (crenabled == true && clicker.clicker.right_enabled == false)
-            {
-                toggleRightClicker();
-                RACCheck.Checked = true;
-            }
-            else if (crenabled == false && clicker.clicker.right_enabled == true)
-            {
-                toggleRightClicker();
-                RACCheck.Checked = false;
-            }
-            toggleRandomization.Checked = random;
-            toggleAlwaysOn.Checked = always_on;
-            toggleShiftDisable.Checked = shift_disable;
-            toggleSmartMode.Checked = smart_mode;
-            LoadedConfigText.Text = $"Loaded Config: {configList.SelectedItem}";
             ConfigName.Text = configList.SelectedItem.ToString();
         }
 
