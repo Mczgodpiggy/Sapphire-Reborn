@@ -351,6 +351,7 @@ namespace Sapphire_LITE {
                 return;
             }
             File.Delete(dirr);
+            configList.Items.Remove(configList.SelectedItem);
             ConfigName.Text = "";
             configStatus.Text = $"Successfully deleted ${configList.SelectedItem}";
             configStatus.Visible = true;
@@ -359,7 +360,6 @@ namespace Sapphire_LITE {
             {
                 configStatus.Visible = false;
             });
-            reloadConfigs();
         }
 
         private void CloseConfigWindow(object sender, MouseEventArgs e)

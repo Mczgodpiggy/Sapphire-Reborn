@@ -53,8 +53,6 @@ namespace Sapphire_LITE.clicker {
             exhaustRegen.Start();
             goExhaust.Elapsed += new ElapsedEventHandler(setExhaust);
             goExhaust.Interval = 30000;
-            goExhaust.Enabled = true;
-            goExhaust.Start();
             while (true) {
                 Thread.Sleep(1);
 
@@ -75,7 +73,6 @@ namespace Sapphire_LITE.clicker {
                 {
                     goExhaust.Start();
                     exhaustLose.Start();
-                    exhaustTime += -1;
                     sendClick(left_min_cps, left_max_cps, DOWN, UP);
                 }
                 if (KeyListener.isKeyPressed(Keys.RButton) && right_enabled)
@@ -137,7 +134,7 @@ namespace Sapphire_LITE.clicker {
 
             int deviation = randomize ? deviation = rd.Next(1, 4) : deviation = 0;
 
-            if (r.Next(100) < 6 && randomize) return r.Next(100, 150);
+            if (r.Next(100) < 6 && randomize) return r.Next(80, 150);
 
             return r.Next(100) < 5 ? (numerator / cps) : (numerator / r.Next(cps - deviation, cps + deviation));
         }
