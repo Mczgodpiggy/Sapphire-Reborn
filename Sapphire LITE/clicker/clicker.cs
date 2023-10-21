@@ -43,9 +43,41 @@ namespace Sapphire_Reborn.clicker {
 
         #region Clicker functionality
 
-        public static void clickerThread() {
+        public static void leftClickerThread()
+        {
             goExhaust.Elapsed += new ElapsedEventHandler(setExhaust);
             goExhaust.Interval = 30000;
+            while (true)
+            {
+                Thread.Sleep(1);
+
+                minecraft_process = DLLImports.FindWindow("LWJGL", null);
+
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) continue;
+
+                if (smart_mode & IsCursorVisisble() && !KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
+
+                if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
+
+                if (always_on)
+                {
+                    goExhaust.Start();
+                    if (left_enabled) sendClick(left_min_cps, left_max_cps, DOWN, UP);
+                }
+
+                if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
+                {
+                    goExhaust.Start();
+                    sendClick(left_min_cps, left_max_cps, DOWN, UP);
+                }
+                if (!KeyListener.isKeyPressed(Keys.LButton) && left_enabled && !always_on)
+                {
+                    goExhaust.Stop();
+                }
+            }
+        }
+
+        public static void rightClickerThread() {
             while (true) {
                 Thread.Sleep(1);
 
@@ -58,23 +90,11 @@ namespace Sapphire_Reborn.clicker {
                 if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
 
                 if (always_on) {
-                    goExhaust.Start();
-                    if (left_enabled) sendClick(left_min_cps, left_max_cps, DOWN, UP);
                     if (right_enabled) sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
-                }
-
-                if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
-                {
-                    goExhaust.Start();
-                    sendClick(left_min_cps, left_max_cps, DOWN, UP);
                 }
                 if (KeyListener.isKeyPressed(Keys.RButton) && right_enabled)
                 {
                     sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
-                }
-                if (!KeyListener.isKeyPressed(Keys.LButton) && left_enabled && !always_on)
-                {
-                    goExhaust.Stop();
                 }
             }
         }

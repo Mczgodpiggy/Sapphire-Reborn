@@ -231,22 +231,28 @@
             this.configList.Animated = true;
             this.configList.AutoRoundedCorners = true;
             this.configList.BackColor = System.Drawing.Color.Transparent;
-            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.configList.BorderRadius = 17;
+            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.configList.BorderRadius = 18;
+            this.configList.BorderThickness = 2;
             this.PanelTransition.SetDecoration(this.configList, Guna.UI2.AnimatorNS.DecorationType.None);
             this.configList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.configList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.configList.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.configList.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.configList.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.configList.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.configList.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.configList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.configList.ForeColor = System.Drawing.Color.Silver;
             this.configList.FormattingEnabled = true;
-            this.configList.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.configList.ItemHeight = 30;
+            this.configList.ItemsAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.configList.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.configList.ItemsAppearance.SelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.configList.Location = new System.Drawing.Point(65, 104);
             this.configList.Name = "configList";
+            this.configList.ShadowDecoration.Enabled = true;
             this.configList.Size = new System.Drawing.Size(201, 36);
+            this.configList.Sorted = true;
+            this.configList.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.configList.TabIndex = 29;
             this.ToolTip.SetToolTip(this.configList, "Lists of created configs");
             this.configList.DropDown += new System.EventHandler(this.configListClick);
@@ -298,6 +304,7 @@
             // 
             this.ConfigName.Animated = true;
             this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(116)))), ((int)(((byte)(226)))));
+            this.ConfigName.BorderRadius = 17;
             this.ConfigName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.PanelTransition.SetDecoration(this.ConfigName, Guna.UI2.AnimatorNS.DecorationType.None);
             this.ConfigName.DefaultText = "";
@@ -892,7 +899,7 @@
             this.rightMaxCpsSlider.Full = false;
             this.rightMaxCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.rightMaxCpsSlider.Location = new System.Drawing.Point(14, 161);
-            this.rightMaxCpsSlider.Maximum = 300;
+            this.rightMaxCpsSlider.Maximum = 400;
             this.rightMaxCpsSlider.Minimum = 50;
             this.rightMaxCpsSlider.Name = "rightMaxCpsSlider";
             this.rightMaxCpsSlider.ShowValue = false;
@@ -915,7 +922,7 @@
             this.leftMaxCpsSlider.Full = false;
             this.leftMaxCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.leftMaxCpsSlider.Location = new System.Drawing.Point(14, 97);
-            this.leftMaxCpsSlider.Maximum = 300;
+            this.leftMaxCpsSlider.Maximum = 400;
             this.leftMaxCpsSlider.Minimum = 50;
             this.leftMaxCpsSlider.Name = "leftMaxCpsSlider";
             this.leftMaxCpsSlider.ShowValue = false;
@@ -938,7 +945,7 @@
             this.leftMinCpsSlider.Full = false;
             this.leftMinCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.leftMinCpsSlider.Location = new System.Drawing.Point(16, 64);
-            this.leftMinCpsSlider.Maximum = 300;
+            this.leftMinCpsSlider.Maximum = 400;
             this.leftMinCpsSlider.Minimum = 50;
             this.leftMinCpsSlider.Name = "leftMinCpsSlider";
             this.leftMinCpsSlider.ShowValue = false;
@@ -985,7 +992,7 @@
             this.rightMinCpsSlider.Full = false;
             this.rightMinCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.rightMinCpsSlider.Location = new System.Drawing.Point(14, 132);
-            this.rightMinCpsSlider.Maximum = 300;
+            this.rightMinCpsSlider.Maximum = 400;
             this.rightMinCpsSlider.Minimum = 50;
             this.rightMinCpsSlider.Name = "rightMinCpsSlider";
             this.rightMinCpsSlider.ShowValue = false;

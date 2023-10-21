@@ -33,7 +33,8 @@ namespace Sapphire_Reborn {
 
             KeyListener.setupBindListener();
 
-            Task.Run(() => clicker.clicker.clickerThread());
+            Task.Run(() => clicker.clicker.leftClickerThread());
+            Task.Run(() => clicker.clicker.rightClickerThread());
 
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
             presetSelector.AutoRoundedCorners = true;
@@ -171,6 +172,7 @@ namespace Sapphire_Reborn {
                 configStatus.Visible = false;
             });
             configList.Items.Add(ConfigName.Text);
+            configList.Text = $"{LoadedConfigText.Text}";
         }
 
         private void ImportConfig(object sender, MouseEventArgs e)
@@ -189,7 +191,7 @@ namespace Sapphire_Reborn {
             string CFGName = ConfigName.Text + ".sapphire";
             DirectoryInfo di = new DirectoryInfo("Configs");
             var dirr = Path.Combine(di.FullName, CFGName);
-            if (dirr == null)
+            if (!File.Exists(dirr))
             {
                 configStatus.ForeColor = Color.Red;
                 configStatus.Text = "Please enter a valid config name";
@@ -249,6 +251,7 @@ namespace Sapphire_Reborn {
             {
                 configStatus.Visible = false;
             });
+            configList.Text = $"{LoadedConfigText.Text}";
         }
 
         private void OpenConfigWindow(object sender, MouseEventArgs e)
