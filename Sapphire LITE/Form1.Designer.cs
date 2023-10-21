@@ -324,7 +324,6 @@
             this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.ConfigName.PlaceholderText = "Config Name";
             this.ConfigName.SelectedText = "";
-            this.ConfigName.ShadowDecoration.Enabled = true;
             this.ConfigName.Size = new System.Drawing.Size(200, 36);
             this.ConfigName.TabIndex = 8;
             // 
