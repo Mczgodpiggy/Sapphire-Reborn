@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sapphire_LITE.clicker {
+namespace Sapphire_Reborn.clicker {
     public class DLLImports {
         [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
         [DllImport("user32.dll")] public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);

@@ -13,7 +13,7 @@ using System.Timers;
 using Timer = System.Timers.Timer;
 using System.Drawing.Text;
 
-namespace Sapphire_LITE.clicker {
+namespace Sapphire_Reborn.clicker {
     public class clicker {
 
         #region Misc
@@ -39,18 +39,11 @@ namespace Sapphire_LITE.clicker {
 
         public static IntPtr minecraft_process = IntPtr.Zero;
 
-        public static Stopwatch sw = new Stopwatch();
-
         #endregion
 
         #region Clicker functionality
 
         public static void clickerThread() {
-            exhaustLose.Elapsed += new ElapsedEventHandler(loseExhaust);
-            exhaustLose.Interval = 1;
-            exhaustRegen.Elapsed += new ElapsedEventHandler(regenExhaust);
-            exhaustRegen.Interval = 2;
-            exhaustRegen.Start();
             goExhaust.Elapsed += new ElapsedEventHandler(setExhaust);
             goExhaust.Interval = 30000;
             while (true) {
@@ -65,6 +58,7 @@ namespace Sapphire_LITE.clicker {
                 if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
 
                 if (always_on) {
+                    goExhaust.Start();
                     if (left_enabled) sendClick(left_min_cps, left_max_cps, DOWN, UP);
                     if (right_enabled) sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
                 }
@@ -72,16 +66,14 @@ namespace Sapphire_LITE.clicker {
                 if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
                 {
                     goExhaust.Start();
-                    exhaustLose.Start();
                     sendClick(left_min_cps, left_max_cps, DOWN, UP);
                 }
                 if (KeyListener.isKeyPressed(Keys.RButton) && right_enabled)
                 {
                     sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
                 }
-                if (!KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
+                if (!KeyListener.isKeyPressed(Keys.LButton) && left_enabled && !always_on)
                 {
-                    exhaustLose.Stop();
                     goExhaust.Stop();
                 }
             }
@@ -132,9 +124,9 @@ namespace Sapphire_LITE.clicker {
 
             int numerator = randomize ? r.Next(475 - randomization_distribution, 475 + randomization_distribution) + exhaust : 520 + exhaust;
 
-            int deviation = randomize ? deviation = rd.Next(1, 4) : deviation = 0;
+            int deviation = randomize ? deviation = rd.Next(0, 4) : deviation = 0;
 
-            if (r.Next(100) < 6 && randomize) return r.Next(80, 150);
+            if (r.Next(100) < 5 && randomize) return r.Next(80, 150);
 
             return r.Next(100) < 5 ? (numerator / cps) : (numerator / r.Next(cps - deviation, cps + deviation));
         }
@@ -142,8 +134,6 @@ namespace Sapphire_LITE.clicker {
         #endregion
 
         #region Cursor visibility detection
-
-        // this is all experimental, may not work on all clients or windows versions.
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(out CURSORINFO pci);

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 // All of the theme folder was taken from a now deleted repo from years ago.
 
-namespace Sapphire_LITE.theme {
+namespace Sapphire_Reborn.theme {
     public class RainbowGenerator {
         private float hue;
         private const float saturation = 0.3f;

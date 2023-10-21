@@ -3,8 +3,8 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using Sapphire_LITE.clicker;
-using Sapphire_LITE.theme;
+using Sapphire_Reborn.clicker;
+using Sapphire_Reborn.theme;
 using System.Drawing.Drawing2D;
 using System.Threading;
 using System.IO;
@@ -16,7 +16,7 @@ using System.Security.AccessControl;
 using Timer = System.Timers.Timer;
 using System.Timers;
 
-namespace Sapphire_LITE {
+namespace Sapphire_Reborn {
     public partial class Form1 : Form {
 
         #region Initialization
@@ -51,9 +51,9 @@ namespace Sapphire_LITE {
             if (cdi.Exists == false)
                 cdi.Create();
             string configDir = Path.Combine(cdi.FullName);
-            string[] test = Directory.GetFiles(configDir);
+            string[] configs = Directory.GetFiles(configDir);
             configList.Items.Clear();
-            foreach (string file in test)
+            foreach (string file in configs)
             {
                 if (file.EndsWith(".sapphire"))
                 configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
@@ -162,24 +162,27 @@ namespace Sapphire_LITE {
                 di.Create();
             var dirr = Path.Combine(di.FullName, CFGName);
             File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}");
-            ConfigName.PlaceholderText = $"Saved {ConfigName.Text} Successfully";
+            configStatus.ForeColor = Color.Green;
+            configStatus.Text = $"Saved {ConfigName.Text} Successfully";
+            configStatus.Visible = true;
             LoadedConfigText.Text = $"Loaded Config: {ConfigName.Text}";
-            ConfigName.Text = null;
             Task.Delay(1080).ContinueWith((task) =>
             {
-                ConfigName.PlaceholderText = "Config Name";
+                configStatus.Visible = false;
             });
-            reloadConfigs();
+            configList.Items.Add(ConfigName.Text);
         }
 
         private void ImportConfig(object sender, MouseEventArgs e)
         {
             if (ConfigName.Text == "")
             {
-                ConfigName.PlaceholderText = "Please enter a valid config name";
+                configStatus.ForeColor = Color.Red;
+                configStatus.Text = "Please enter a valid config name";
+                configStatus.Visible = true;
                 Task.Delay(1080).ContinueWith((task) =>
                 {
-                    ConfigName.PlaceholderText = "Config Name";
+                    configStatus.Visible = false;
                 });
                 return;
             }
@@ -188,10 +191,12 @@ namespace Sapphire_LITE {
             var dirr = Path.Combine(di.FullName, CFGName);
             if (dirr == null)
             {
-                ConfigName.PlaceholderText = "Please enter a valid config name";
+                configStatus.ForeColor = Color.Red;
+                configStatus.Text = "Please enter a valid config name";
+                configStatus.Visible = true;
                 Task.Delay(1080).ContinueWith((task) =>
                 {
-                    ConfigName.PlaceholderText = "Config Name";
+                    configStatus.Visible = false;
                 });
                 return;
             }
@@ -235,15 +240,15 @@ namespace Sapphire_LITE {
             toggleAlwaysOn.Checked = always_on;
             toggleShiftDisable.Checked = shift_disable;
             toggleSmartMode.Checked = smart_mode;
-            ConfigName.PlaceholderText = $"Loaded {ConfigName.Text} Successfully";
+            configStatus.ForeColor = Color.Green;
+            configStatus.Text = $"Loaded {ConfigName.Text} Successfully";
+            configStatus.Visible = true;
             LoadedConfigText.Text = $"Loaded Config: {ConfigName.Text}";
             presetSelector.SelectedIndex = 0;
-            ConfigName.Text = null;
             Task.Delay(1080).ContinueWith((task) =>
             {
-                ConfigName.PlaceholderText = "Config Name";
+                configStatus.Visible = false;
             });
-            reloadConfigs();
         }
 
         private void OpenConfigWindow(object sender, MouseEventArgs e)
@@ -275,11 +280,16 @@ namespace Sapphire_LITE {
             {
                 if (configList.SelectedItem == null)
                 {
+                    configStatus.ForeColor = Color.Red;
+                    configStatus.Text = $"Please select a config";
+                    configStatus.Visible = true;
+                    hideConfigStatus(true);
                     return;
                 }
                 var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
                 if (dirr == null)
                 {
+                    configStatus.ForeColor = Color.Red;
                     configStatus.Text = "Config doesn't exist";
                     configStatus.Visible = true;
                     Task.Delay(1080).ContinueWith((task) =>
@@ -291,15 +301,16 @@ namespace Sapphire_LITE {
                 File.Delete(dirr);
                 ConfigName.Text = "";
                 deletedConfig = configList.SelectedItem.ToString();
+                configStatus.ForeColor = Color.Green;
                 configStatus.Text = $"Successfully deleted {deletedConfig}";
-                    configStatus.Visible = true;
-                isConfigDeleted(true);
+                configStatus.Visible = true;
+                hideConfigStatus(true);
                 reloadConfigs();
             }
             hold.Stop();
         }
 
-        private async void isConfigDeleted(bool yn)
+        private async void hideConfigStatus(bool yn)
         {
             if (yn)
             {

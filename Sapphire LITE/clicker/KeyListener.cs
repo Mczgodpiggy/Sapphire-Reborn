@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sapphire_LITE.clicker {
+namespace Sapphire_Reborn.clicker {
     public static class KeyListener {
 
         [DllImport("user32.dll")] public static extern short GetAsyncKeyState(int vKey);

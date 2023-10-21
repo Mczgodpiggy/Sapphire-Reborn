@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sapphire_LITE {
+namespace Sapphire_Reborn {
     internal static class Program {
         [STAThread]
         static void Main() {
