@@ -266,7 +266,6 @@ namespace Sapphire_Reborn {
                 PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.VertSlide;
                 PanelTransition.HideSync(ConfigPanel);
             }
-            reloadConfigs();
         }
 
         private static string deletedConfig = "";

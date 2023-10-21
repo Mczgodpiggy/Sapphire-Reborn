@@ -174,12 +174,12 @@
             // 
             this.ConfigPanel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.ConfigPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ConfigPanel.Controls.Add(this.configList);
+            this.ConfigPanel.Controls.Add(this.ConfigName);
             this.ConfigPanel.Controls.Add(this.configStatus);
             this.ConfigPanel.Controls.Add(this.guna2CircleButton2);
-            this.ConfigPanel.Controls.Add(this.configList);
             this.ConfigPanel.Controls.Add(this.AddAConfig);
             this.ConfigPanel.Controls.Add(this.guna2CircleButton1);
-            this.ConfigPanel.Controls.Add(this.ConfigName);
             this.ConfigPanel.Controls.Add(this.guna2GradientCircleButton1);
             this.ConfigPanel.Controls.Add(this.label2);
             this.ConfigPanel.Controls.Add(this.panel6);
@@ -231,9 +231,11 @@
             this.configList.Animated = true;
             this.configList.AutoRoundedCorners = true;
             this.configList.BackColor = System.Drawing.Color.Transparent;
-            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.configList.BorderRadius = 18;
+            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.BorderRadius = 17;
             this.configList.BorderThickness = 2;
+            this.configList.CustomizableEdges.TopLeft = false;
+            this.configList.CustomizableEdges.TopRight = false;
             this.PanelTransition.SetDecoration(this.configList, Guna.UI2.AnimatorNS.DecorationType.None);
             this.configList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.configList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -247,12 +249,11 @@
             this.configList.ItemsAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.configList.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.configList.ItemsAppearance.SelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.configList.Location = new System.Drawing.Point(65, 104);
+            this.configList.Location = new System.Drawing.Point(66, 86);
             this.configList.Name = "configList";
             this.configList.ShadowDecoration.Enabled = true;
-            this.configList.Size = new System.Drawing.Size(201, 36);
+            this.configList.Size = new System.Drawing.Size(200, 36);
             this.configList.Sorted = true;
-            this.configList.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.configList.TabIndex = 29;
             this.ToolTip.SetToolTip(this.configList, "Lists of created configs");
             this.configList.DropDown += new System.EventHandler(this.configListClick);
@@ -304,9 +305,12 @@
             // 
             this.ConfigName.Animated = true;
             this.ConfigName.BackColor = System.Drawing.Color.Transparent;
-            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.BorderRadius = 17;
+            this.ConfigName.BorderThickness = 2;
             this.ConfigName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ConfigName.CustomizableEdges.BottomLeft = false;
+            this.ConfigName.CustomizableEdges.BottomRight = false;
             this.PanelTransition.SetDecoration(this.ConfigName, Guna.UI2.AnimatorNS.DecorationType.None);
             this.ConfigName.DefaultText = "";
             this.ConfigName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -315,15 +319,18 @@
             this.ConfigName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ConfigName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.ConfigName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.FocusedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfigName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.Location = new System.Drawing.Point(66, 53);
             this.ConfigName.Name = "ConfigName";
             this.ConfigName.PasswordChar = '\0';
             this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.ConfigName.PlaceholderText = "Config Name";
             this.ConfigName.SelectedText = "";
+            this.ConfigName.ShadowDecoration.Enabled = true;
             this.ConfigName.Size = new System.Drawing.Size(200, 36);
             this.ConfigName.TabIndex = 8;
             // 
@@ -778,7 +785,7 @@
             this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.guna2ControlBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(338, 0);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(338, -4);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(47, 44);
             this.guna2ControlBox2.TabIndex = 8;
@@ -791,7 +798,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(386, 0);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(386, -4);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(47, 44);
             this.guna2ControlBox1.TabIndex = 7;
@@ -831,6 +838,7 @@
             // DragControl
             // 
             this.DragControl.DockIndicatorTransparencyValue = 0.6D;
+            this.DragControl.DragStartTransparencyValue = 1D;
             this.DragControl.UseTransparentDrag = true;
             // 
             // ToolTip
@@ -850,14 +858,17 @@
             // DragControl2
             // 
             this.DragControl2.DockIndicatorTransparencyValue = 0.6D;
+            this.DragControl2.DragStartTransparencyValue = 1D;
             this.DragControl2.TargetControl = this.controlbar;
             this.DragControl2.UseTransparentDrag = true;
             // 
             // guna2BorderlessForm1
             // 
             this.guna2BorderlessForm1.AnimationType = Guna.UI2.WinForms.Guna2BorderlessForm.AnimateWindowType.AW_HOR_NEGATIVE;
+            this.guna2BorderlessForm1.BorderRadius = 20;
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2BorderlessForm1.DragStartTransparencyValue = 1D;
             this.guna2BorderlessForm1.ResizeForm = false;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
@@ -867,7 +878,8 @@
             // 
             // guna2Elipse1
             // 
-            this.guna2Elipse1.BorderRadius = 16;
+            this.guna2Elipse1.BorderRadius = 12;
+            this.guna2Elipse1.TargetControl = this.ConfigPanel;
             // 
             // PanelTransition
             // 
