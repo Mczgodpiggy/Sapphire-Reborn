@@ -1,5 +1,5 @@
 # Download
-Download the direct executable file [HERE](https://github.com/Mczgodpiggy/sapphire-reborn/releases/download/1.0.1/Sapphire.REBORN.exe)
+Download the direct executable file [HERE](https://github.com/Mczgodpiggy/sapphire-reborn/releases/download/Lazy-to-make-a-new-tag-every-update/Sapphire.REBORN.exe)
 
 # Information
 Free C# open-stheirced Minecraft auto clicker with standard features and easy expansion.
