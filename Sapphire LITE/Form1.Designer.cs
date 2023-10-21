@@ -238,11 +238,11 @@
             this.configList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.configList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.configList.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.configList.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.configList.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.FocusedColor = System.Drawing.Color.Empty;
             this.configList.Font = new System.Drawing.Font("Consolas", 9.75F);
             this.configList.ForeColor = System.Drawing.Color.Silver;
             this.configList.FormattingEnabled = true;
+            this.configList.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.configList.ItemHeight = 30;
             this.configList.ItemsAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.configList.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -303,7 +303,8 @@
             // ConfigName
             // 
             this.ConfigName.Animated = true;
-            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(116)))), ((int)(((byte)(226)))));
+            this.ConfigName.BackColor = System.Drawing.Color.Transparent;
+            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.ConfigName.BorderRadius = 17;
             this.ConfigName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.PanelTransition.SetDecoration(this.ConfigName, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -312,17 +313,18 @@
             this.ConfigName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.ConfigName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ConfigName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ConfigName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.ConfigName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ConfigName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ConfigName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfigName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ConfigName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.ConfigName.Location = new System.Drawing.Point(66, 53);
             this.ConfigName.Name = "ConfigName";
             this.ConfigName.PasswordChar = '\0';
-            this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Black;
+            this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.ConfigName.PlaceholderText = "Config Name";
             this.ConfigName.SelectedText = "";
+            this.ConfigName.ShadowDecoration.Enabled = true;
             this.ConfigName.Size = new System.Drawing.Size(200, 36);
             this.ConfigName.TabIndex = 8;
             // 
