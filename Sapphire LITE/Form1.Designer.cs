@@ -126,7 +126,7 @@
             this.Repair.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Repair.ForeColor = System.Drawing.Color.White;
             this.Repair.Image = ((System.Drawing.Image)(resources.GetObject("Repair.Image")));
-            this.Repair.Location = new System.Drawing.Point(0, 314);
+            this.Repair.Location = new System.Drawing.Point(-1, 314);
             this.Repair.Name = "Repair";
             this.Repair.Size = new System.Drawing.Size(45, 22);
             this.Repair.TabIndex = 30;
