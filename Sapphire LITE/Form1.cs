@@ -44,6 +44,12 @@ namespace Sapphire_Reborn {
             hold.Elapsed += new ElapsedEventHandler(holdDelete);
             hold.Interval = 1000;
             hold.Stop();
+            holdPlus.Elapsed += new ElapsedEventHandler(holdPPlus);
+            holdPlus.Interval = 10;
+            holdPlus.Stop();
+            holdNeg.Elapsed += new ElapsedEventHandler(holdPNeg);
+            holdNeg.Interval = 1;
+            holdNeg.Stop();
         }
 
         private void reloadConfigs()
@@ -93,7 +99,7 @@ namespace Sapphire_Reborn {
 
         private static int deletePressed = 0;
 
-        private readonly Timer hold = new Timer();
+        private readonly Timer hold = new Timer(), holdPlus = new Timer(), holdNeg = new Timer();
 
         Keys cfg_left_bind = Keys.None, cfg_right_bind = Keys.None;
 
@@ -268,6 +274,20 @@ namespace Sapphire_Reborn {
             }
         }
 
+        private void holdPPlus(object source, ElapsedEventArgs e)
+        {
+            if (deleteProgress.Value == 65) return;
+            deleteProgress.Value += 1;
+            Console.WriteLine(deleteProgress.Value);
+        }
+
+        private void holdPNeg(object source, ElapsedEventArgs e)
+        {
+            if (deleteProgress.Value == 0) return;
+            deleteProgress.Value += -4;
+            Console.WriteLine(deleteProgress.Value);
+        }
+
         private static string deletedConfig = "";
 
         private void holdDelete(object source, ElapsedEventArgs e)
@@ -306,8 +326,8 @@ namespace Sapphire_Reborn {
                 configStatus.ForeColor = Color.Green;
                 configStatus.Text = $"Successfully deleted {deletedConfig}";
                 configStatus.Visible = true;
+                configList.Items.Remove(deletedConfig);
                 hideConfigStatus(true);
-                reloadConfigs();
             }
             hold.Stop();
         }
@@ -326,52 +346,15 @@ namespace Sapphire_Reborn {
         private void holdDown(object sender, MouseEventArgs e)
         {
             hold.Start();
+            holdPlus.Start();
+            holdNeg.Stop();
         }
 
         private void holdUp(object sender, MouseEventArgs e)
         {
             hold.Stop();
-        }
-
-        private void deleteConfig(object sender, MouseEventArgs e)
-        {
-            Task.Delay(3500).ContinueWith((task) =>
-            {
-                configStatus.Visible = false;
-            });
-            deletePressed += 1;
-            if (deletePressed < 2)
-            {
-                configStatus.Text = "Press again to confirm";
-                configStatus.Visible = true;
-                Task.Delay(690).ContinueWith((task) =>
-                {
-                    configStatus.Visible = false;
-                });
-                return;
-            }
-            DirectoryInfo di = new DirectoryInfo("Configs");
-            var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
-            if (dirr == null)
-            {
-                configStatus.Text = "Config doesn't exist";
-                configStatus.Visible = true;
-                Task.Delay(1080).ContinueWith((task) =>
-                {
-                    configStatus.Visible = false;
-                });
-                return;
-            }
-            File.Delete(dirr);
-            configList.Items.Remove(configList.SelectedItem);
-            ConfigName.Text = "";
-            configStatus.Text = $"Successfully deleted ${configList.SelectedItem}";
-            configStatus.Visible = true;
-            deletePressed = 0;
-            Task.Delay(1080).ContinueWith((task) =>
-            {
-                configStatus.Visible = false;
-            });
+            holdNeg.Start();
+            holdPlus.Stop();
         }
 
         private void CloseConfigWindow(object sender, MouseEventArgs e)
