@@ -276,14 +276,21 @@ namespace Sapphire_Reborn {
 
         private void holdPPlus(object source, ElapsedEventArgs e)
         {
-            if (deleteProgress.Value == 65) return;
+            if (deleteProgress.Value == 65)
+            {
+                holdPlus.Stop();
+                return;
+            }
             deleteProgress.Value += 1;
             Console.WriteLine(deleteProgress.Value);
         }
 
         private void holdPNeg(object source, ElapsedEventArgs e)
         {
-            if (deleteProgress.Value == 0) return;
+            if (deleteProgress.Value == 0)
+            {
+                holdNeg.Stop();
+            }
             deleteProgress.Value += -4;
             Console.WriteLine(deleteProgress.Value);
         }
@@ -330,6 +337,14 @@ namespace Sapphire_Reborn {
                 hideConfigStatus(true);
             }
             hold.Stop();
+            Task.Delay(100).ContinueWith((task) =>
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    Thread.Sleep(5);
+                    deleteProgress.Value += -5;
+                }
+            });
         }
 
         private async void hideConfigStatus(bool yn)
