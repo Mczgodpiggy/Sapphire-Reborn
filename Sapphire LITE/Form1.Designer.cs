@@ -31,18 +31,16 @@
             this.Repair = new Guna.UI2.WinForms.Guna2Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ConfigPanel = new System.Windows.Forms.Panel();
+            this.configList = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.ConfigName = new Guna.UI2.WinForms.Guna2TextBox();
             this.configStatus = new System.Windows.Forms.Label();
             this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.configList = new Guna.UI2.WinForms.Guna2ComboBox();
             this.AddAConfig = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.ConfigName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientCircleButton1 = new Guna.UI2.WinForms.Guna2GradientCircleButton();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.guna2GradientCircleButton2 = new Guna.UI2.WinForms.Guna2GradientCircleButton();
-            this.RACCheck = new System.Windows.Forms.CheckBox();
-            this.LACCheck = new System.Windows.Forms.CheckBox();
             this.rightMaxCpsText = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.leftMaxCpsText = new System.Windows.Forms.Label();
@@ -78,6 +76,10 @@
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.PanelTransition = new Guna.UI2.WinForms.Guna2Transition();
+            this.LACCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.RACCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.rightMaxCpsSlider = new FlatUI.FlatTrackBar();
             this.leftMaxCpsSlider = new FlatUI.FlatTrackBar();
             this.leftMinCpsSlider = new FlatUI.FlatTrackBar();
@@ -137,9 +139,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.panel4.Controls.Add(this.ConfigPanel);
-            this.panel4.Controls.Add(this.guna2GradientCircleButton2);
             this.panel4.Controls.Add(this.RACCheck);
             this.panel4.Controls.Add(this.LACCheck);
+            this.panel4.Controls.Add(this.guna2GradientCircleButton2);
             this.panel4.Controls.Add(this.rightMaxCpsText);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.leftMaxCpsText);
@@ -164,6 +166,8 @@
             this.panel4.Controls.Add(this.leftMinCpsText);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.panel5);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label8);
             this.PanelTransition.SetDecoration(this.panel4, Guna.UI2.AnimatorNS.DecorationType.None);
             this.panel4.Location = new System.Drawing.Point(14, 56);
             this.panel4.Name = "panel4";
@@ -190,6 +194,73 @@
             this.ConfigPanel.Size = new System.Drawing.Size(322, 237);
             this.ConfigPanel.TabIndex = 28;
             this.ConfigPanel.Visible = false;
+            // 
+            // configList
+            // 
+            this.configList.Animated = true;
+            this.configList.AutoRoundedCorners = true;
+            this.configList.BackColor = System.Drawing.Color.Transparent;
+            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.BorderRadius = 17;
+            this.configList.BorderThickness = 2;
+            this.configList.CustomizableEdges.TopLeft = false;
+            this.configList.CustomizableEdges.TopRight = false;
+            this.PanelTransition.SetDecoration(this.configList, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.configList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.configList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.configList.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.configList.FocusedColor = System.Drawing.Color.Empty;
+            this.configList.Font = new System.Drawing.Font("Consolas", 9.75F);
+            this.configList.ForeColor = System.Drawing.Color.Silver;
+            this.configList.FormattingEnabled = true;
+            this.configList.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.ItemHeight = 30;
+            this.configList.ItemsAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.configList.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.configList.ItemsAppearance.SelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.configList.Location = new System.Drawing.Point(66, 86);
+            this.configList.Name = "configList";
+            this.configList.ShadowDecoration.Enabled = true;
+            this.configList.Size = new System.Drawing.Size(200, 36);
+            this.configList.Sorted = true;
+            this.configList.TabIndex = 29;
+            this.ToolTip.SetToolTip(this.configList, "Lists of created configs");
+            this.configList.DropDown += new System.EventHandler(this.configListClick);
+            this.configList.SelectedIndexChanged += new System.EventHandler(this.configList_SelectedIndexChanged);
+            this.configList.DropDownClosed += new System.EventHandler(this.configListClick);
+            // 
+            // ConfigName
+            // 
+            this.ConfigName.Animated = true;
+            this.ConfigName.BackColor = System.Drawing.Color.Transparent;
+            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.BorderRadius = 17;
+            this.ConfigName.BorderThickness = 2;
+            this.ConfigName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ConfigName.CustomizableEdges.BottomLeft = false;
+            this.ConfigName.CustomizableEdges.BottomRight = false;
+            this.PanelTransition.SetDecoration(this.ConfigName, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ConfigName.DefaultText = "";
+            this.ConfigName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ConfigName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ConfigName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ConfigName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ConfigName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ConfigName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.FocusedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConfigName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ConfigName.Location = new System.Drawing.Point(66, 53);
+            this.ConfigName.Name = "ConfigName";
+            this.ConfigName.PasswordChar = '\0';
+            this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.ConfigName.PlaceholderText = "Config Name";
+            this.ConfigName.SelectedText = "";
+            this.ConfigName.ShadowDecoration.Enabled = true;
+            this.ConfigName.Size = new System.Drawing.Size(200, 36);
+            this.ConfigName.TabIndex = 8;
             // 
             // configStatus
             // 
@@ -225,40 +296,6 @@
             this.ToolTip.SetToolTip(this.guna2CircleButton2, "Delete a config");
             this.guna2CircleButton2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.holdDown);
             this.guna2CircleButton2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.holdUp);
-            // 
-            // configList
-            // 
-            this.configList.Animated = true;
-            this.configList.AutoRoundedCorners = true;
-            this.configList.BackColor = System.Drawing.Color.Transparent;
-            this.configList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.configList.BorderRadius = 17;
-            this.configList.BorderThickness = 2;
-            this.configList.CustomizableEdges.TopLeft = false;
-            this.configList.CustomizableEdges.TopRight = false;
-            this.PanelTransition.SetDecoration(this.configList, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.configList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.configList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.configList.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.configList.FocusedColor = System.Drawing.Color.Empty;
-            this.configList.Font = new System.Drawing.Font("Consolas", 9.75F);
-            this.configList.ForeColor = System.Drawing.Color.Silver;
-            this.configList.FormattingEnabled = true;
-            this.configList.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.configList.ItemHeight = 30;
-            this.configList.ItemsAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.configList.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.configList.ItemsAppearance.SelectedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.configList.Location = new System.Drawing.Point(66, 86);
-            this.configList.Name = "configList";
-            this.configList.ShadowDecoration.Enabled = true;
-            this.configList.Size = new System.Drawing.Size(200, 36);
-            this.configList.Sorted = true;
-            this.configList.TabIndex = 29;
-            this.ToolTip.SetToolTip(this.configList, "Lists of created configs");
-            this.configList.DropDown += new System.EventHandler(this.configListClick);
-            this.configList.SelectedIndexChanged += new System.EventHandler(this.configList_SelectedIndexChanged);
-            this.configList.DropDownClosed += new System.EventHandler(this.configListClick);
             // 
             // AddAConfig
             // 
@@ -300,39 +337,6 @@
             this.guna2CircleButton1.TabIndex = 9;
             this.ToolTip.SetToolTip(this.guna2CircleButton1, "Import a config");
             this.guna2CircleButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ImportConfig);
-            // 
-            // ConfigName
-            // 
-            this.ConfigName.Animated = true;
-            this.ConfigName.BackColor = System.Drawing.Color.Transparent;
-            this.ConfigName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.BorderRadius = 17;
-            this.ConfigName.BorderThickness = 2;
-            this.ConfigName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ConfigName.CustomizableEdges.BottomLeft = false;
-            this.ConfigName.CustomizableEdges.BottomRight = false;
-            this.PanelTransition.SetDecoration(this.ConfigName, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ConfigName.DefaultText = "";
-            this.ConfigName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ConfigName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ConfigName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ConfigName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ConfigName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ConfigName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.FocusedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConfigName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ConfigName.Location = new System.Drawing.Point(66, 53);
-            this.ConfigName.Name = "ConfigName";
-            this.ConfigName.PasswordChar = '\0';
-            this.ConfigName.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.ConfigName.PlaceholderText = "Config Name";
-            this.ConfigName.SelectedText = "";
-            this.ConfigName.ShadowDecoration.Enabled = true;
-            this.ConfigName.Size = new System.Drawing.Size(200, 36);
-            this.ConfigName.TabIndex = 8;
             // 
             // guna2GradientCircleButton1
             // 
@@ -409,31 +413,6 @@
             this.guna2GradientCircleButton2.TextOffset = new System.Drawing.Point(1, -1);
             this.ToolTip.SetToolTip(this.guna2GradientCircleButton2, "Create this config");
             this.guna2GradientCircleButton2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenConfigWindow);
-            // 
-            // RACCheck
-            // 
-            this.PanelTransition.SetDecoration(this.RACCheck, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.RACCheck.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RACCheck.ForeColor = System.Drawing.Color.Transparent;
-            this.RACCheck.Location = new System.Drawing.Point(4, 111);
-            this.RACCheck.Name = "RACCheck";
-            this.RACCheck.Size = new System.Drawing.Size(109, 23);
-            this.RACCheck.TabIndex = 27;
-            this.RACCheck.Text = "Right Clicker";
-            this.RACCheck.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ToggleRAC);
-            // 
-            // LACCheck
-            // 
-            this.PanelTransition.SetDecoration(this.LACCheck, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.LACCheck.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LACCheck.ForeColor = System.Drawing.Color.Transparent;
-            this.LACCheck.Location = new System.Drawing.Point(4, 42);
-            this.LACCheck.Name = "LACCheck";
-            this.LACCheck.Size = new System.Drawing.Size(101, 23);
-            this.LACCheck.TabIndex = 26;
-            this.LACCheck.Text = "Left Clicker";
-            this.LACCheck.UseVisualStyleBackColor = true;
-            this.LACCheck.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ToggleLAC);
             // 
             // rightMaxCpsText
             // 
@@ -901,6 +880,84 @@
             animation1.TransparencyCoeff = 0F;
             this.PanelTransition.DefaultAnimation = animation1;
             // 
+            // LACCheck
+            // 
+            this.LACCheck.Animated = true;
+            this.LACCheck.AnimatedGIF = true;
+            this.LACCheck.BackColor = System.Drawing.Color.Transparent;
+            this.LACCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.LACCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.LACCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.PanelTransition.SetDecoration(this.LACCheck, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.LACCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.LACCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.LACCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.LACCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.LACCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.LACCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.LACCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.LACCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LACCheck.ForeColor = System.Drawing.Color.White;
+            this.LACCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.LACCheck.Location = new System.Drawing.Point(4, 45);
+            this.LACCheck.Name = "LACCheck";
+            this.LACCheck.Size = new System.Drawing.Size(12, 12);
+            this.LACCheck.TabIndex = 32;
+            this.ToolTip.SetToolTip(this.LACCheck, "Toggles the left clicker");
+            this.LACCheck.UseTransparentBackground = true;
+            this.LACCheck.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ToggleLAC);
+            // 
+            // RACCheck
+            // 
+            this.RACCheck.Animated = true;
+            this.RACCheck.AnimatedGIF = true;
+            this.RACCheck.BackColor = System.Drawing.Color.Transparent;
+            this.RACCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.RACCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.RACCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.PanelTransition.SetDecoration(this.RACCheck, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.RACCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.RACCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.RACCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.RACCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.RACCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.RACCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.RACCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.RACCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.RACCheck.ForeColor = System.Drawing.Color.White;
+            this.RACCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.RACCheck.Location = new System.Drawing.Point(4, 113);
+            this.RACCheck.Name = "RACCheck";
+            this.RACCheck.Size = new System.Drawing.Size(12, 12);
+            this.RACCheck.TabIndex = 33;
+            this.ToolTip.SetToolTip(this.RACCheck, "Toggles the right clicker");
+            this.RACCheck.UseTransparentBackground = true;
+            this.RACCheck.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ToggleRAC);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.label5, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(21, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Left Clicker";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.label8, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label8.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(21, 112);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 13);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Right Clicker";
+            // 
             // rightMaxCpsSlider
             // 
             this.rightMaxCpsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -1084,8 +1141,6 @@
         private System.Windows.Forms.Label rightMaxCpsText;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label leftMaxCpsText;
-        private System.Windows.Forms.CheckBox LACCheck;
-        private System.Windows.Forms.CheckBox RACCheck;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private System.Windows.Forms.Panel ConfigPanel;
         private System.Windows.Forms.Label label2;
@@ -1103,6 +1158,10 @@
         private Guna.UI2.WinForms.Guna2ComboBox configList;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
         private System.Windows.Forms.Label configStatus;
+        private Guna.UI2.WinForms.Guna2GradientButton LACCheck;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2GradientButton RACCheck;
+        private System.Windows.Forms.Label label8;
     }
 }
 

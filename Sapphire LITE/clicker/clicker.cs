@@ -183,6 +183,8 @@ namespace Sapphire_Reborn.clicker {
             CURSORINFO cinfo = GetCinfo();
             int cursorVal = Convert.ToInt32(cinfo.hCursor.ToInt64());
 
+            Console.WriteLine(Math.Abs(cursorVal));
+
             if (Math.Abs(cursorVal) > 70000) return false;
             if (Math.Abs(cursorVal) < 70000) return true;
             return true;

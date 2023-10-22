@@ -26,7 +26,7 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 5000;
+            uint DesiredResolution = 1000;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
@@ -53,11 +53,11 @@ namespace Sapphire_Reborn {
                 cdi.Create();
             string configDir = Path.Combine(cdi.FullName);
             string[] configs = Directory.GetFiles(configDir);
-            configList.Items.Clear();
             foreach (string file in configs)
             {
                 if (file.EndsWith(".sapphire"))
-                configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
+                    if (!configList.Items.Contains(file))
+                        configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
             }
         }
 
