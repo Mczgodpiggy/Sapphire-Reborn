@@ -54,16 +54,17 @@ namespace Sapphire_Reborn {
 
         private void reloadConfigs()
         {
-            DirectoryInfo cdi = new DirectoryInfo("Configs");
-            if (cdi.Exists == false)
-                cdi.Create();
-            string configDir = Path.Combine(cdi.FullName);
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo cdir = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
+            if (cdir.Exists == false)
+                cdir.Create();
+            string configDir = Path.Combine(cdir.FullName);
             string[] configs = Directory.GetFiles(configDir);
             foreach (string file in configs)
             {
                 if (file.EndsWith(".sapphire"))
-                    if (!configList.Items.Contains(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", "")))
-                        configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
+                    if (!configList.Items.Contains(file.Replace(cdir.FullName + "\\", "").Replace(".sapphire", "")))
+                        configList.Items.Add(file.Replace(cdir.FullName + "\\", "").Replace(".sapphire", ""));
             }
         }
 
@@ -74,7 +75,8 @@ namespace Sapphire_Reborn {
 
         public void dlResources()
         {
-            DirectoryInfo di = new DirectoryInfo("Resources");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
             if (di.Exists == false)
             {
                 di.Create();
@@ -162,7 +164,8 @@ namespace Sapphire_Reborn {
                 return;
             }
             int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value;
-            DirectoryInfo di = new DirectoryInfo("Configs");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
             if (di.Exists == false)
                 di.Create();
             var dirr = Path.Combine(di.FullName, CFGName);
@@ -193,7 +196,8 @@ namespace Sapphire_Reborn {
                 return;
             }
             string CFGName = ConfigName.Text + ".sapphire";
-            DirectoryInfo di = new DirectoryInfo("Configs");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
             var dirr = Path.Combine(di.FullName, CFGName);
             if (!File.Exists(dirr))
             {
@@ -303,7 +307,8 @@ namespace Sapphire_Reborn {
         private void holdDelete(object source, ElapsedEventArgs e)
         {
             Console.WriteLine(true);
-            DirectoryInfo di = new DirectoryInfo("Configs");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
             if (configList.InvokeRequired)
             {
                 var d = new SafeDelCFG(holdDelete);
@@ -397,7 +402,8 @@ namespace Sapphire_Reborn {
 
         private void repair(object sender, MouseEventArgs e)
         {
-            DirectoryInfo di = new DirectoryInfo("Resources");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
             if (di.Exists == false)
             {
                 di.Create();
@@ -471,7 +477,8 @@ namespace Sapphire_Reborn {
 
         private async void leftClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
-            DirectoryInfo di = new DirectoryInfo("Resources");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
 
             leftClickerBindButton.Text = "[press a key]";
 
@@ -505,7 +512,8 @@ namespace Sapphire_Reborn {
 
         private async void rightClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
-            DirectoryInfo di = new DirectoryInfo("Resources");
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
 
             rightClickerBindButton.Text = "[press a key]";
 
