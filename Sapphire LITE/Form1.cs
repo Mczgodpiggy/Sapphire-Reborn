@@ -26,7 +26,7 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 1000;
+            uint DesiredResolution = 5000;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
@@ -62,7 +62,7 @@ namespace Sapphire_Reborn {
             foreach (string file in configs)
             {
                 if (file.EndsWith(".sapphire"))
-                    if (!configList.Items.Contains(file))
+                    if (!configList.Items.Contains(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", "")))
                         configList.Items.Add(file.Replace(cdi.FullName + "\\", "").Replace(".sapphire", ""));
             }
         }
@@ -276,23 +276,23 @@ namespace Sapphire_Reborn {
 
         private void holdPPlus(object source, ElapsedEventArgs e)
         {
-            if (deleteProgress.Value == 65)
+            if (configProgress.Value == 65)
             {
                 holdPlus.Stop();
                 return;
             }
-            deleteProgress.Value += 1;
-            Console.WriteLine(deleteProgress.Value);
+            configProgress.Value += 1;
+            Console.WriteLine(configProgress.Value);
         }
 
         private void holdPNeg(object source, ElapsedEventArgs e)
         {
-            if (deleteProgress.Value == 0)
+            if (configProgress.Value == 0)
             {
                 holdNeg.Stop();
             }
-            deleteProgress.Value += -4;
-            Console.WriteLine(deleteProgress.Value);
+            configProgress.Value += -4;
+            Console.WriteLine(configProgress.Value);
         }
 
         private static string deletedConfig = "";
@@ -341,8 +341,8 @@ namespace Sapphire_Reborn {
             {
                 for (int i = 0; i < 13; i++)
                 {
-                    Thread.Sleep(5);
-                    deleteProgress.Value += -5;
+                    Thread.Sleep(8);
+                    configProgress.Value += -5;
                 }
             });
         }

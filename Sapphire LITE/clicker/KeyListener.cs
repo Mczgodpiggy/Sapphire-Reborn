@@ -21,12 +21,10 @@ namespace Sapphire_Reborn.clicker {
         public static void ListenForKeyPress() {
             while (true) {
                 try {
-                    // Check if any of the keys to check are pressed
                     foreach (var key in keysToCheck) {
                         short keyState = GetAsyncKeyState((int)key);
                         if ((keyState & 0x8000) != 0) {
                             if (!keyStates[key]) {
-                                // The key was just pressed
                                 keyStates[key] = true;
 
                                 if (keybinds.TryGetValue(key, out var action)) {
@@ -54,10 +52,8 @@ namespace Sapphire_Reborn.clicker {
         #region Menu bind listener
 
         public static void setupBindListener() {
-            // Num for all key values for binds
             var values = Enum.GetValues(typeof(Keys)).Cast<Keys>().ToList();
 
-            // remove left/right button so you cannot bind the clicker to them
             values.Remove(Keys.LButton);
             values.Remove(Keys.RButton);
 
