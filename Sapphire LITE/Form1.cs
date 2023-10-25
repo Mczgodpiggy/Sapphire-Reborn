@@ -69,7 +69,7 @@ namespace Sapphire_Reborn {
 
         private void FadeInTimer_Tick(object sender, EventArgs e) {
             if (this.Opacity == 1) FadeInTimer.Stop();
-            else this.Opacity += 0.1;
+            else this.Opacity += 0.069;
         }
 
         public void dlResources()
@@ -96,8 +96,6 @@ namespace Sapphire_Reborn {
         #region Controls
 
         private delegate void SafeDelCFG(object source, ElapsedEventArgs e);
-
-        private static int deletePressed = 0;
 
         private readonly Timer hold = new Timer(), holdPlus = new Timer(), holdNeg = new Timer();
 
@@ -272,6 +270,7 @@ namespace Sapphire_Reborn {
                 PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.VertSlide;
                 PanelTransition.HideSync(ConfigPanel);
             }
+            reloadConfigs();
         }
 
         private void holdPPlus(object source, ElapsedEventArgs e)
@@ -282,6 +281,8 @@ namespace Sapphire_Reborn {
                 return;
             }
             configProgress.Value += 1;
+            progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Error;
+            progressDisplay.Value += 1;
             Console.WriteLine(configProgress.Value);
         }
 
@@ -292,6 +293,8 @@ namespace Sapphire_Reborn {
                 holdNeg.Stop();
             }
             configProgress.Value += -4;
+            progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Normal;
+            progressDisplay.Value += -4;
             Console.WriteLine(configProgress.Value);
         }
 
@@ -343,6 +346,8 @@ namespace Sapphire_Reborn {
                 {
                     Thread.Sleep(8);
                     configProgress.Value += -5;
+                    progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.Normal;
+                    progressDisplay.Value += -5;
                 }
             });
         }
