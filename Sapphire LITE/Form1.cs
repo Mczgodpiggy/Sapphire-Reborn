@@ -15,6 +15,7 @@ using Guna.UI2.AnimatorNS;
 using System.Security.AccessControl;
 using Timer = System.Timers.Timer;
 using System.Timers;
+using System.ComponentModel;
 
 namespace Sapphire_Reborn {
     public partial class Form1 : Form {
