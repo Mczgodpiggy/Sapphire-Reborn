@@ -38,6 +38,7 @@ namespace Sapphire_Reborn {
             Task.Run(() => clicker.clicker.rightClickerThread());
 
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
+            Task.Run(() => win11Development());
             presetSelector.AutoRoundedCorners = true;
             presetSelector.Animated = true;
             dlResources();
@@ -51,6 +52,24 @@ namespace Sapphire_Reborn {
             holdNeg.Elapsed += new ElapsedEventHandler(holdPNeg);
             holdNeg.Interval = 1;
             holdNeg.Stop();
+        }
+
+        private void win11Development()
+        {
+            while (true)
+            {
+                Thread.Sleep(10);
+                A.Text = clicker.clicker.a.ToString();
+                B.Text = clicker.clicker.b.ToString();
+                if (Int32.Parse(A.Text) != clicker.clicker.a)
+                {
+                    A.Text = clicker.clicker.a.ToString();
+                }
+                if (Int32.Parse(B.Text) != clicker.clicker.b)
+                {
+                    B.Text = clicker.clicker.b.ToString();
+                }
+            }
         }
 
         private void reloadConfigs()
@@ -473,6 +492,7 @@ namespace Sapphire_Reborn {
         #endregion
 
         #region Binds
+        public static IntPtr minecraft_process = IntPtr.Zero;
 
         Keys left_bind = Keys.None, right_bind = Keys.None;
 
@@ -494,6 +514,9 @@ namespace Sapphire_Reborn {
             KeyListener.keysToCheck.Add(left_bind);
             KeyListener.keybinds[left_bind] = () =>
             {
+                minecraft_process = DLLImports.FindWindow("LWJGL", null);
+                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
                 if (LACCheck.Checked == false)
                 {
                     string[] file = Directory.GetFiles(di.FullName, "enable.wav");
@@ -529,6 +552,8 @@ namespace Sapphire_Reborn {
             KeyListener.keysToCheck.Add(right_bind);
             KeyListener.keybinds[right_bind] = () =>
             {
+                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
                 if (RACCheck.Checked == false)
                 {
                     string[] file = Directory.GetFiles(di.FullName, "enable.wav");

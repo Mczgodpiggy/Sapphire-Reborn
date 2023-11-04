@@ -62,13 +62,13 @@ namespace Sapphire_Reborn.clicker {
                 if (always_on)
                 {
                     goExhaust.Start();
-                    if (left_enabled) sendClick(left_min_cps, left_max_cps, DOWN, UP);
+                    if (left_enabled) sendLC(left_min_cps, left_max_cps, DOWN, UP);
                 }
 
                 if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
                 {
                     goExhaust.Start();
-                    sendClick(left_min_cps, left_max_cps, DOWN, UP);
+                    sendLC(left_min_cps, left_max_cps, DOWN, UP);
                 }
                 if (!KeyListener.isKeyPressed(Keys.LButton) && left_enabled && !always_on)
                 {
@@ -90,16 +90,26 @@ namespace Sapphire_Reborn.clicker {
                 if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
 
                 if (always_on) {
-                    if (right_enabled) sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
+                    if (right_enabled) sendRC(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
                 }
                 if (KeyListener.isKeyPressed(Keys.RButton) && right_enabled)
                 {
-                    sendClick(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
+                    sendRC(right_min_cps, right_max_cps, RIGHT_DOWN, RIGHT_UP);
                 }
             }
         }
 
-        public static void sendClick(int mincps,int maxcps,  uint type1, uint type2) {
+        public static void sendLC(int mincps, int maxcps, uint type1, uint type2)
+        {
+            Random cps = new Random();
+            Thread.Sleep(Rand(cps.Next(mincps, maxcps)));
+            DLLImports.PostMessage(minecraft_process, type1, 0, 0);
+            Thread.Sleep(Rand(cps.Next(mincps, maxcps)));
+            DLLImports.PostMessage(minecraft_process, type2, 0, 0);
+        }
+
+        public static void sendRC(int mincps, int maxcps, uint type1, uint type2)
+        {
             Random cps = new Random();
             Thread.Sleep(Rand(cps.Next(mincps, maxcps)));
             DLLImports.PostMessage(minecraft_process, type1, 0, 0);
@@ -154,6 +164,7 @@ namespace Sapphire_Reborn.clicker {
         #endregion
 
         #region Cursor visibility detection
+        public static int a = 69, b = 88;
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(out CURSORINFO pci);
@@ -182,8 +193,14 @@ namespace Sapphire_Reborn.clicker {
         public static bool IsCursorVisisble() {
             CURSORINFO cinfo = GetCinfo();
             int cursorVal = Convert.ToInt32(cinfo.hCursor.ToInt64());
-
-            Console.WriteLine(Math.Abs(cursorVal));
+            if (a == 69)
+            {
+                a = cursorVal;
+            }
+            if (a != cursorVal && b == 88)
+            {
+                b = cursorVal;
+            }
 
             if (Math.Abs(cursorVal) > 70000) return false;
             if (Math.Abs(cursorVal) < 70000) return true;
