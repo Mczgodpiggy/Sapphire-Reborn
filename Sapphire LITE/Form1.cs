@@ -515,7 +515,7 @@ namespace Sapphire_Reborn {
             KeyListener.keybinds[left_bind] = () =>
             {
                 minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (clicker.clicker.IsCursorVisisble()) return;
                 if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
                 if (LACCheck.Checked == false)
                 {
@@ -552,7 +552,7 @@ namespace Sapphire_Reborn {
             KeyListener.keysToCheck.Add(right_bind);
             KeyListener.keybinds[right_bind] = () =>
             {
-                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (clicker.clicker.IsCursorVisisble()) return;
                 if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
                 if (RACCheck.Checked == false)
                 {
