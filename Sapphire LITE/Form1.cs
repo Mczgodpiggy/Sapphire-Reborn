@@ -16,6 +16,7 @@ using System.Security.AccessControl;
 using Timer = System.Timers.Timer;
 using System.Timers;
 using System.ComponentModel;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Sapphire_Reborn {
     public partial class Form1 : Form {
@@ -233,6 +234,8 @@ namespace Sapphire_Reborn {
             string[] cfg = File.ReadAllLines(dirr);
             int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
             bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
+            string LBind = cfg[11], RBind = cfg[12];
+            Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             clicker.clicker.left_min_cps = clmin / 10;
             leftMinCpsText.Text = $"{clmin / 10.0}";
             leftMinCpsSlider.Value = clmin;
@@ -248,6 +251,72 @@ namespace Sapphire_Reborn {
             clicker.clicker.randomization_distribution = rand;
             randomizationText.Text = $"{rand}%";
             randomizationSlider.Value = rand;
+            KeyListener.keysToCheck.Remove(left_bind);
+            KeyListener.keybinds.Remove(left_bind);
+            KeyListener.keysToCheck.Remove(right_bind);
+            KeyListener.keybinds.Remove(right_bind);
+            left_bind = LB;
+            cfg_left_bind = LB;
+            right_bind = RB;
+            cfg_right_bind = RB;
+            if (LB.ToString() != "None")
+            {
+                leftClickerBindButton.Text = $"[{LB.ToString().ToLower()}]";
+                cfg_left_bind = LB;
+                KeyListener.keysToCheck.Add(left_bind);
+                KeyListener.keybinds[left_bind] = () =>
+                {
+                    minecraft_process = DLLImports.FindWindow("LWJGL", null);
+                    if (clicker.clicker.IsCursorVisisble()) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
+                    if (LACCheck.Checked == false)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        LACCheck.Checked = true;
+                        LACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
+                    }
+                    else if (LACCheck.Checked == true)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        LACCheck.Checked = false;
+                        LACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
+                    }
+                    toggleLeftClicker();
+                };
+            }
+            if (RB.ToString() != "None")
+            {
+                rightClickerBindButton.Text = $"[{RB.ToString().ToLower()}]";
+                cfg_right_bind = RB;
+                right_bind = RB;
+                KeyListener.keysToCheck.Add(right_bind);
+                KeyListener.keybinds[right_bind] = () =>
+                {
+                    if (clicker.clicker.IsCursorVisisble()) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
+                    if (RACCheck.Checked == false)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        RACCheck.Checked = true;
+                        RACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
+                    }
+                    else if (RACCheck.Checked == true)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        RACCheck.Checked = false;
+                        RACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
+                    }
+                    toggleRightClicker();
+                };
+            }
             if (clenabled == true && clicker.clicker.left_enabled == false)
             {
                 toggleLeftClicker();
