@@ -31,6 +31,8 @@
             this.Repair = new Guna.UI2.WinForms.Guna2Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ConfigPanel = new System.Windows.Forms.Panel();
+            this.B = new System.Windows.Forms.Label();
+            this.A = new System.Windows.Forms.Label();
             this.configProgress = new Guna.UI2.WinForms.Guna2ProgressBar();
             this.configList = new Guna.UI2.WinForms.Guna2ComboBox();
             this.ConfigName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -83,8 +85,6 @@
             this.Shadow = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.colorChange = new Guna.UI2.WinForms.Guna2ColorTransition(this.components);
             this.progressDisplay = new Guna.UI2.WinForms.Guna2TaskBarProgress(this.components);
-            this.A = new System.Windows.Forms.Label();
-            this.B = new System.Windows.Forms.Label();
             this.rightMaxCpsSlider = new FlatUI.FlatTrackBar();
             this.leftMaxCpsSlider = new FlatUI.FlatTrackBar();
             this.leftMinCpsSlider = new FlatUI.FlatTrackBar();
@@ -202,6 +202,30 @@
             this.ConfigPanel.Size = new System.Drawing.Size(322, 237);
             this.ConfigPanel.TabIndex = 28;
             this.ConfigPanel.Visible = false;
+            // 
+            // B
+            // 
+            this.B.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.B, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.B.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.B.Location = new System.Drawing.Point(23, 49);
+            this.B.Name = "B";
+            this.B.Size = new System.Drawing.Size(14, 13);
+            this.B.TabIndex = 34;
+            this.B.Text = "B";
+            this.B.Visible = false;
+            // 
+            // A
+            // 
+            this.A.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.A, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.A.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.A.Location = new System.Drawing.Point(23, 24);
+            this.A.Name = "A";
+            this.A.Size = new System.Drawing.Size(14, 13);
+            this.A.TabIndex = 33;
+            this.A.Text = "A";
+            this.A.Visible = false;
             // 
             // configProgress
             // 
@@ -1005,30 +1029,6 @@
             this.progressDisplay.Maximum = 65;
             this.progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
             this.progressDisplay.TargetForm = this;
-            // 
-            // A
-            // 
-            this.A.AutoSize = true;
-            this.PanelTransition.SetDecoration(this.A, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.A.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.A.Location = new System.Drawing.Point(23, 24);
-            this.A.Name = "A";
-            this.A.Size = new System.Drawing.Size(14, 13);
-            this.A.TabIndex = 33;
-            this.A.Text = "A";
-            this.A.Visible = false;
-            // 
-            // B
-            // 
-            this.B.AutoSize = true;
-            this.PanelTransition.SetDecoration(this.B, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.B.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.B.Location = new System.Drawing.Point(23, 49);
-            this.B.Name = "B";
-            this.B.Size = new System.Drawing.Size(14, 13);
-            this.B.TabIndex = 34;
-            this.B.Text = "B";
-            this.B.Visible = false;
             // 
             // rightMaxCpsSlider
             // 

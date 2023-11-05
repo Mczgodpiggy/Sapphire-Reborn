@@ -515,7 +515,7 @@ namespace Sapphire_Reborn {
             KeyListener.keybinds[left_bind] = () =>
             {
                 minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (clicker.clicker.IsCursorVisisble()) return;
                 if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
                 if (LACCheck.Checked == false)
                 {
@@ -523,12 +523,14 @@ namespace Sapphire_Reborn {
                     System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                     player.Play();
                     LACCheck.Checked = true;
+                    LACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
                 } else if (LACCheck.Checked == true)
                 {
                     string[] file = Directory.GetFiles(di.FullName, "disable.wav");
                     System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                     player.Play();
                     LACCheck.Checked = false;
+                    LACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
                 }
                 toggleLeftClicker();
             };
@@ -552,7 +554,7 @@ namespace Sapphire_Reborn {
             KeyListener.keysToCheck.Add(right_bind);
             KeyListener.keybinds[right_bind] = () =>
             {
-                if (!clicker.clicker.IsCursorVisisble()) return;
+                if (clicker.clicker.IsCursorVisisble()) return;
                 if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
                 if (RACCheck.Checked == false)
                 {
@@ -560,6 +562,7 @@ namespace Sapphire_Reborn {
                     System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                     player.Play();
                     RACCheck.Checked = true;
+                    RACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
                 }
                 else if (RACCheck.Checked == true)
                 {
@@ -567,6 +570,7 @@ namespace Sapphire_Reborn {
                     System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                     player.Play();
                     RACCheck.Checked = false;
+                    RACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
                 }
                 toggleRightClicker();
             };
