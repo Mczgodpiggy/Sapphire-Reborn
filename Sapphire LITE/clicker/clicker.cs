@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Timers;
 using Timer = System.Timers.Timer;
 using System.Drawing.Text;
+using System.Runtime.CompilerServices;
 
 namespace Sapphire_Reborn.clicker {
     public class clicker {
@@ -99,6 +100,40 @@ namespace Sapphire_Reborn.clicker {
             }
         }
 
+        public static void jitterThread()
+        {
+            while (true)
+            {
+                Thread.Sleep(1);
+
+                minecraft_process = DLLImports.FindWindow("LWJGL", null);
+
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) continue;
+
+                if (smart_mode & IsCursorVisisble() && !KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
+
+                if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
+
+                if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
+                {
+                    jitter();
+                }
+            }
+        }
+
+        public static void jitter()
+        {
+            Console.WriteLine("JITTER");
+            int XMIN = miscConfig.XMIN, XMAX = miscConfig.XMAX, YMIN = miscConfig.YMIN, YMAX = miscConfig.YMAX;
+            Random r = new Random();
+            int x1 = r.Next(XMIN, XMAX), x = r.Next(-x1, x1), y1 = r.Next(YMIN, YMAX), y = r.Next(-y1, y1);
+            Point position = Cursor.Position;
+            int cx = position.X;
+            int cy = position.Y;
+            SetCursorPos(cx + x, cy + y);
+            Thread.Sleep(miscConfig.jitter_interval);
+        }
+
         public static void sendLC(int mincps, int maxcps, uint type1, uint type2)
         {
             Random cps = new Random();
@@ -168,6 +203,9 @@ namespace Sapphire_Reborn.clicker {
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(out CURSORINFO pci);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetCursorPos(int X, int Y);
 
         [StructLayout(LayoutKind.Sequential)]
         struct POINT {

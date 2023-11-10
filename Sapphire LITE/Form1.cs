@@ -37,6 +37,7 @@ namespace Sapphire_Reborn {
 
             Task.Run(() => clicker.clicker.leftClickerThread());
             Task.Run(() => clicker.clicker.rightClickerThread());
+            Task.Run(() => clicker.clicker.jitterThread());
 
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
             Task.Run(() => win11Development());
@@ -351,7 +352,7 @@ namespace Sapphire_Reborn {
             configList.Text = $"{LoadedConfigText.Text}";
         }
 
-        private void OpenConfigWindow(object sender, MouseEventArgs e)
+        public void OpenConfigWindow(object sender, MouseEventArgs e)
         {
             if (ConfigPanel.Visible == false)
             {
@@ -459,6 +460,7 @@ namespace Sapphire_Reborn {
 
         private void holdDown(object sender, MouseEventArgs e)
         {
+            if (MouseButtons != MouseButtons.Left) return;
             hold.Start();
             holdPlus.Start();
             holdNeg.Stop();
@@ -466,6 +468,7 @@ namespace Sapphire_Reborn {
 
         private void holdUp(object sender, MouseEventArgs e)
         {
+            if (MouseButtons != MouseButtons.Left) return;
             hold.Stop();
             holdNeg.Start();
             holdPlus.Stop();
@@ -564,6 +567,19 @@ namespace Sapphire_Reborn {
         public static IntPtr minecraft_process = IntPtr.Zero;
 
         Keys left_bind = Keys.None, right_bind = Keys.None;
+
+        private void page_Scroll(object sender)
+        {
+            if (page.Value == 1)
+            {
+                PanelTransition.AnimationType = AnimationType.HorizSlide;
+                PanelTransition.HideSync(miscConfig1);
+            } else if (page.Value == 2)
+            {
+                PanelTransition.AnimationType = AnimationType.HorizSlide;
+                PanelTransition.ShowSync(miscConfig1);
+            }
+        }
 
         private async void leftClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
