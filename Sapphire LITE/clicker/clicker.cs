@@ -108,6 +108,8 @@ namespace Sapphire_Reborn.clicker {
 
                 minecraft_process = DLLImports.FindWindow("LWJGL", null);
 
+                if (!miscConfig.jitter_toggled_x && !miscConfig.jitter_toggled_y) continue;
+
                 if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) continue;
 
                 if (smart_mode & IsCursorVisisble() && !KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
@@ -123,7 +125,6 @@ namespace Sapphire_Reborn.clicker {
 
         public static void jitter()
         {
-            Console.WriteLine("JITTER");
             int XMIN = miscConfig.XMIN, XMAX = miscConfig.XMAX, YMIN = miscConfig.YMIN, YMAX = miscConfig.YMAX;
             Random r = new Random();
             int x1 = r.Next(XMIN, XMAX), x = r.Next(-x1, x1), y1 = r.Next(YMIN, YMAX), y = r.Next(-y1, y1);
@@ -131,6 +132,7 @@ namespace Sapphire_Reborn.clicker {
             int cx = position.X;
             int cy = position.Y;
             SetCursorPos(cx + x, cy + y);
+            Console.WriteLine($"JITTER {cx + x}, {cy + y}");
             Thread.Sleep(miscConfig.jitter_interval);
         }
 

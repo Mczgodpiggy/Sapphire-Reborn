@@ -185,13 +185,13 @@ namespace Sapphire_Reborn {
                 });
                 return;
             }
-            int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value;
+            int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value, xmin = miscConfig.XMIN, xmax = miscConfig.XMAX, ymin = miscConfig.YMIN, ymax = miscConfig.YMAX, interval = miscConfig.jitter_interval;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
             DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
             if (di.Exists == false)
                 di.Create();
             var dirr = Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}");
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{miscConfig.jitter_toggled_x}\n{xmin}\n{xmax}\n{miscConfig.jitter_toggled_y}\n{ymin}\n{ymax}\n{interval}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -200,9 +200,15 @@ namespace Sapphire_Reborn {
             {
                 configStatus.Visible = false;
             });
-            configList.Items.Add(ConfigName.Text);
+            if (!configList.Items.Contains(ConfigName.Text))
+            {
+                configList.Items.Add(ConfigName.Text);
+            }
             configList.Text = $"{LoadedConfigText.Text}";
         }
+
+        public static bool isLoadingConfig = false, cjitter_toggled_x = false, cjitter_toggled_y = false;
+        public static int cxmin = 0, cxmax = 0, cymin = 0, cymax = 0, cinterval = 0;
 
         private void ImportConfig(object sender, MouseEventArgs e)
         {
@@ -233,10 +239,11 @@ namespace Sapphire_Reborn {
                 return;
             }
             string[] cfg = File.ReadAllLines(dirr);
-            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
-            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
+            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]), xmin = Int32.Parse(cfg[14]), xmax = Int32.Parse(cfg[15]), ymin = Int32.Parse(cfg[17]), ymax = Int32.Parse(cfg[18]), interval = Int32.Parse(cfg[19]);
+            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), jitter_toggled_x = Convert.ToBoolean(cfg[13]), jitter_toggled_y = Convert.ToBoolean(cfg[16]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
+            isLoadingConfig = true;
             clicker.clicker.left_min_cps = clmin / 10;
             leftMinCpsText.Text = $"{clmin / 10.0}";
             leftMinCpsSlider.Value = clmin;
@@ -252,6 +259,17 @@ namespace Sapphire_Reborn {
             clicker.clicker.randomization_distribution = rand;
             randomizationText.Text = $"{rand}%";
             randomizationSlider.Value = rand;
+            miscConfig.XMIN = xmin;
+            cxmin = xmin;
+            miscConfig.XMAX = xmax;
+            cxmax = xmax;
+            miscConfig.YMIN = ymin;
+            cymin = ymin;
+            miscConfig.YMAX = ymax;
+            cymax = ymax;
+            cinterval = interval;
+            cjitter_toggled_x = jitter_toggled_x;
+            cjitter_toggled_y = jitter_toggled_y;
             KeyListener.keysToCheck.Remove(left_bind);
             KeyListener.keybinds.Remove(left_bind);
             KeyListener.keysToCheck.Remove(right_bind);
@@ -345,6 +363,7 @@ namespace Sapphire_Reborn {
             configStatus.Visible = true;
             LoadedConfigText.Text = $"Loaded Config: {ConfigName.Text}";
             presetSelector.SelectedIndex = 0;
+            isLoadingConfig = false;
             Task.Delay(1080).ContinueWith((task) =>
             {
                 configStatus.Visible = false;

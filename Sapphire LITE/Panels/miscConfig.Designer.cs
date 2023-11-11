@@ -49,12 +49,14 @@
             this.JitterXMax = new FlatUI.FlatTrackBar();
             this.JitterYMin = new FlatUI.FlatTrackBar();
             this.JitterYMax = new FlatUI.FlatTrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.jitterInterval);
             this.panel4.Controls.Add(this.jitterYCheck);
             this.panel4.Controls.Add(this.jitterXCheck);
@@ -380,6 +382,17 @@
             this.JitterYMax.Value = 0;
             this.JitterYMax.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.JitterYMax_Scroll);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(21, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 13);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Jitter interval";
+            // 
             // miscConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,16 +411,12 @@
         private System.Windows.Forms.Panel panel4;
         private Guna.UI2.WinForms.Guna2GradientButton jitterYCheck;
         private Guna.UI2.WinForms.Guna2GradientButton jitterXCheck;
-        private System.Windows.Forms.Label jitterYMaxText;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label jitterXMaxText;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private FlatUI.FlatTrackBar JitterXMin;
         private System.Windows.Forms.Label jitterIntervalText;
-        private System.Windows.Forms.Label jitterYMinText;
-        private System.Windows.Forms.Label jitterXMinText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
@@ -416,5 +425,10 @@
         private FlatUI.FlatTrackBar JitterYMin;
         private FlatUI.FlatTrackBar JitterYMax;
         private FlatUI.FlatTrackBar jitterInterval;
+        private System.Windows.Forms.Label jitterYMaxText;
+        private System.Windows.Forms.Label jitterXMaxText;
+        private System.Windows.Forms.Label jitterYMinText;
+        private System.Windows.Forms.Label jitterXMinText;
+        private System.Windows.Forms.Label label2;
     }
 }
