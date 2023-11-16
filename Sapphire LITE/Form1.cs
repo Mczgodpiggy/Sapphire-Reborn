@@ -25,6 +25,10 @@ namespace Sapphire_Reborn {
 
         public Form1() {
             InitializeComponent();
+            ManagementObject dsk = new ManagementObject(@"win32_logicaldisk.deviceid=""c:""");
+            dsk.Get();
+            string hwid = dsk["VolumeSerialNumber"].ToString();
+            Console.WriteLine($"{hwid}");
 
             Shadow.SetShadowForm(this);
 
@@ -40,7 +44,6 @@ namespace Sapphire_Reborn {
             Task.Run(() => clicker.clicker.jitterThread());
 
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
-            Task.Run(() => win11Development());
             presetSelector.AutoRoundedCorners = true;
             presetSelector.Animated = true;
             dlResources();
@@ -56,23 +59,6 @@ namespace Sapphire_Reborn {
             holdNeg.Stop();
         }
 
-        private void win11Development()
-        {
-            while (true)
-            {
-                Thread.Sleep(10);
-                A.Text = clicker.clicker.a.ToString();
-                B.Text = clicker.clicker.b.ToString();
-                if (Int32.Parse(A.Text) != clicker.clicker.a)
-                {
-                    A.Text = clicker.clicker.a.ToString();
-                }
-                if (Int32.Parse(B.Text) != clicker.clicker.b)
-                {
-                    B.Text = clicker.clicker.b.ToString();
-                }
-            }
-        }
 
         private void reloadConfigs()
         {

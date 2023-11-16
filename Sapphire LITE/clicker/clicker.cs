@@ -201,7 +201,6 @@ namespace Sapphire_Reborn.clicker {
         #endregion
 
         #region Cursor visibility detection
-        public static int a = 69, b = 88;
 
         [DllImport("user32.dll")]
         private static extern bool GetCursorInfo(out CURSORINFO pci);
@@ -233,15 +232,6 @@ namespace Sapphire_Reborn.clicker {
         public static bool IsCursorVisisble() {
             CURSORINFO cinfo = GetCinfo();
             int cursorVal = Convert.ToInt32(cinfo.hCursor.ToInt64());
-            if (a == 69)
-            {
-                a = cursorVal;
-            }
-            if (a != cursorVal && b == 88)
-            {
-                b = cursorVal;
-            }
-
             if (Math.Abs(cursorVal) > 70000) return false;
             if (Math.Abs(cursorVal) < 70000) return true;
             return true;
