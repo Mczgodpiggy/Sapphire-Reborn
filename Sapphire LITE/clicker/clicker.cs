@@ -32,7 +32,7 @@ namespace Sapphire_Reborn.clicker {
         #region Variables
 
         // conditions
-        public static bool always_on = false, shift_disable = false, smart_mode = false;
+        public static bool always_on = false, shift_disable = false, smart_mode = false, easyRefill = true;
 
         // other
         public static bool left_enabled = false, right_enabled = false, first_click = false;
@@ -48,6 +48,7 @@ namespace Sapphire_Reborn.clicker {
         {
             goExhaust.Elapsed += new ElapsedEventHandler(setExhaust);
             goExhaust.Interval = 30000;
+            goExhaust.Stop();
             while (true)
             {
                 Thread.Sleep(1);
@@ -99,49 +100,15 @@ namespace Sapphire_Reborn.clicker {
                 }
             }
         }
-
-        public static void jitterThread()
-        {
-            while (true)
-            {
-                Thread.Sleep(1);
-
-                minecraft_process = DLLImports.FindWindow("LWJGL", null);
-
-                if (!miscConfig.jitter_toggled_x && !miscConfig.jitter_toggled_y) continue;
-
-                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) continue;
-
-                if (smart_mode & IsCursorVisisble() && !KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
-
-                if (shift_disable && KeyListener.isKeyPressed(Keys.LShiftKey)) continue;
-
-                if (KeyListener.isKeyPressed(Keys.LButton) && left_enabled)
-                {
-                    jitter();
-                }
-            }
-        }
-
-        public static void jitter()
-        {
-            int XMIN = miscConfig.XMIN, XMAX = miscConfig.XMAX, YMIN = miscConfig.YMIN, YMAX = miscConfig.YMAX;
-            Random r = new Random();
-            int x1 = r.Next(XMIN, XMAX), x = r.Next(-x1, x1), y1 = r.Next(YMIN, YMAX), y = r.Next(-y1, y1);
-            Point position = Cursor.Position;
-            int cx = position.X;
-            int cy = position.Y;
-            SetCursorPos(cx + x, cy + y);
-            Console.WriteLine($"JITTER {cx + x}, {cy + y}");
-            Thread.Sleep(miscConfig.jitter_interval);
-        }
-
         public static void sendLC(int mincps, int maxcps, uint type1, uint type2)
         {
             Random cps = new Random();
-            Thread.Sleep(Rand(cps.Next(mincps, maxcps)));
+            int firstDelay = Rand(cps.Next(mincps, maxcps)), secondDelay = Rand(cps.Next(mincps, maxcps));
+            Thread.Sleep(firstDelay);
+            Console.WriteLine($"Delay 1 {firstDelay} CPS: {1000 / firstDelay}");
             DLLImports.PostMessage(minecraft_process, type1, 0, 0);
-            Thread.Sleep(Rand(cps.Next(mincps, maxcps)));
+            Thread.Sleep(secondDelay);
+            Console.WriteLine($"Delay 2 {secondDelay} CPS: {1000 / secondDelay}");
             DLLImports.PostMessage(minecraft_process, type2, 0, 0);
         }
 
@@ -160,32 +127,36 @@ namespace Sapphire_Reborn.clicker {
 
         public static bool randomize = true, isExhausted = false;
 
-        public static void loseExhaust(object source, ElapsedEventArgs e)
-        {
-            if (exhaustTime == 0) return;
-            exhaustTime += -1;
-        }
-
-        public static void regenExhaust(object source, ElapsedEventArgs e)
-        {
-            if (exhaustTime == 10000) return;
-            exhaustTime += 1;
-        }
-
         public static void setExhaust(object source, ElapsedEventArgs e)
         {
+            Console.WriteLine("Exhaust on");
+            isExhausted = true;
             goExhaust.Stop();
             notExhaust.Elapsed += new ElapsedEventHandler(backToNormal);
             notExhaust.Interval = 5000;
             notExhaust.Start();
             void backToNormal(object src, ElapsedEventArgs eee)
             {
+                Console.WriteLine("Exhaust off");
+                isExhausted = false;
                 notExhaust.Stop();
                 goExhaust.Start();
             }
         }
 
         public static int Rand(int cps) {
+
+            bool shouldRefill = false;
+
+            if (smart_mode & IsCursorVisisble() && KeyListener.isKeyPressed(Keys.LShiftKey))
+            {
+                shouldRefill = true;
+            } else
+            {
+                shouldRefill = false;
+            }
+
+            int refill = shouldRefill ? 2 : 1;
             
             int exhaust = isExhausted ? 500 : 0;
 
@@ -193,9 +164,9 @@ namespace Sapphire_Reborn.clicker {
 
             int deviation = randomize ? deviation = rd.Next(0, 4) : deviation = 0;
 
-            if (r.Next(100) < 5 && randomize) return r.Next(80, 150);
+            if (r.Next(100) < 5 && randomize) return r.Next(80, 150) / refill;
 
-            return r.Next(100) < 5 ? (numerator / cps) : (numerator / r.Next(cps - deviation, cps + deviation));
+            return r.Next(100) < 5 ? (numerator / cps) / refill : (numerator / r.Next(cps - deviation, cps + deviation)) / refill;
         }
 
         #endregion

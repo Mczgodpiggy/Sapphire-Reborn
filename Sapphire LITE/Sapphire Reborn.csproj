@@ -329,11 +329,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\miscConfig.cs">
+    <Compile Include="Panels\miscConfigs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panels\miscConfig.Designer.cs">
-      <DependentUpon>miscConfig.cs</DependentUpon>
+    <Compile Include="Panels\miscConfigs.Designer.cs">
+      <DependentUpon>miscConfigs.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -350,11 +350,14 @@
     <Compile Include="theme\Helpers.cs" />
     <Compile Include="theme\MouseState.cs" />
     <Compile Include="theme\RainbowGenerator.cs" />
+    <Compile Include="Utils\enablePrivileges.cs" />
+    <Compile Include="Utils\logs.cs" />
+    <Compile Include="Utils\Memory.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panels\miscConfig.resx">
-      <DependentUpon>miscConfig.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\miscConfigs.resx">
+      <DependentUpon>miscConfigs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

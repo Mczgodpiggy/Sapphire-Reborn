@@ -17,6 +17,7 @@ using Timer = System.Timers.Timer;
 using System.Timers;
 using System.ComponentModel;
 using static System.Windows.Forms.LinkLabel;
+using Sapphire_Reborn.Panels;
 
 namespace Sapphire_Reborn {
     public partial class Form1 : Form {
@@ -41,8 +42,6 @@ namespace Sapphire_Reborn {
 
             Task.Run(() => clicker.clicker.leftClickerThread());
             Task.Run(() => clicker.clicker.rightClickerThread());
-            Task.Run(() => clicker.clicker.jitterThread());
-
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
             presetSelector.AutoRoundedCorners = true;
             presetSelector.Animated = true;
@@ -171,13 +170,13 @@ namespace Sapphire_Reborn {
                 });
                 return;
             }
-            int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value, xmin = miscConfig.XMIN, xmax = miscConfig.XMAX, ymin = miscConfig.YMIN, ymax = miscConfig.YMAX, interval = miscConfig.jitter_interval;
+            int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
             DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
             if (di.Exists == false)
                 di.Create();
             var dirr = Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{miscConfig.jitter_toggled_x}\n{xmin}\n{xmax}\n{miscConfig.jitter_toggled_y}\n{ymin}\n{ymax}\n{interval}");
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -225,8 +224,8 @@ namespace Sapphire_Reborn {
                 return;
             }
             string[] cfg = File.ReadAllLines(dirr);
-            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]), xmin = Int32.Parse(cfg[14]), xmax = Int32.Parse(cfg[15]), ymin = Int32.Parse(cfg[17]), ymax = Int32.Parse(cfg[18]), interval = Int32.Parse(cfg[19]);
-            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), jitter_toggled_x = Convert.ToBoolean(cfg[13]), jitter_toggled_y = Convert.ToBoolean(cfg[16]);
+            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
+            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             isLoadingConfig = true;
@@ -245,17 +244,7 @@ namespace Sapphire_Reborn {
             clicker.clicker.randomization_distribution = rand;
             randomizationText.Text = $"{rand}%";
             randomizationSlider.Value = rand;
-            miscConfig.XMIN = xmin;
-            cxmin = xmin;
-            miscConfig.XMAX = xmax;
-            cxmax = xmax;
-            miscConfig.YMIN = ymin;
-            cymin = ymin;
-            miscConfig.YMAX = ymax;
-            cymax = ymax;
-            cinterval = interval;
-            cjitter_toggled_x = jitter_toggled_x;
-            cjitter_toggled_y = jitter_toggled_y;
+            clicker.clicker.randomization_distribution = rand;
             KeyListener.keysToCheck.Remove(left_bind);
             KeyListener.keybinds.Remove(left_bind);
             KeyListener.keysToCheck.Remove(right_bind);
@@ -578,11 +567,11 @@ namespace Sapphire_Reborn {
             if (page.Value == 1)
             {
                 PanelTransition.AnimationType = AnimationType.HorizSlide;
-                PanelTransition.HideSync(miscConfig1);
+                PanelTransition.HideSync(miscConfigs1);
             } else if (page.Value == 2)
             {
                 PanelTransition.AnimationType = AnimationType.HorizSlide;
-                PanelTransition.ShowSync(miscConfig1);
+                PanelTransition.ShowSync(miscConfigs1);
             }
         }
 
@@ -605,8 +594,8 @@ namespace Sapphire_Reborn {
             KeyListener.keybinds[left_bind] = () =>
             {
                 minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                if (clicker.clicker.IsCursorVisisble()) return;
-                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
+                if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
                 if (LACCheck.Checked == false)
                 {
                     string[] file = Directory.GetFiles(di.FullName, "enable.wav");
@@ -644,8 +633,8 @@ namespace Sapphire_Reborn {
             KeyListener.keysToCheck.Add(right_bind);
             KeyListener.keybinds[right_bind] = () =>
             {
-                if (clicker.clicker.IsCursorVisisble()) return;
-                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
+                if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !miscConfigs.bindInMenu) return;
                 if (RACCheck.Checked == false)
                 {
                     string[] file = Directory.GetFiles(di.FullName, "enable.wav");

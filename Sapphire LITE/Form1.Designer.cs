@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -73,7 +73,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.miscConfig1 = new Sapphire_Reborn.miscConfig();
             this.controlbar = new System.Windows.Forms.Panel();
             this.watermarkImage = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -92,6 +91,7 @@
             this.Shadow = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.colorChange = new Guna.UI2.WinForms.Guna2ColorTransition(this.components);
             this.progressDisplay = new Guna.UI2.WinForms.Guna2TaskBarProgress(this.components);
+            this.miscConfigs1 = new Sapphire_Reborn.Panels.miscConfigs();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.ConfigPanel.SuspendLayout();
@@ -132,7 +132,7 @@
             this.page.Full = false;
             this.page.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.page.Location = new System.Drawing.Point(223, 318);
-            this.page.Maximum = 2;
+            this.page.Maximum = 3;
             this.page.Minimum = 1;
             this.page.Name = "page";
             this.page.ShowValue = false;
@@ -169,6 +169,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.panel4.Controls.Add(this.miscConfigs1);
             this.panel4.Controls.Add(this.ConfigPanel);
             this.panel4.Controls.Add(this.RACCheck);
             this.panel4.Controls.Add(this.LACCheck);
@@ -199,7 +200,6 @@
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.miscConfig1);
             this.PanelTransition.SetDecoration(this.panel4, Guna.UI2.AnimatorNS.DecorationType.None);
             this.panel4.Location = new System.Drawing.Point(14, 56);
             this.panel4.Name = "panel4";
@@ -990,15 +990,6 @@
             this.label8.TabIndex = 35;
             this.label8.Text = "Right Clicker";
             // 
-            // miscConfig1
-            // 
-            this.PanelTransition.SetDecoration(this.miscConfig1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.miscConfig1.Location = new System.Drawing.Point(0, 0);
-            this.miscConfig1.Name = "miscConfig1";
-            this.miscConfig1.Size = new System.Drawing.Size(407, 260);
-            this.miscConfig1.TabIndex = 36;
-            this.miscConfig1.Visible = false;
-            // 
             // controlbar
             // 
             this.controlbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -1146,22 +1137,22 @@
             // 
             this.PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Scale;
             this.PanelTransition.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.PanelTransition.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.PanelTransition.DefaultAnimation = animation2;
             // 
             // Shadow
             // 
@@ -1181,6 +1172,15 @@
             this.progressDisplay.Maximum = 65;
             this.progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
             this.progressDisplay.TargetForm = this;
+            // 
+            // miscConfigs1
+            // 
+            this.PanelTransition.SetDecoration(this.miscConfigs1, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.miscConfigs1.Location = new System.Drawing.Point(0, 0);
+            this.miscConfigs1.Name = "miscConfigs1";
+            this.miscConfigs1.Size = new System.Drawing.Size(407, 260);
+            this.miscConfigs1.TabIndex = 36;
+            this.miscConfigs1.Visible = false;
             // 
             // Form1
             // 
@@ -1277,7 +1277,7 @@
         private System.Windows.Forms.Label B;
         private System.Windows.Forms.Label A;
         private FlatUI.FlatTrackBar page;
-        private miscConfig miscConfig1;
+        private Panels.miscConfigs miscConfigs1;
     }
 }
 
