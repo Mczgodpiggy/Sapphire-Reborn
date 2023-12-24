@@ -38,17 +38,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.JitterXMin = new FlatUI.FlatTrackBar();
             this.jitterYMinText = new System.Windows.Forms.Label();
             this.jitterXMinText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.inMenuBindCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.JitterXMin = new FlatUI.FlatTrackBar();
             this.JitterXMax = new FlatUI.FlatTrackBar();
             this.JitterYMin = new FlatUI.FlatTrackBar();
             this.JitterYMax = new FlatUI.FlatTrackBar();
-            this.inMenuBindCheck = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -212,26 +212,6 @@
             this.label3.Text = "MIN";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // JitterXMin
-            // 
-            this.JitterXMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterXMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterXMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterXMin.Decimal = false;
-            this.JitterXMin.FloatValue = 0D;
-            this.JitterXMin.Full = false;
-            this.JitterXMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterXMin.Location = new System.Drawing.Point(16, 93);
-            this.JitterXMin.Maximum = 600;
-            this.JitterXMin.Minimum = 300;
-            this.JitterXMin.Name = "JitterXMin";
-            this.JitterXMin.ShowValue = false;
-            this.JitterXMin.Size = new System.Drawing.Size(355, 12);
-            this.JitterXMin.TabIndex = 2;
-            this.JitterXMin.Text = "LMin";
-            this.JitterXMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterXMin.Value = 300;
-            // 
             // jitterYMinText
             // 
             this.jitterYMinText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,6 +264,62 @@
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 34;
             this.label5.Text = "Easy refill";
+            // 
+            // inMenuBindCheck
+            // 
+            this.inMenuBindCheck.Animated = true;
+            this.inMenuBindCheck.AnimatedGIF = true;
+            this.inMenuBindCheck.BackColor = System.Drawing.Color.Transparent;
+            this.inMenuBindCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.inMenuBindCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.inMenuBindCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.inMenuBindCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.inMenuBindCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.inMenuBindCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.inMenuBindCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.inMenuBindCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.inMenuBindCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.inMenuBindCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.inMenuBindCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.inMenuBindCheck.ForeColor = System.Drawing.Color.White;
+            this.inMenuBindCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.inMenuBindCheck.Location = new System.Drawing.Point(299, 224);
+            this.inMenuBindCheck.Name = "inMenuBindCheck";
+            this.inMenuBindCheck.Size = new System.Drawing.Size(12, 12);
+            this.inMenuBindCheck.TabIndex = 41;
+            this.inMenuBindCheck.UseTransparentBackground = true;
+            this.inMenuBindCheck.CheckedChanged += new System.EventHandler(this.inMenuBindCheck_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(316, 223);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 13);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Binds in menu";
+            // 
+            // JitterXMin
+            // 
+            this.JitterXMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterXMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterXMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterXMin.Decimal = false;
+            this.JitterXMin.FloatValue = 0D;
+            this.JitterXMin.Full = false;
+            this.JitterXMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterXMin.Location = new System.Drawing.Point(16, 93);
+            this.JitterXMin.Maximum = 600;
+            this.JitterXMin.Minimum = 300;
+            this.JitterXMin.Name = "JitterXMin";
+            this.JitterXMin.ShowValue = false;
+            this.JitterXMin.Size = new System.Drawing.Size(355, 12);
+            this.JitterXMin.TabIndex = 2;
+            this.JitterXMin.Text = "LMin";
+            this.JitterXMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterXMin.Value = 300;
             // 
             // JitterXMax
             // 
@@ -344,42 +380,6 @@
             this.JitterYMax.Text = "LMin";
             this.JitterYMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.JitterYMax.Value = 0;
-            // 
-            // inMenuBindCheck
-            // 
-            this.inMenuBindCheck.Animated = true;
-            this.inMenuBindCheck.AnimatedGIF = true;
-            this.inMenuBindCheck.BackColor = System.Drawing.Color.Transparent;
-            this.inMenuBindCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.inMenuBindCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
-            this.inMenuBindCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.inMenuBindCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.inMenuBindCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.inMenuBindCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.inMenuBindCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.inMenuBindCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.inMenuBindCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.inMenuBindCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.inMenuBindCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.inMenuBindCheck.ForeColor = System.Drawing.Color.White;
-            this.inMenuBindCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.inMenuBindCheck.Location = new System.Drawing.Point(308, 224);
-            this.inMenuBindCheck.Name = "inMenuBindCheck";
-            this.inMenuBindCheck.Size = new System.Drawing.Size(12, 12);
-            this.inMenuBindCheck.TabIndex = 41;
-            this.inMenuBindCheck.UseTransparentBackground = true;
-            this.inMenuBindCheck.CheckedChanged += new System.EventHandler(this.inMenuBindCheck_CheckedChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(325, 223);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 13);
-            this.label7.TabIndex = 42;
-            this.label7.Text = "Binds in menu";
             // 
             // miscConfigs
             // 

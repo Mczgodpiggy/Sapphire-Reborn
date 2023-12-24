@@ -18,6 +18,7 @@ namespace Sapphire_Reborn.Panels
         {
             InitializeComponent();
             Task.Run(() => reachThread());
+            
         }
 
         static IntPtr[] processes;
@@ -25,6 +26,16 @@ namespace Sapphire_Reborn.Panels
         public static bool reachToggled = false, bindInMenu = false;
 
         readonly Memory scan = new Memory();
+
+        public void update()
+        {
+            while (true)
+            {
+                Thread.Sleep(10);
+                if (!Form1.isLoadingConfig) continue;
+                inMenuBindCheck.Checked = bindInMenu;
+            }
+        }
 
         public void reachThread()
         {

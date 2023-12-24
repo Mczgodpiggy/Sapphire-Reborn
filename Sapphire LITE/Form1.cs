@@ -18,6 +18,8 @@ using System.Timers;
 using System.ComponentModel;
 using static System.Windows.Forms.LinkLabel;
 using Sapphire_Reborn.Panels;
+using System.Reflection;
+using WinFormAnimation;
 
 namespace Sapphire_Reborn {
     public partial class Form1 : Form {
@@ -33,13 +35,13 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 5000;
+            uint DesiredResolution = 8000;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
 
             KeyListener.setupBindListener();
-
+            Task.Run(() => bindThread());
             Task.Run(() => clicker.clicker.leftClickerThread());
             Task.Run(() => clicker.clicker.rightClickerThread());
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
@@ -62,10 +64,10 @@ namespace Sapphire_Reborn {
         private void reloadConfigs()
         {
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo cdir = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
+            DirectoryInfo cdir = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Configs"));
             if (cdir.Exists == false)
                 cdir.Create();
-            string configDir = Path.Combine(cdir.FullName);
+            string configDir = System.IO.Path.Combine(cdir.FullName);
             string[] configs = Directory.GetFiles(configDir);
             foreach (string file in configs)
             {
@@ -83,7 +85,7 @@ namespace Sapphire_Reborn {
         public void dlResources()
         {
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
             if (di.Exists == false)
             {
                 di.Create();
@@ -172,11 +174,11 @@ namespace Sapphire_Reborn {
             }
             int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Configs"));
             if (di.Exists == false)
                 di.Create();
-            var dirr = Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}");
+            var dirr = System.IO.Path.Combine(di.FullName, CFGName);
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{miscConfigs.bindInMenu}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -210,8 +212,8 @@ namespace Sapphire_Reborn {
             }
             string CFGName = ConfigName.Text + ".sapphire";
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
-            var dirr = Path.Combine(di.FullName, CFGName);
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Configs"));
+            var dirr = System.IO.Path.Combine(di.FullName, CFGName);
             if (!File.Exists(dirr))
             {
                 configStatus.ForeColor = Color.Red;
@@ -224,11 +226,20 @@ namespace Sapphire_Reborn {
                 return;
             }
             string[] cfg = File.ReadAllLines(dirr);
+            bool BindInMenu = false;
+            if (cfg.Length < 14)
+            {
+                BindInMenu = false;
+            } else
+            {
+                BindInMenu = Convert.ToBoolean(cfg[13]);
+            }
             int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
             bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             isLoadingConfig = true;
+            miscConfigs.bindInMenu = BindInMenu;
             clicker.clicker.left_min_cps = clmin / 10;
             leftMinCpsText.Text = $"{clmin / 10.0}";
             leftMinCpsSlider.Value = clmin;
@@ -258,29 +269,6 @@ namespace Sapphire_Reborn {
                 leftClickerBindButton.Text = $"[{LB.ToString().ToLower()}]";
                 cfg_left_bind = LB;
                 KeyListener.keysToCheck.Add(left_bind);
-                KeyListener.keybinds[left_bind] = () =>
-                {
-                    minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                    if (clicker.clicker.IsCursorVisisble()) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble()) return;
-                    if (LACCheck.Checked == false)
-                    {
-                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                        player.Play();
-                        LACCheck.Checked = true;
-                        LACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
-                    }
-                    else if (LACCheck.Checked == true)
-                    {
-                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                        player.Play();
-                        LACCheck.Checked = false;
-                        LACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
-                    }
-                    toggleLeftClicker();
-                };
             }
             if (RB.ToString() != "None")
             {
@@ -288,28 +276,6 @@ namespace Sapphire_Reborn {
                 cfg_right_bind = RB;
                 right_bind = RB;
                 KeyListener.keysToCheck.Add(right_bind);
-                KeyListener.keybinds[right_bind] = () =>
-                {
-                    if (clicker.clicker.IsCursorVisisble()) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString()) return;
-                    if (RACCheck.Checked == false)
-                    {
-                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                        player.Play();
-                        RACCheck.Checked = true;
-                        RACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
-                    }
-                    else if (RACCheck.Checked == true)
-                    {
-                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
-                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                        player.Play();
-                        RACCheck.Checked = false;
-                        RACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
-                    }
-                    toggleRightClicker();
-                };
             }
             if (clenabled == true && clicker.clicker.left_enabled == false)
             {
@@ -392,7 +358,7 @@ namespace Sapphire_Reborn {
         {
             Console.WriteLine(true);
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Configs"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Configs"));
             if (configList.InvokeRequired)
             {
                 var d = new SafeDelCFG(holdDelete);
@@ -407,7 +373,7 @@ namespace Sapphire_Reborn {
                     hideConfigStatus(true);
                     return;
                 }
-                var dirr = Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
+                var dirr = System.IO.Path.Combine(di.FullName, configList.SelectedItem.ToString() + ".sapphire");
                 if (dirr == null)
                 {
                     configStatus.ForeColor = Color.Red;
@@ -489,7 +455,7 @@ namespace Sapphire_Reborn {
         private void repair(object sender, MouseEventArgs e)
         {
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
             if (di.Exists == false)
             {
                 di.Create();
@@ -575,10 +541,65 @@ namespace Sapphire_Reborn {
             }
         }
 
+        public void bindThread()
+        {
+            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
+            while (true)
+            {
+                Thread.Sleep(10);
+                KeyListener.keybinds[cfg_left_bind] = () =>
+                {
+                    minecraft_process = DLLImports.FindWindow("LWJGL", null);
+                    if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                    if (LACCheck.Checked == false)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        LACCheck.Checked = true;
+                        LACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
+                    }
+                    else if (LACCheck.Checked == true)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        LACCheck.Checked = false;
+                        LACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
+                    }
+                    toggleLeftClicker();
+                };
+                KeyListener.keybinds[right_bind] = () =>
+                {
+                    if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !miscConfigs.bindInMenu) return;
+                    if (RACCheck.Checked == false)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "enable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        RACCheck.Checked = true;
+                        RACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
+                    }
+                    else if (RACCheck.Checked == true)
+                    {
+                        string[] file = Directory.GetFiles(di.FullName, "disable.wav");
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
+                        player.Play();
+                        RACCheck.Checked = false;
+                        RACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
+                    }
+                    toggleRightClicker();
+                };
+            }
+        }
+
         private async void leftClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
 
             leftClickerBindButton.Text = "[press a key]";
 
@@ -591,34 +612,12 @@ namespace Sapphire_Reborn {
             leftClickerBindButton.Text = $"[{left_bind.ToString().ToLower()}]";
             cfg_left_bind = left_bind;
             KeyListener.keysToCheck.Add(left_bind);
-            KeyListener.keybinds[left_bind] = () =>
-            {
-                minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
-                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
-                if (LACCheck.Checked == false)
-                {
-                    string[] file = Directory.GetFiles(di.FullName, "enable.wav");
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                    player.Play();
-                    LACCheck.Checked = true;
-                    LACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
-                } else if (LACCheck.Checked == true)
-                {
-                    string[] file = Directory.GetFiles(di.FullName, "disable.wav");
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                    player.Play();
-                    LACCheck.Checked = false;
-                    LACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
-                }
-                toggleLeftClicker();
-            };
         }
 
         private async void rightClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(path, ".sapphire", "Resources"));
+            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
 
             rightClickerBindButton.Text = "[press a key]";
 
@@ -631,28 +630,6 @@ namespace Sapphire_Reborn {
             rightClickerBindButton.Text = $"[{right_bind.ToString().ToLower()}]";
             cfg_right_bind = right_bind;
             KeyListener.keysToCheck.Add(right_bind);
-            KeyListener.keybinds[right_bind] = () =>
-            {
-                if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
-                if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !miscConfigs.bindInMenu) return;
-                if (RACCheck.Checked == false)
-                {
-                    string[] file = Directory.GetFiles(di.FullName, "enable.wav");
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                    player.Play();
-                    RACCheck.Checked = true;
-                    RACCheck.FillColor2 = Color.FromArgb(118, 126, 226);
-                }
-                else if (RACCheck.Checked == true)
-                {
-                    string[] file = Directory.GetFiles(di.FullName, "disable.wav");
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
-                    player.Play();
-                    RACCheck.Checked = false;
-                    RACCheck.FillColor2 = Color.FromArgb(213, 215, 247);
-                }
-                toggleRightClicker();
-            };
         }
 
         public async void toggleLeftClicker() {
