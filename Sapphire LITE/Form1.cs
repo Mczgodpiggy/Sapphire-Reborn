@@ -35,7 +35,7 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 8000;
+            uint DesiredResolution = 1500;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
@@ -45,8 +45,6 @@ namespace Sapphire_Reborn {
             Task.Run(() => clicker.clicker.leftClickerThread());
             Task.Run(() => clicker.clicker.rightClickerThread());
             Task.Run(() => clicker.KeyListener.ListenForKeyPress());
-            presetSelector.AutoRoundedCorners = true;
-            presetSelector.Animated = true;
             dlResources();
             reloadConfigs();
             hold.Elapsed += new ElapsedEventHandler(holdDelete);
@@ -178,7 +176,7 @@ namespace Sapphire_Reborn {
             if (di.Exists == false)
                 di.Create();
             var dirr = System.IO.Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{miscConfigs.bindInMenu}");
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{clicker.clicker.easyRefill}\n{miscConfigs.bindInMenu}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -226,20 +224,21 @@ namespace Sapphire_Reborn {
                 return;
             }
             string[] cfg = File.ReadAllLines(dirr);
-            bool BindInMenu = false;
-            if (cfg.Length < 14)
+            Console.WriteLine(cfg.Length);
+            if (cfg.Length < 15)
             {
-                BindInMenu = false;
-            } else
-            {
-                BindInMenu = Convert.ToBoolean(cfg[13]);
+                File.AppendAllText(dirr, "\nTrue\nFalse");
+                cfg = File.ReadAllLines(dirr);
             }
             int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
-            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]);
+            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), eRefill = Convert.ToBoolean(cfg[14]), BindInMenu = Convert.ToBoolean(cfg[15]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             isLoadingConfig = true;
             miscConfigs.bindInMenu = BindInMenu;
+            inMenuBindCheck.Checked = BindInMenu;
+            clicker.clicker.easyRefill = eRefill;
+            ERefillCheck.Checked = eRefill;
             clicker.clicker.left_min_cps = clmin / 10;
             leftMinCpsText.Text = $"{clmin / 10.0}";
             leftMinCpsSlider.Value = clmin;
@@ -303,7 +302,6 @@ namespace Sapphire_Reborn {
             configStatus.Text = $"Loaded {ConfigName.Text} Successfully";
             configStatus.Visible = true;
             LoadedConfigText.Text = $"Loaded Config: {ConfigName.Text}";
-            presetSelector.SelectedIndex = 0;
             isLoadingConfig = false;
             Task.Delay(1080).ContinueWith((task) =>
             {
@@ -446,12 +444,6 @@ namespace Sapphire_Reborn {
             configList.CustomizableEdges.BottomRight ^= true;
         }
 
-        private void presetSelectorClick(object sender, EventArgs e)
-        {
-            presetSelector.CustomizableEdges.BottomLeft ^= true;
-            presetSelector.CustomizableEdges.BottomRight ^= true;
-        }
-
         private void repair(object sender, MouseEventArgs e)
         {
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
@@ -476,31 +468,6 @@ namespace Sapphire_Reborn {
         private void jitterSlider_Scroll(object sender) {
             randomizationText.Text = $"{randomizationSlider.Value}%";
             clicker.clicker.randomization_distribution = randomizationSlider.Value;
-        }
-
-        private void presetSelector_SelectedIndexChanged(object sender, EventArgs e) {
-            switch (presetSelector.SelectedIndex) {
-            case 0:
-                    leftMinCpsSlider.Value = 120;
-                    leftMaxCpsSlider.Value = 160;
-                    rightMinCpsSlider.Value = 200;
-                    rightMaxCpsSlider.Value = 280;
-                    break;
-
-            case 1:
-                    leftMinCpsSlider.Value = 100;
-                    leftMaxCpsSlider.Value = 120;
-                    rightMinCpsSlider.Value = 200;
-                    rightMaxCpsSlider.Value = 280;
-                    break;
-
-            case 2:
-                    leftMinCpsSlider.Value = 160;
-                    leftMaxCpsSlider.Value = 240;
-                    rightMinCpsSlider.Value = 200;
-                    rightMaxCpsSlider.Value = 280;
-                    break;
-            }
         }
 
         private void configList_SelectedIndexChanged(object sender, EventArgs e)
