@@ -17,7 +17,6 @@ using Timer = System.Timers.Timer;
 using System.Timers;
 using System.ComponentModel;
 using static System.Windows.Forms.LinkLabel;
-using Sapphire_Reborn.Panels;
 using System.Reflection;
 using WinFormAnimation;
 
@@ -110,6 +109,8 @@ namespace Sapphire_Reborn {
 
         Keys cfg_left_bind = Keys.None, cfg_right_bind = Keys.None;
 
+        public bool bindInMenu = false;
+
         private void leftMinCpsSlider_Scroll(object sender) {
             if (leftMaxCpsSlider.Value < leftMinCpsSlider.Value)
             {
@@ -176,7 +177,7 @@ namespace Sapphire_Reborn {
             if (di.Exists == false)
                 di.Create();
             var dirr = System.IO.Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{clicker.clicker.easyRefill}\n{miscConfigs.bindInMenu}");
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{clicker.clicker.easyRefill}\n{bindInMenu}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -235,7 +236,7 @@ namespace Sapphire_Reborn {
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             isLoadingConfig = true;
-            miscConfigs.bindInMenu = BindInMenu;
+            bindInMenu = BindInMenu;
             inMenuBindCheck.Checked = BindInMenu;
             clicker.clicker.easyRefill = eRefill;
             ERefillCheck.Checked = eRefill;
@@ -518,8 +519,8 @@ namespace Sapphire_Reborn {
                 KeyListener.keybinds[cfg_left_bind] = () =>
                 {
                     minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                    if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
+                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
                     if (LACCheck.Checked == false)
                     {
                         string[] file = Directory.GetFiles(di.FullName, "enable.wav");
@@ -540,8 +541,8 @@ namespace Sapphire_Reborn {
                 };
                 KeyListener.keybinds[right_bind] = () =>
                 {
-                    if (clicker.clicker.IsCursorVisisble() && !miscConfigs.bindInMenu) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !miscConfigs.bindInMenu) return;
+                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !bindInMenu) return;
                     if (RACCheck.Checked == false)
                     {
                         string[] file = Directory.GetFiles(di.FullName, "enable.wav");
