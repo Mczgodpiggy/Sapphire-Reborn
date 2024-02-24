@@ -15,3 +15,5 @@ If you would like to try their paid software, check out their site [here](https:
 
 ## Compiling
 Due to licensing issues, GunaUI could not be directly released in this repository. You'll need to obtain and import GunaUI to compile or remove the UI elements using GunaUI.
+
+### Recoded by Quectobyte
