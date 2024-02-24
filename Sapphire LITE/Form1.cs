@@ -485,6 +485,16 @@ namespace Sapphire_Reborn {
 
         private void toggleAlwaysOn_CheckedChanged(object sender, EventArgs e) { clicker.clicker.always_on ^= true; }
 
+        private void ERefillCheck_Click(object sender, EventArgs e)
+        {
+            clicker.clicker.easyRefill = ERefillCheck.Checked;
+        }
+
+        private void inMenuBindCheck_Click(object sender, EventArgs e)
+        {
+            bindInMenu = inMenuBindCheck.Checked;
+        }
+
         private void toggleSmartMode_CheckedChanged(object sender, EventArgs e) {
             clicker.clicker.smart_mode ^= true;
         }

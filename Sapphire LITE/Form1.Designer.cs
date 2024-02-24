@@ -24,10 +24,31 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation4 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.miscConfigs1 = new System.Windows.Forms.Panel();
+            this.inMenuBindCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ReachCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ERefillCheck = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.jitterYMaxText = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.jitterXMaxText = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.ReachMin = new FlatUI.FlatTrackBar();
+            this.jitterYMinText = new System.Windows.Forms.Label();
+            this.jitterXMinText = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.ReachMax = new FlatUI.FlatTrackBar();
+            this.JitterYMin = new FlatUI.FlatTrackBar();
+            this.JitterYMax = new FlatUI.FlatTrackBar();
             this.page = new FlatUI.FlatTrackBar();
             this.Repair = new Guna.UI2.WinForms.Guna2Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -90,34 +111,13 @@
             this.Shadow = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.colorChange = new Guna.UI2.WinForms.Guna2ColorTransition(this.components);
             this.progressDisplay = new Guna.UI2.WinForms.Guna2TaskBarProgress(this.components);
-            this.inMenuBindCheck = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ReachCheck = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.label11 = new System.Windows.Forms.Label();
-            this.ERefillCheck = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.jitterYMaxText = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.jitterXMaxText = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ReachMin = new FlatUI.FlatTrackBar();
-            this.jitterYMinText = new System.Windows.Forms.Label();
-            this.jitterXMinText = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.miscConfigs1 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
-            this.ReachMax = new FlatUI.FlatTrackBar();
-            this.JitterYMin = new FlatUI.FlatTrackBar();
-            this.JitterYMax = new FlatUI.FlatTrackBar();
             this.panel1.SuspendLayout();
+            this.miscConfigs1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.ConfigPanel.SuspendLayout();
             this.controlbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watermarkImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.miscConfigs1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FadeInTimer
@@ -141,6 +141,356 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(432, 336);
             this.panel1.TabIndex = 0;
+            // 
+            // miscConfigs1
+            // 
+            this.miscConfigs1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.miscConfigs1.Controls.Add(this.inMenuBindCheck);
+            this.miscConfigs1.Controls.Add(this.label10);
+            this.miscConfigs1.Controls.Add(this.ReachCheck);
+            this.miscConfigs1.Controls.Add(this.label11);
+            this.miscConfigs1.Controls.Add(this.ERefillCheck);
+            this.miscConfigs1.Controls.Add(this.jitterYMaxText);
+            this.miscConfigs1.Controls.Add(this.label12);
+            this.miscConfigs1.Controls.Add(this.jitterXMaxText);
+            this.miscConfigs1.Controls.Add(this.label13);
+            this.miscConfigs1.Controls.Add(this.label14);
+            this.miscConfigs1.Controls.Add(this.label15);
+            this.miscConfigs1.Controls.Add(this.ReachMin);
+            this.miscConfigs1.Controls.Add(this.jitterYMinText);
+            this.miscConfigs1.Controls.Add(this.jitterXMinText);
+            this.miscConfigs1.Controls.Add(this.label16);
+            this.miscConfigs1.Controls.Add(this.panel8);
+            this.miscConfigs1.Controls.Add(this.label17);
+            this.miscConfigs1.Controls.Add(this.ReachMax);
+            this.miscConfigs1.Controls.Add(this.JitterYMin);
+            this.miscConfigs1.Controls.Add(this.JitterYMax);
+            this.PanelTransition.SetDecoration(this.miscConfigs1, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.miscConfigs1.Location = new System.Drawing.Point(14, 56);
+            this.miscConfigs1.Name = "miscConfigs1";
+            this.miscConfigs1.Size = new System.Drawing.Size(407, 259);
+            this.miscConfigs1.TabIndex = 35;
+            this.miscConfigs1.Visible = false;
+            // 
+            // inMenuBindCheck
+            // 
+            this.inMenuBindCheck.Animated = true;
+            this.inMenuBindCheck.AnimatedGIF = true;
+            this.inMenuBindCheck.BackColor = System.Drawing.Color.Transparent;
+            this.inMenuBindCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.inMenuBindCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.inMenuBindCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.PanelTransition.SetDecoration(this.inMenuBindCheck, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.inMenuBindCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.inMenuBindCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.inMenuBindCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.inMenuBindCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.inMenuBindCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.inMenuBindCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.inMenuBindCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.inMenuBindCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.inMenuBindCheck.ForeColor = System.Drawing.Color.White;
+            this.inMenuBindCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.inMenuBindCheck.Location = new System.Drawing.Point(299, 224);
+            this.inMenuBindCheck.Name = "inMenuBindCheck";
+            this.inMenuBindCheck.Size = new System.Drawing.Size(12, 12);
+            this.inMenuBindCheck.TabIndex = 41;
+            this.inMenuBindCheck.UseTransparentBackground = true;
+            this.inMenuBindCheck.Click += new System.EventHandler(this.inMenuBindCheck_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.label10, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(316, 223);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Binds in menu";
+            // 
+            // ReachCheck
+            // 
+            this.ReachCheck.Animated = true;
+            this.ReachCheck.AnimatedGIF = true;
+            this.ReachCheck.BackColor = System.Drawing.Color.Transparent;
+            this.ReachCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.ReachCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.ReachCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.PanelTransition.SetDecoration(this.ReachCheck, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ReachCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ReachCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ReachCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ReachCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ReachCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ReachCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.ReachCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.ReachCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ReachCheck.ForeColor = System.Drawing.Color.White;
+            this.ReachCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.ReachCheck.Location = new System.Drawing.Point(17, 65);
+            this.ReachCheck.Name = "ReachCheck";
+            this.ReachCheck.Size = new System.Drawing.Size(12, 12);
+            this.ReachCheck.TabIndex = 39;
+            this.ReachCheck.UseTransparentBackground = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.label11, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(34, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Reach";
+            // 
+            // ERefillCheck
+            // 
+            this.ERefillCheck.Animated = true;
+            this.ERefillCheck.AnimatedGIF = true;
+            this.ERefillCheck.BackColor = System.Drawing.Color.Transparent;
+            this.ERefillCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            this.ERefillCheck.Checked = true;
+            this.ERefillCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
+            this.ERefillCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.PanelTransition.SetDecoration(this.ERefillCheck, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ERefillCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ERefillCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ERefillCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ERefillCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ERefillCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ERefillCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.ERefillCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
+            this.ERefillCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ERefillCheck.ForeColor = System.Drawing.Color.White;
+            this.ERefillCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.ERefillCheck.Location = new System.Drawing.Point(17, 223);
+            this.ERefillCheck.Name = "ERefillCheck";
+            this.ERefillCheck.Size = new System.Drawing.Size(12, 12);
+            this.ERefillCheck.TabIndex = 32;
+            this.ERefillCheck.UseTransparentBackground = true;
+            this.ERefillCheck.Click += new System.EventHandler(this.ERefillCheck_Click);
+            // 
+            // jitterYMaxText
+            // 
+            this.PanelTransition.SetDecoration(this.jitterYMaxText, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.jitterYMaxText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jitterYMaxText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.jitterYMaxText.Location = new System.Drawing.Point(365, 191);
+            this.jitterYMaxText.Name = "jitterYMaxText";
+            this.jitterYMaxText.Size = new System.Drawing.Size(40, 17);
+            this.jitterYMaxText.TabIndex = 23;
+            this.jitterYMaxText.Text = "0px";
+            this.jitterYMaxText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTransition.SetDecoration(this.label12, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.label12.Location = new System.Drawing.Point(372, 174);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(28, 17);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "MAX";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // jitterXMaxText
+            // 
+            this.PanelTransition.SetDecoration(this.jitterXMaxText, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.jitterXMaxText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jitterXMaxText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.jitterXMaxText.Location = new System.Drawing.Point(365, 124);
+            this.jitterXMaxText.Name = "jitterXMaxText";
+            this.jitterXMaxText.Size = new System.Drawing.Size(40, 17);
+            this.jitterXMaxText.TabIndex = 21;
+            this.jitterXMaxText.Text = "3.00";
+            this.jitterXMaxText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTransition.SetDecoration(this.label13, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.label13.Location = new System.Drawing.Point(372, 107);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(28, 17);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "MAX";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTransition.SetDecoration(this.label14, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.label14.Location = new System.Drawing.Point(372, 140);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(28, 17);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "MIN";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.PanelTransition.SetDecoration(this.label15, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label15.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.label15.Location = new System.Drawing.Point(372, 72);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(28, 17);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "MIN";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ReachMin
+            // 
+            this.ReachMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ReachMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ReachMin.Decimal = false;
+            this.PanelTransition.SetDecoration(this.ReachMin, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ReachMin.FloatValue = 0D;
+            this.ReachMin.Full = false;
+            this.ReachMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMin.Location = new System.Drawing.Point(16, 93);
+            this.ReachMin.Maximum = 600;
+            this.ReachMin.Minimum = 300;
+            this.ReachMin.Name = "ReachMin";
+            this.ReachMin.ShowValue = false;
+            this.ReachMin.Size = new System.Drawing.Size(355, 12);
+            this.ReachMin.TabIndex = 2;
+            this.ReachMin.Text = "ReachMin";
+            this.ReachMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMin.Value = 300;
+            // 
+            // jitterYMinText
+            // 
+            this.PanelTransition.SetDecoration(this.jitterYMinText, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.jitterYMinText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jitterYMinText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.jitterYMinText.Location = new System.Drawing.Point(365, 157);
+            this.jitterYMinText.Name = "jitterYMinText";
+            this.jitterYMinText.Size = new System.Drawing.Size(40, 17);
+            this.jitterYMinText.TabIndex = 9;
+            this.jitterYMinText.Text = "0px";
+            this.jitterYMinText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // jitterXMinText
+            // 
+            this.PanelTransition.SetDecoration(this.jitterXMinText, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.jitterXMinText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jitterXMinText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.jitterXMinText.Location = new System.Drawing.Point(365, 92);
+            this.jitterXMinText.Name = "jitterXMinText";
+            this.jitterXMinText.Size = new System.Drawing.Size(40, 17);
+            this.jitterXMinText.TabIndex = 6;
+            this.jitterXMinText.Text = "3.00";
+            this.jitterXMinText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.PanelTransition.SetDecoration(this.label16, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.label16.Location = new System.Drawing.Point(100, 8);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(205, 18);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Misc configuration";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.PanelTransition.SetDecoration(this.panel8, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.panel8.Location = new System.Drawing.Point(1, -5);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(435, 10);
+            this.panel8.TabIndex = 2;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.PanelTransition.SetDecoration(this.label17, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label17.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(34, 222);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(73, 13);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Easy refill";
+            // 
+            // ReachMax
+            // 
+            this.ReachMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ReachMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ReachMax.Decimal = false;
+            this.PanelTransition.SetDecoration(this.ReachMax, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ReachMax.FloatValue = 0D;
+            this.ReachMax.Full = false;
+            this.ReachMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMax.Location = new System.Drawing.Point(16, 124);
+            this.ReachMax.Maximum = 600;
+            this.ReachMax.Minimum = 300;
+            this.ReachMax.Name = "ReachMax";
+            this.ReachMax.ShowValue = false;
+            this.ReachMax.Size = new System.Drawing.Size(355, 12);
+            this.ReachMax.TabIndex = 36;
+            this.ReachMax.Text = "LMin";
+            this.ReachMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ReachMax.Value = 300;
+            // 
+            // JitterYMin
+            // 
+            this.JitterYMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterYMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterYMin.Decimal = false;
+            this.PanelTransition.SetDecoration(this.JitterYMin, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.JitterYMin.FloatValue = 0D;
+            this.JitterYMin.Full = false;
+            this.JitterYMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMin.Location = new System.Drawing.Point(16, 161);
+            this.JitterYMin.Maximum = 60;
+            this.JitterYMin.Minimum = 30;
+            this.JitterYMin.Name = "JitterYMin";
+            this.JitterYMin.ShowValue = false;
+            this.JitterYMin.Size = new System.Drawing.Size(355, 12);
+            this.JitterYMin.TabIndex = 37;
+            this.JitterYMin.Text = "LMin";
+            this.JitterYMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMin.Value = 30;
+            // 
+            // JitterYMax
+            // 
+            this.JitterYMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterYMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.JitterYMax.Decimal = false;
+            this.PanelTransition.SetDecoration(this.JitterYMax, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.JitterYMax.FloatValue = 0D;
+            this.JitterYMax.Full = false;
+            this.JitterYMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMax.Location = new System.Drawing.Point(16, 190);
+            this.JitterYMax.Maximum = 20;
+            this.JitterYMax.Minimum = 0;
+            this.JitterYMax.Name = "JitterYMax";
+            this.JitterYMax.ShowValue = false;
+            this.JitterYMax.Size = new System.Drawing.Size(355, 12);
+            this.JitterYMax.TabIndex = 38;
+            this.JitterYMax.Text = "LMin";
+            this.JitterYMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.JitterYMax.Value = 0;
             // 
             // page
             // 
@@ -1124,22 +1474,22 @@
             // 
             this.PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Scale;
             this.PanelTransition.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.PanelTransition.DefaultAnimation = animation2;
+            animation4.AnimateOnlyDifferences = true;
+            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
+            animation4.LeafCoeff = 0F;
+            animation4.MaxTime = 1F;
+            animation4.MinTime = 0F;
+            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
+            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
+            animation4.MosaicSize = 0;
+            animation4.Padding = new System.Windows.Forms.Padding(0);
+            animation4.RotateCoeff = 0F;
+            animation4.RotateLimit = 0F;
+            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
+            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
+            animation4.TimeCoeff = 0F;
+            animation4.TransparencyCoeff = 0F;
+            this.PanelTransition.DefaultAnimation = animation4;
             // 
             // Shadow
             // 
@@ -1160,354 +1510,6 @@
             this.progressDisplay.State = Guna.UI2.WinForms.Guna2TaskBarProgress.TaskbarStates.NoProgress;
             this.progressDisplay.TargetForm = this;
             // 
-            // inMenuBindCheck
-            // 
-            this.inMenuBindCheck.Animated = true;
-            this.inMenuBindCheck.AnimatedGIF = true;
-            this.inMenuBindCheck.BackColor = System.Drawing.Color.Transparent;
-            this.inMenuBindCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.inMenuBindCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
-            this.inMenuBindCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.PanelTransition.SetDecoration(this.inMenuBindCheck, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.inMenuBindCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.inMenuBindCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.inMenuBindCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.inMenuBindCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.inMenuBindCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.inMenuBindCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.inMenuBindCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.inMenuBindCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.inMenuBindCheck.ForeColor = System.Drawing.Color.White;
-            this.inMenuBindCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.inMenuBindCheck.Location = new System.Drawing.Point(299, 224);
-            this.inMenuBindCheck.Name = "inMenuBindCheck";
-            this.inMenuBindCheck.Size = new System.Drawing.Size(12, 12);
-            this.inMenuBindCheck.TabIndex = 41;
-            this.inMenuBindCheck.UseTransparentBackground = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.PanelTransition.SetDecoration(this.label10, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(316, 223);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 13);
-            this.label10.TabIndex = 42;
-            this.label10.Text = "Binds in menu";
-            // 
-            // ReachCheck
-            // 
-            this.ReachCheck.Animated = true;
-            this.ReachCheck.AnimatedGIF = true;
-            this.ReachCheck.BackColor = System.Drawing.Color.Transparent;
-            this.ReachCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.ReachCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
-            this.ReachCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.PanelTransition.SetDecoration(this.ReachCheck, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ReachCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ReachCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ReachCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ReachCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ReachCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ReachCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.ReachCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.ReachCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ReachCheck.ForeColor = System.Drawing.Color.White;
-            this.ReachCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.ReachCheck.Location = new System.Drawing.Point(17, 65);
-            this.ReachCheck.Name = "ReachCheck";
-            this.ReachCheck.Size = new System.Drawing.Size(12, 12);
-            this.ReachCheck.TabIndex = 39;
-            this.ReachCheck.UseTransparentBackground = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.PanelTransition.SetDecoration(this.label11, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(34, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 13);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Reach";
-            // 
-            // ERefillCheck
-            // 
-            this.ERefillCheck.Animated = true;
-            this.ERefillCheck.AnimatedGIF = true;
-            this.ERefillCheck.BackColor = System.Drawing.Color.Transparent;
-            this.ERefillCheck.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.ERefillCheck.Checked = true;
-            this.ERefillCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(187)))), ((int)(((byte)(240)))));
-            this.ERefillCheck.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.PanelTransition.SetDecoration(this.ERefillCheck, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ERefillCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ERefillCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ERefillCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ERefillCheck.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ERefillCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ERefillCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.ERefillCheck.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(215)))), ((int)(((byte)(247)))));
-            this.ERefillCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ERefillCheck.ForeColor = System.Drawing.Color.White;
-            this.ERefillCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.ERefillCheck.Location = new System.Drawing.Point(17, 223);
-            this.ERefillCheck.Name = "ERefillCheck";
-            this.ERefillCheck.Size = new System.Drawing.Size(12, 12);
-            this.ERefillCheck.TabIndex = 32;
-            this.ERefillCheck.UseTransparentBackground = true;
-            // 
-            // jitterYMaxText
-            // 
-            this.PanelTransition.SetDecoration(this.jitterYMaxText, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.jitterYMaxText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jitterYMaxText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.jitterYMaxText.Location = new System.Drawing.Point(365, 191);
-            this.jitterYMaxText.Name = "jitterYMaxText";
-            this.jitterYMaxText.Size = new System.Drawing.Size(40, 17);
-            this.jitterYMaxText.TabIndex = 23;
-            this.jitterYMaxText.Text = "0px";
-            this.jitterYMaxText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTransition.SetDecoration(this.label12, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.label12.Location = new System.Drawing.Point(372, 174);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 17);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "MAX";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // jitterXMaxText
-            // 
-            this.PanelTransition.SetDecoration(this.jitterXMaxText, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.jitterXMaxText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jitterXMaxText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.jitterXMaxText.Location = new System.Drawing.Point(365, 124);
-            this.jitterXMaxText.Name = "jitterXMaxText";
-            this.jitterXMaxText.Size = new System.Drawing.Size(40, 17);
-            this.jitterXMaxText.TabIndex = 21;
-            this.jitterXMaxText.Text = "3.00";
-            this.jitterXMaxText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTransition.SetDecoration(this.label13, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label13.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.label13.Location = new System.Drawing.Point(372, 107);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(28, 17);
-            this.label13.TabIndex = 20;
-            this.label13.Text = "MAX";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTransition.SetDecoration(this.label14, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.label14.Location = new System.Drawing.Point(372, 140);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(28, 17);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "MIN";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label15
-            // 
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.PanelTransition.SetDecoration(this.label15, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label15.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.label15.Location = new System.Drawing.Point(372, 72);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(28, 17);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "MIN";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ReachMin
-            // 
-            this.ReachMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ReachMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ReachMin.Decimal = false;
-            this.PanelTransition.SetDecoration(this.ReachMin, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ReachMin.FloatValue = 0D;
-            this.ReachMin.Full = false;
-            this.ReachMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMin.Location = new System.Drawing.Point(16, 93);
-            this.ReachMin.Maximum = 600;
-            this.ReachMin.Minimum = 300;
-            this.ReachMin.Name = "ReachMin";
-            this.ReachMin.ShowValue = false;
-            this.ReachMin.Size = new System.Drawing.Size(355, 12);
-            this.ReachMin.TabIndex = 2;
-            this.ReachMin.Text = "ReachMin";
-            this.ReachMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMin.Value = 300;
-            // 
-            // jitterYMinText
-            // 
-            this.PanelTransition.SetDecoration(this.jitterYMinText, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.jitterYMinText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jitterYMinText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.jitterYMinText.Location = new System.Drawing.Point(365, 157);
-            this.jitterYMinText.Name = "jitterYMinText";
-            this.jitterYMinText.Size = new System.Drawing.Size(40, 17);
-            this.jitterYMinText.TabIndex = 9;
-            this.jitterYMinText.Text = "0px";
-            this.jitterYMinText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // jitterXMinText
-            // 
-            this.PanelTransition.SetDecoration(this.jitterXMinText, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.jitterXMinText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jitterXMinText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.jitterXMinText.Location = new System.Drawing.Point(365, 92);
-            this.jitterXMinText.Name = "jitterXMinText";
-            this.jitterXMinText.Size = new System.Drawing.Size(40, 17);
-            this.jitterXMinText.TabIndex = 6;
-            this.jitterXMinText.Text = "3.00";
-            this.jitterXMinText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.PanelTransition.SetDecoration(this.label16, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.label16.Location = new System.Drawing.Point(100, 8);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(205, 18);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "Misc configuration";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // miscConfigs1
-            // 
-            this.miscConfigs1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.miscConfigs1.Controls.Add(this.inMenuBindCheck);
-            this.miscConfigs1.Controls.Add(this.label10);
-            this.miscConfigs1.Controls.Add(this.ReachCheck);
-            this.miscConfigs1.Controls.Add(this.label11);
-            this.miscConfigs1.Controls.Add(this.ERefillCheck);
-            this.miscConfigs1.Controls.Add(this.jitterYMaxText);
-            this.miscConfigs1.Controls.Add(this.label12);
-            this.miscConfigs1.Controls.Add(this.jitterXMaxText);
-            this.miscConfigs1.Controls.Add(this.label13);
-            this.miscConfigs1.Controls.Add(this.label14);
-            this.miscConfigs1.Controls.Add(this.label15);
-            this.miscConfigs1.Controls.Add(this.ReachMin);
-            this.miscConfigs1.Controls.Add(this.jitterYMinText);
-            this.miscConfigs1.Controls.Add(this.jitterXMinText);
-            this.miscConfigs1.Controls.Add(this.label16);
-            this.miscConfigs1.Controls.Add(this.panel8);
-            this.miscConfigs1.Controls.Add(this.label17);
-            this.miscConfigs1.Controls.Add(this.ReachMax);
-            this.miscConfigs1.Controls.Add(this.JitterYMin);
-            this.miscConfigs1.Controls.Add(this.JitterYMax);
-            this.PanelTransition.SetDecoration(this.miscConfigs1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.miscConfigs1.Location = new System.Drawing.Point(14, 56);
-            this.miscConfigs1.Name = "miscConfigs1";
-            this.miscConfigs1.Size = new System.Drawing.Size(407, 259);
-            this.miscConfigs1.TabIndex = 35;
-            this.miscConfigs1.Visible = false;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.PanelTransition.SetDecoration(this.panel8, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.panel8.Location = new System.Drawing.Point(1, -5);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(435, 10);
-            this.panel8.TabIndex = 2;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.PanelTransition.SetDecoration(this.label17, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.label17.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(34, 222);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(73, 13);
-            this.label17.TabIndex = 34;
-            this.label17.Text = "Easy refill";
-            // 
-            // ReachMax
-            // 
-            this.ReachMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ReachMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ReachMax.Decimal = false;
-            this.PanelTransition.SetDecoration(this.ReachMax, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ReachMax.FloatValue = 0D;
-            this.ReachMax.Full = false;
-            this.ReachMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMax.Location = new System.Drawing.Point(16, 124);
-            this.ReachMax.Maximum = 600;
-            this.ReachMax.Minimum = 300;
-            this.ReachMax.Name = "ReachMax";
-            this.ReachMax.ShowValue = false;
-            this.ReachMax.Size = new System.Drawing.Size(355, 12);
-            this.ReachMax.TabIndex = 36;
-            this.ReachMax.Text = "LMin";
-            this.ReachMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ReachMax.Value = 300;
-            // 
-            // JitterYMin
-            // 
-            this.JitterYMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterYMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterYMin.Decimal = false;
-            this.PanelTransition.SetDecoration(this.JitterYMin, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.JitterYMin.FloatValue = 0D;
-            this.JitterYMin.Full = false;
-            this.JitterYMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMin.Location = new System.Drawing.Point(16, 161);
-            this.JitterYMin.Maximum = 60;
-            this.JitterYMin.Minimum = 30;
-            this.JitterYMin.Name = "JitterYMin";
-            this.JitterYMin.ShowValue = false;
-            this.JitterYMin.Size = new System.Drawing.Size(355, 12);
-            this.JitterYMin.TabIndex = 37;
-            this.JitterYMin.Text = "LMin";
-            this.JitterYMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMin.Value = 30;
-            // 
-            // JitterYMax
-            // 
-            this.JitterYMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterYMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.JitterYMax.Decimal = false;
-            this.PanelTransition.SetDecoration(this.JitterYMax, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.JitterYMax.FloatValue = 0D;
-            this.JitterYMax.Full = false;
-            this.JitterYMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMax.Location = new System.Drawing.Point(16, 190);
-            this.JitterYMax.Maximum = 20;
-            this.JitterYMax.Minimum = 0;
-            this.JitterYMax.Name = "JitterYMax";
-            this.JitterYMax.ShowValue = false;
-            this.JitterYMax.Size = new System.Drawing.Size(355, 12);
-            this.JitterYMax.TabIndex = 38;
-            this.JitterYMax.Text = "LMin";
-            this.JitterYMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.JitterYMax.Value = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1525,6 +1527,8 @@
             this.Text = "Sapphire.ac";
             this.ToolTip.SetToolTip(this, "Sapphire.ac");
             this.panel1.ResumeLayout(false);
+            this.miscConfigs1.ResumeLayout(false);
+            this.miscConfigs1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ConfigPanel.ResumeLayout(false);
@@ -1532,8 +1536,6 @@
             this.controlbar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.watermarkImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.miscConfigs1.ResumeLayout(false);
-            this.miscConfigs1.PerformLayout();
             this.ResumeLayout(false);
 
         }
