@@ -90,11 +90,11 @@ namespace Sapphire_Reborn {
             var wc = new WebClient();
             var wwc = new WebClient();
             wc.DownloadFileAsync(
-                    new Uri("https://cdn.discordapp.com/attachments/848746306864152648/1116876542564372591/enable.wav"),
+                    new Uri("https://github.com/Mczgodpiggy/Sapphire-Reborn/raw/main/Sapphire%20LITE/Resources/enable.wav"),
                     $@"{di.FullName}\\enable.wav"
                 );
             wwc.DownloadFileAsync(
-                new Uri("https://cdn.discordapp.com/attachments/848746306864152648/1116876563561058344/disable.wav"),
+                new Uri("https://github.com/Mczgodpiggy/Sapphire-Reborn/raw/main/Sapphire%20LITE/Resources/disable.wav"),
                 $@"{di.FullName}\\disable.wav"
             );
         }
