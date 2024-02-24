@@ -24,8 +24,8 @@ namespace Sapphire_Reborn.clicker {
 
         public static Random r = new Random();
         private static Random rd = new Random();
-        public static Timer goExhaust = new Timer(), notExhaust = new Timer(), exhaustRegen = new Timer(), exhaustLose = new Timer();
-        public static int exhaustTime = 10000;
+        public static Timer goExhaust = new Timer(), exhaustRegen = new Timer(), exhaustLose = new Timer();
+        public static int minExhaustTime = 10000, maxExhaustTime = 10000, minExhaustEndTime = 5000, maxExhaustEndTime = 5000;
         
         #endregion
 
@@ -36,6 +36,7 @@ namespace Sapphire_Reborn.clicker {
 
         // other
         public static bool left_enabled = false, right_enabled = false, first_click = false;
+        public static bool shouldExhaust = true;
         public static int left_min_cps = 12, left_max_cps = 16, right_min_cps = 20, right_max_cps = 28, randomization_distribution = 25;
 
         public static IntPtr minecraft_process = IntPtr.Zero;
@@ -47,7 +48,7 @@ namespace Sapphire_Reborn.clicker {
         public static void leftClickerThread()
         {
             goExhaust.Elapsed += new ElapsedEventHandler(setExhaust);
-            goExhaust.Interval = 30000;
+            goExhaust.Interval = minExhaustTime;
             goExhaust.Stop();
             while (true)
             {
@@ -105,10 +106,8 @@ namespace Sapphire_Reborn.clicker {
             Random cps = new Random();
             int firstDelay = Rand(cps.Next(mincps, maxcps)), secondDelay = Rand(cps.Next(mincps, maxcps));
             Thread.Sleep(firstDelay);
-            Console.WriteLine($"Delay 1 {firstDelay} CPS: {1000 / firstDelay}");
             DLLImports.PostMessage(minecraft_process, type1, 0, 0);
             Thread.Sleep(secondDelay);
-            Console.WriteLine($"Delay 2 {secondDelay} CPS: {1000 / secondDelay}");
             DLLImports.PostMessage(minecraft_process, type2, 0, 0);
         }
 
@@ -129,19 +128,19 @@ namespace Sapphire_Reborn.clicker {
 
         public static void setExhaust(object source, ElapsedEventArgs e)
         {
+            if (!shouldExhaust) return;
             Console.WriteLine("Exhaust on");
             isExhausted = true;
             goExhaust.Stop();
-            notExhaust.Elapsed += new ElapsedEventHandler(backToNormal);
-            notExhaust.Interval = 5000;
-            notExhaust.Start();
-            void backToNormal(object src, ElapsedEventArgs eee)
+            var delay = r.Next(1, 10) > 4 ? (minExhaustEndTime + maxExhaustEndTime / 1.5) / 2 : (maxExhaustEndTime - minExhaustEndTime / 2) * 1.5;
+            Task.Delay((int)delay).ContinueWith((task) =>
             {
                 Console.WriteLine("Exhaust off");
                 isExhausted = false;
-                notExhaust.Stop();
-                goExhaust.Start();
-            }
+                var interval = r.Next(1, 10) > 5 ? (minExhaustTime + maxExhaustTime / r.Next(1, 2)) / 2 : (maxExhaustTime - minExhaustTime / r.Next(2, 3)) * 1.5;
+                goExhaust.Interval = interval;
+                Console.WriteLine($"New delay {interval}");
+            });
         }
 
         public static int Rand(int cps) {

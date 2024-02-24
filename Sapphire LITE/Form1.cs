@@ -177,7 +177,7 @@ namespace Sapphire_Reborn {
             if (di.Exists == false)
                 di.Create();
             var dirr = System.IO.Path.Combine(di.FullName, CFGName);
-            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{clicker.clicker.easyRefill}\n{bindInMenu}");
+            File.WriteAllText(dirr, $"{LACCheck.Checked}\n{RACCheck.Checked}\n{clmin}\n{clmax}\n{crmin}\n{crmax}\n{rand}\n{toggleRandomization.Checked}\n{toggleAlwaysOn.Checked}\n{toggleShiftDisable.Checked}\n{toggleSmartMode.Checked}\n{cfg_left_bind}\n{cfg_right_bind}\n{clicker.clicker.easyRefill}\n{bindInMenu}\n{clicker.clicker.shouldExhaust}\n{clicker.clicker.minExhaustTime}\n{clicker.clicker.maxExhaustTime}\n{clicker.clicker.minExhaustEndTime}\n{clicker.clicker.maxExhaustEndTime}");
             configStatus.ForeColor = Color.Green;
             configStatus.Text = $"Saved {ConfigName.Text} Successfully";
             configStatus.Visible = true;
@@ -226,16 +226,22 @@ namespace Sapphire_Reborn {
             }
             string[] cfg = File.ReadAllLines(dirr);
             Console.WriteLine(cfg.Length);
-            if (cfg.Length < 15)
+            if (cfg.Length < 20)
             {
-                File.AppendAllText(dirr, "\nTrue\nFalse");
+                File.AppendAllText(dirr, "\nTrue\nFalse\nTrue\n10000\n10000\n5000\n5000");
                 cfg = File.ReadAllLines(dirr);
             }
-            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]);
-            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), eRefill = Convert.ToBoolean(cfg[14]), BindInMenu = Convert.ToBoolean(cfg[15]);
+            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]), minexhausttime = Int32.Parse(cfg[15]), maxexhausttime = Int32.Parse(cfg[16]), minexhaustendtime = Int32.Parse(cfg[17]), maxexhaustendtime = Int32.Parse(cfg[18]);
+            bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), eRefill = Convert.ToBoolean(cfg[13]), BindInMenu = Convert.ToBoolean(cfg[14]), shouldGetExhausted = Convert.ToBoolean(cfg[15]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
             isLoadingConfig = true;
+            clicker.clicker.shouldExhaust = shouldGetExhausted;
+            clicker.clicker.minExhaustTime = minexhausttime;
+            clicker.clicker.maxExhaustTime = maxexhausttime;
+            clicker.clicker.minExhaustEndTime = minexhaustendtime;
+            clicker.clicker.maxExhaustEndTime = maxexhaustendtime;
+            ExhaustCheck.Checked = shouldGetExhausted;
             bindInMenu = BindInMenu;
             inMenuBindCheck.Checked = BindInMenu;
             clicker.clicker.easyRefill = eRefill;
@@ -494,6 +500,52 @@ namespace Sapphire_Reborn {
         private void inMenuBindCheck_CheckedChanged(object sender, EventArgs e)
         {
             bindInMenu = inMenuBindCheck.Checked;
+        }
+
+        private void ExhaustCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            clicker.clicker.shouldExhaust = ExhaustCheck.Checked;
+        }
+
+        private void ExhaustMin_Scroll(object sender)
+        {
+            clicker.clicker.minExhaustTime = ExhaustMin.Value;
+            if (ExhaustMax.Value < ExhaustMin.Value)
+            {
+                ExhaustMax.Value = ExhaustMin.Value;
+            }
+            exhaustMinText.Text = $"{ExhaustMin.Value}MS";
+            clicker.clicker.goExhaust.Interval = ExhaustMin.Value;
+        }
+
+        private void ExhaustMax_Scroll(object sender)
+        {
+            clicker.clicker.maxExhaustTime = ExhaustMax.Value;
+            if (ExhaustMax.Value < ExhaustMin.Value)
+            {
+                ExhaustMin.Value = ExhaustMax.Value;
+            }
+            exhaustMaxText.Text = $"{ExhaustMax.Value}MS";
+        }
+
+        private void exhaustEndMin_Scroll(object sender)
+        {
+            clicker.clicker.minExhaustEndTime = exhaustEndMin.Value;
+            if (exhaustEndMax.Value < exhaustEndMin.Value)
+            {
+                exhaustEndMax.Value = exhaustEndMin.Value;
+            }
+            exhaustEndMinText.Text = $"{exhaustEndMin.Value}MS";
+        }
+
+        private void exhaustEndMax_Scroll(object sender)
+        {
+            clicker.clicker.maxExhaustEndTime = exhaustEndMax.Value;
+            if (exhaustEndMax.Value < exhaustEndMin.Value)
+            {
+                exhaustEndMin.Value = exhaustEndMax.Value;
+            }
+            exhaustEndMaxText.Text = $"{exhaustEndMax.Value}MS";
         }
 
         private void toggleSmartMode_CheckedChanged(object sender, EventArgs e) {
