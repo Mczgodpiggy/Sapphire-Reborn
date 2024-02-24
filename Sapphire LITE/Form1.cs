@@ -34,7 +34,7 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 1500;
+            uint DesiredResolution = 1000;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
@@ -264,6 +264,7 @@ namespace Sapphire_Reborn {
             cfg_left_bind = LB;
             right_bind = RB;
             cfg_right_bind = RB;
+            KeyListener.keysToCheck.Clear();
             if (LB.ToString() != "None")
             {
                 leftClickerBindButton.Text = $"[{LB.ToString().ToLower()}]";
@@ -457,11 +458,11 @@ namespace Sapphire_Reborn {
             var wc = new WebClient();
             var wwc = new WebClient();
             wc.DownloadFileAsync(
-                    new Uri("https://cdn.discordapp.com/attachments/848746306864152648/1116876542564372591/enable.wav"),
+                    new Uri("https://github.com/Mczgodpiggy/Sapphire-Reborn/raw/main/Sapphire%20LITE/Resources/enable.wav"),
                     $@"{di.FullName}\\enable.wav"
                 );
             wwc.DownloadFileAsync(
-                new Uri("https://cdn.discordapp.com/attachments/848746306864152648/1116876563561058344/disable.wav"),
+                new Uri("https://github.com/Mczgodpiggy/Sapphire-Reborn/raw/main/Sapphire%20LITE/Resources/disable.wav"),
                 $@"{di.FullName}\\disable.wav"
             );
         }
@@ -490,13 +491,13 @@ namespace Sapphire_Reborn {
             clicker.clicker.easyRefill = ERefillCheck.Checked;
         }
 
-        private void inMenuBindCheck_Click(object sender, EventArgs e)
+        private void inMenuBindCheck_CheckedChanged(object sender, EventArgs e)
         {
             bindInMenu = inMenuBindCheck.Checked;
         }
 
         private void toggleSmartMode_CheckedChanged(object sender, EventArgs e) {
-            clicker.clicker.smart_mode ^= true;
+            clicker.clicker.smart_mode = toggleSmartMode.Checked;
         }
 
         #endregion
@@ -529,8 +530,16 @@ namespace Sapphire_Reborn {
                 KeyListener.keybinds[cfg_left_bind] = () =>
                 {
                     minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
+                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    {
+                        Console.WriteLine("1");
+                        return;
+                    }
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    {
+                        Console.WriteLine("2");
+                        return;
+                    }
                     if (LACCheck.Checked == false)
                     {
                         string[] file = Directory.GetFiles(di.FullName, "enable.wav");
@@ -551,8 +560,16 @@ namespace Sapphire_Reborn {
                 };
                 KeyListener.keybinds[right_bind] = () =>
                 {
-                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu) return;
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && !bindInMenu) return;
+                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    {
+                        Console.WriteLine("1");
+                        return;
+                    }
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    {
+                        Console.WriteLine("2");
+                        return;
+                    }
                     if (RACCheck.Checked == false)
                     {
                         string[] file = Directory.GetFiles(di.FullName, "enable.wav");

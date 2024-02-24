@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation4 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation8 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -191,12 +191,12 @@
             this.inMenuBindCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.inMenuBindCheck.ForeColor = System.Drawing.Color.White;
             this.inMenuBindCheck.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.inMenuBindCheck.Location = new System.Drawing.Point(299, 224);
+            this.inMenuBindCheck.Location = new System.Drawing.Point(273, 224);
             this.inMenuBindCheck.Name = "inMenuBindCheck";
             this.inMenuBindCheck.Size = new System.Drawing.Size(12, 12);
             this.inMenuBindCheck.TabIndex = 41;
             this.inMenuBindCheck.UseTransparentBackground = true;
-            this.inMenuBindCheck.Click += new System.EventHandler(this.inMenuBindCheck_Click);
+            this.inMenuBindCheck.CheckedChanged += new System.EventHandler(this.inMenuBindCheck_CheckedChanged);
             // 
             // label10
             // 
@@ -204,11 +204,12 @@
             this.PanelTransition.SetDecoration(this.label10, Guna.UI2.AnimatorNS.DecorationType.None);
             this.label10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(316, 223);
+            this.label10.Location = new System.Drawing.Point(290, 223);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.Size = new System.Drawing.Size(115, 13);
             this.label10.TabIndex = 42;
-            this.label10.Text = "Binds in menu";
+            this.label10.Text = "Only in game binds";
+            this.ToolTip.SetToolTip(this.label10, "Whether or not should binds be able to get activated out of the game");
             // 
             // ReachCheck
             // 
@@ -246,6 +247,7 @@
             this.label11.Size = new System.Drawing.Size(37, 13);
             this.label11.TabIndex = 40;
             this.label11.Text = "Reach";
+            this.ToolTip.SetToolTip(this.label11, "Work in progress");
             // 
             // ERefillCheck
             // 
@@ -428,6 +430,8 @@
             this.label17.Size = new System.Drawing.Size(73, 13);
             this.label17.TabIndex = 34;
             this.label17.Text = "Easy refill";
+            this.ToolTip.SetToolTip(this.label17, "Clicks faster while in inventory to speed up refill \r\nDisable this on servers tha" +
+        "t check for inventory item movements");
             // 
             // ReachMax
             // 
@@ -1009,7 +1013,7 @@
             this.rightMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
             this.rightMaxCpsSlider.TabIndex = 17;
             this.rightMaxCpsSlider.Text = "RMax";
-            this.ToolTip.SetToolTip(this.rightMaxCpsSlider, "Average amount of right clicks that will be sent to the game");
+            this.ToolTip.SetToolTip(this.rightMaxCpsSlider, "The max cps to click while autoclicking");
             this.rightMaxCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.rightMaxCpsSlider.Value = 125;
             this.rightMaxCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.rightMaxCpsSlider_Scroll);
@@ -1024,7 +1028,7 @@
             this.leftMaxCpsSlider.FloatValue = 0D;
             this.leftMaxCpsSlider.Full = false;
             this.leftMaxCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMaxCpsSlider.Location = new System.Drawing.Point(14, 97);
+            this.leftMaxCpsSlider.Location = new System.Drawing.Point(14, 95);
             this.leftMaxCpsSlider.Maximum = 400;
             this.leftMaxCpsSlider.Minimum = 50;
             this.leftMaxCpsSlider.Name = "leftMaxCpsSlider";
@@ -1032,7 +1036,7 @@
             this.leftMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
             this.leftMaxCpsSlider.TabIndex = 16;
             this.leftMaxCpsSlider.Text = "LMax";
-            this.ToolTip.SetToolTip(this.leftMaxCpsSlider, "Average amount of left clicks that will be sent to the game");
+            this.ToolTip.SetToolTip(this.leftMaxCpsSlider, "The max cps to click while autoclicking");
             this.leftMaxCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.leftMaxCpsSlider.Value = 125;
             this.leftMaxCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.leftMaxCpsSlider_Scroll);
@@ -1055,7 +1059,7 @@
             this.leftMinCpsSlider.Size = new System.Drawing.Size(355, 12);
             this.leftMinCpsSlider.TabIndex = 2;
             this.leftMinCpsSlider.Text = "LMin";
-            this.ToolTip.SetToolTip(this.leftMinCpsSlider, "Average amount of left clicks that will be sent to the game");
+            this.ToolTip.SetToolTip(this.leftMinCpsSlider, "The min cps to click while autoclicking");
             this.leftMinCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.leftMinCpsSlider.Value = 125;
             this.leftMinCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.leftMinCpsSlider_Scroll);
@@ -1264,7 +1268,7 @@
             this.rightMinCpsSlider.Size = new System.Drawing.Size(355, 12);
             this.rightMinCpsSlider.TabIndex = 7;
             this.rightMinCpsSlider.Text = "RMin";
-            this.ToolTip.SetToolTip(this.rightMinCpsSlider, "Average amount of right clicks that will be sent to the game");
+            this.ToolTip.SetToolTip(this.rightMinCpsSlider, "The min cps to click while autoclicking");
             this.rightMinCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
             this.rightMinCpsSlider.Value = 125;
             this.rightMinCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.rightMinCpsSlider_Scroll);
@@ -1474,22 +1478,22 @@
             // 
             this.PanelTransition.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Scale;
             this.PanelTransition.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 0;
-            animation4.Padding = new System.Windows.Forms.Padding(0);
-            animation4.RotateCoeff = 0F;
-            animation4.RotateLimit = 0F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 0F;
-            this.PanelTransition.DefaultAnimation = animation4;
+            animation8.AnimateOnlyDifferences = true;
+            animation8.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.BlindCoeff")));
+            animation8.LeafCoeff = 0F;
+            animation8.MaxTime = 1F;
+            animation8.MinTime = 0F;
+            animation8.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.MosaicCoeff")));
+            animation8.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation8.MosaicShift")));
+            animation8.MosaicSize = 0;
+            animation8.Padding = new System.Windows.Forms.Padding(0);
+            animation8.RotateCoeff = 0F;
+            animation8.RotateLimit = 0F;
+            animation8.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.ScaleCoeff")));
+            animation8.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.SlideCoeff")));
+            animation8.TimeCoeff = 0F;
+            animation8.TransparencyCoeff = 0F;
+            this.PanelTransition.DefaultAnimation = animation8;
             // 
             // Shadow
             // 
