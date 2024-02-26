@@ -109,7 +109,7 @@ namespace Sapphire_Reborn {
 
         Keys cfg_left_bind = Keys.None, cfg_right_bind = Keys.None;
 
-        public bool bindInMenu = false;
+        public bool bindInMenu = true;
 
         private void leftMinCpsSlider_Scroll(object sender) {
             if (leftMaxCpsSlider.Value < leftMinCpsSlider.Value)
@@ -231,7 +231,7 @@ namespace Sapphire_Reborn {
                 File.AppendAllText(dirr, "\nTrue\nFalse\nTrue\n10000\n10000\n5000\n5000");
                 cfg = File.ReadAllLines(dirr);
             }
-            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]), minexhausttime = Int32.Parse(cfg[15]), maxexhausttime = Int32.Parse(cfg[16]), minexhaustendtime = Int32.Parse(cfg[17]), maxexhaustendtime = Int32.Parse(cfg[18]);
+            int clmin = Int32.Parse(cfg[2]), clmax = Int32.Parse(cfg[3]), crmin = Int32.Parse(cfg[4]), crmax = Int32.Parse(cfg[5]), rand = Int32.Parse(cfg[6]), minexhausttime = Int32.Parse(cfg[16]), maxexhausttime = Int32.Parse(cfg[17]), minexhaustendtime = Int32.Parse(cfg[18]), maxexhaustendtime = Int32.Parse(cfg[19]);
             bool clenabled = Convert.ToBoolean(cfg[0]), crenabled = Convert.ToBoolean(cfg[1]), random = Convert.ToBoolean(cfg[7]), always_on = Convert.ToBoolean(cfg[8]), shift_disable = Convert.ToBoolean(cfg[9]), smart_mode = Convert.ToBoolean(cfg[10]), eRefill = Convert.ToBoolean(cfg[13]), BindInMenu = Convert.ToBoolean(cfg[14]), shouldGetExhausted = Convert.ToBoolean(cfg[15]);
             string LBind = cfg[11], RBind = cfg[12];
             Keys LB = (Keys)Enum.Parse(typeof(Keys), LBind, true), RB = (Keys)Enum.Parse(typeof(Keys), RBind, true);
@@ -434,7 +434,6 @@ namespace Sapphire_Reborn {
 
         private void holdUp(object sender, MouseEventArgs e)
         {
-            if (MouseButtons != MouseButtons.Left) return;
             hold.Stop();
             holdNeg.Start();
             holdPlus.Stop();
@@ -582,18 +581,19 @@ namespace Sapphire_Reborn {
                 KeyListener.keybinds[cfg_left_bind] = () =>
                 {
                     minecraft_process = DLLImports.FindWindow("LWJGL", null);
-                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    if (clicker.clicker.IsCursorVisisble() && bindInMenu)
                     {
                         Console.WriteLine("1");
                         return;
                     }
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && bindInMenu)
                     {
                         Console.WriteLine("2");
                         return;
                     }
                     if (LACCheck.Checked == false)
                     {
+                        Console.WriteLine($"LAC ON");
                         string[] file = Directory.GetFiles(di.FullName, "enable.wav");
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                         player.Play();
@@ -602,6 +602,7 @@ namespace Sapphire_Reborn {
                     }
                     else if (LACCheck.Checked == true)
                     {
+                        Console.WriteLine($"LAC OFF");
                         string[] file = Directory.GetFiles(di.FullName, "disable.wav");
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(file[0]);
                         player.Play();
@@ -612,12 +613,12 @@ namespace Sapphire_Reborn {
                 };
                 KeyListener.keybinds[right_bind] = () =>
                 {
-                    if (clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    if (clicker.clicker.IsCursorVisisble() && bindInMenu)
                     {
                         Console.WriteLine("1");
                         return;
                     }
-                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && !bindInMenu)
+                    if (minecraft_process.ToString() != DLLImports.GetForegroundWindow().ToString() && clicker.clicker.IsCursorVisisble() && bindInMenu)
                     {
                         Console.WriteLine("2");
                         return;
@@ -645,8 +646,6 @@ namespace Sapphire_Reborn {
 
         private async void leftClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
-            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
 
             leftClickerBindButton.Text = "[press a key]";
 
@@ -663,8 +662,6 @@ namespace Sapphire_Reborn {
 
         private async void rightClickerBindButton_MouseDown(object sender, MouseEventArgs e) {
             if (MouseButtons != MouseButtons.Left) return;
-            var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
-            DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Resources"));
 
             rightClickerBindButton.Text = "[press a key]";
 

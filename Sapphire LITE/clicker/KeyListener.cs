@@ -44,6 +44,7 @@ namespace Sapphire_Reborn.clicker {
         #region Is key actively pressed detection
 
         public static bool isKeyPressed(Keys key) {
+            Console.WriteLine($"{key} has been pressed (isKeyPressed)");
             return (GetAsyncKeyState((int)key) & 0x8000) != 0;
         }
 
@@ -70,6 +71,7 @@ namespace Sapphire_Reborn.clicker {
                     foreach (Keys key in keyList) {
                         if (isKeyPressed(key)) {
                             bind = key;
+                            Console.WriteLine($"{key} has been pressed (getBind)");
                             break;
                         }
                     }
