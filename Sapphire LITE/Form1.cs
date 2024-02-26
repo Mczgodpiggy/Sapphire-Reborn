@@ -276,6 +276,9 @@ namespace Sapphire_Reborn {
                 leftClickerBindButton.Text = $"[{LB.ToString().ToLower()}]";
                 cfg_left_bind = LB;
                 KeyListener.keysToCheck.Add(left_bind);
+            } else
+            {
+                leftClickerBindButton.Text = "[None]";
             }
             if (RB.ToString() != "None")
             {
@@ -283,6 +286,9 @@ namespace Sapphire_Reborn {
                 cfg_right_bind = RB;
                 right_bind = RB;
                 KeyListener.keysToCheck.Add(right_bind);
+            } else
+            {
+                rightClickerBindButton.Text = "[None]";
             }
             if (clenabled == true && clicker.clicker.left_enabled == false)
             {
