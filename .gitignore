@@ -333,3 +333,8 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 .gitattributes
+/Sapphire LITE/MemoryVelocity.cs
+/Sapphire LITE/Memory.cs
+/Sapphire LITE/Locator.cs
+/Sapphire LITE/Reach.cs
+/Sapphire LITE/PanelConfig.cs
