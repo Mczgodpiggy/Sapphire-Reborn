@@ -34,7 +34,7 @@ namespace Sapphire_Reborn {
 
             Shadow.SetShadowForm(this);
 
-            uint DesiredResolution = 1000;
+            uint DesiredResolution = 5000;
             uint CurrentResolution;
 
             DLLImports.NtSetTimerResolution(DesiredResolution, true, out CurrentResolution);
@@ -57,7 +57,7 @@ namespace Sapphire_Reborn {
             holdNeg.Stop();
         }
 
-
+        public static uint memoryInt;
         private void reloadConfigs()
         {
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
@@ -111,42 +111,46 @@ namespace Sapphire_Reborn {
 
         public bool bindInMenu = true;
 
-        private void leftMinCpsSlider_Scroll(object sender) {
-            if (leftMaxCpsSlider.Value < leftMinCpsSlider.Value)
+        private void leftMinCpsSlider_Scroll(object sender, ScrollEventArgs e) {
+            if (leftMaxCpsSlider.ValueInt < leftMinCpsSlider.ValueInt)
             {
-                leftMaxCpsSlider.Value = leftMinCpsSlider.Value;
+                leftMaxCpsSlider.ValueInt = leftMinCpsSlider.ValueInt;
+                leftMaxCpsText.Text = $"{leftMinCpsSlider.ValueInt / 10.0}";
             }
-            leftMinCpsText.Text = $"{leftMinCpsSlider.Value / 10.0}";
-            clicker.clicker.left_min_cps = (leftMinCpsSlider.Value / 10);
+            leftMinCpsText.Text = $"{leftMinCpsSlider.ValueInt / 10.0}";
+            clicker.clicker.left_min_cps = (leftMinCpsSlider.ValueInt / 10);
         }
 
-        private void leftMaxCpsSlider_Scroll(object sender)
+        private void leftMaxCpsSlider_Scroll(object sender, ScrollEventArgs e)
         {
-            if (leftMaxCpsSlider.Value < leftMinCpsSlider.Value)
+            if (leftMaxCpsSlider.ValueInt < leftMinCpsSlider.ValueInt)
             {
-                leftMinCpsSlider.Value = leftMaxCpsSlider.Value;
+                leftMinCpsSlider.ValueInt = leftMaxCpsSlider.ValueInt;
+                leftMinCpsText.Text = $"{leftMinCpsSlider.ValueInt / 10.0}";
             }
-            leftMaxCpsText.Text = $"{leftMaxCpsSlider.Value / 10.0}";
-            clicker.clicker.left_max_cps = (leftMaxCpsSlider.Value / 10);
+            leftMaxCpsText.Text = $"{leftMaxCpsSlider.ValueInt / 10.0}";
+            clicker.clicker.left_max_cps = (leftMaxCpsSlider.ValueInt / 10);
         }
 
-        private void rightMinCpsSlider_Scroll(object sender) {
-            if (rightMaxCpsSlider.Value < rightMinCpsSlider.Value)
+        private void rightMinCpsSlider_Scroll(object sender, ScrollEventArgs e) {
+            if (rightMaxCpsSlider.ValueInt < rightMinCpsSlider.ValueInt)
             {
-                rightMaxCpsSlider.Value = rightMinCpsSlider.Value;
+                rightMaxCpsSlider.ValueInt = rightMinCpsSlider.ValueInt;
+                rightMaxCpsText.Text = $"{rightMinCpsSlider.ValueInt / 10.0}";
             }
-            rightMinCpsText.Text = $"{rightMinCpsSlider.Value / 10.0}";
-            clicker.clicker.right_min_cps = (rightMinCpsSlider.Value / 10);
+            rightMinCpsText.Text = $"{rightMinCpsSlider.ValueInt / 10.0}";
+            clicker.clicker.right_min_cps = (rightMinCpsSlider.ValueInt / 10);
         }
 
-        private void rightMaxCpsSlider_Scroll(object sender)
+        private void rightMaxCpsSlider_Scroll(object sender, ScrollEventArgs e)
         {
-            if (rightMaxCpsSlider.Value < rightMinCpsSlider.Value)
+            if (rightMinCpsSlider.ValueInt > rightMaxCpsSlider.ValueInt)
             {
-                rightMinCpsSlider.Value = rightMaxCpsSlider.Value;
+                rightMinCpsSlider.ValueInt = rightMaxCpsSlider.ValueInt;
+                rightMinCpsText.Text = $"{rightMaxCpsSlider.ValueInt / 10.0}";
             }
-            rightMaxCpsText.Text = $"{rightMaxCpsSlider.Value / 10.0}";
-            clicker.clicker.right_max_cps = (rightMaxCpsSlider.Value / 10);
+            rightMaxCpsText.Text = $"{rightMaxCpsSlider.ValueInt / 10.0}";
+            clicker.clicker.right_max_cps = (rightMaxCpsSlider.ValueInt / 10);
         }
 
         private void ToggleLAC(object sender, MouseEventArgs e)
@@ -171,7 +175,7 @@ namespace Sapphire_Reborn {
                 });
                 return;
             }
-            int clmin = leftMinCpsSlider.Value, clmax = leftMaxCpsSlider.Value, crmin = rightMinCpsSlider.Value, crmax = rightMaxCpsSlider.Value, rand = randomizationSlider.Value;
+            int clmin = leftMinCpsSlider.ValueInt, clmax = leftMaxCpsSlider.ValueInt, crmin = rightMinCpsSlider.ValueInt, crmax = rightMaxCpsSlider.ValueInt, rand = randomizationSlider.ValueInt;
             var path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName.Replace("AppData", "");
             DirectoryInfo di = new DirectoryInfo(System.IO.Path.Combine(path, ".sapphire", "Configs"));
             if (di.Exists == false)
@@ -248,19 +252,19 @@ namespace Sapphire_Reborn {
             ERefillCheck.Checked = eRefill;
             clicker.clicker.left_min_cps = clmin / 10;
             leftMinCpsText.Text = $"{clmin / 10.0}";
-            leftMinCpsSlider.Value = clmin;
+            leftMinCpsSlider.ValueInt = clmin;
             clicker.clicker.left_max_cps = clmax / 10;
             leftMaxCpsText.Text = $"{clmax / 10.0}";
-            leftMaxCpsSlider.Value = clmax;
+            leftMaxCpsSlider.ValueInt = clmax;
             clicker.clicker.right_min_cps = crmin / 10;
             rightMinCpsText.Text = $"{crmin / 10}";
-            rightMinCpsSlider.Value = crmin;
+            rightMinCpsSlider.ValueInt = crmin;
             clicker.clicker.right_max_cps = crmax / 10;
             rightMaxCpsText.Text = $"{crmax / 10.0}";
-            rightMaxCpsSlider.Value = crmax;
+            rightMaxCpsSlider.ValueInt = crmax;
             clicker.clicker.randomization_distribution = rand;
             randomizationText.Text = $"{rand}%";
-            randomizationSlider.Value = rand;
+            randomizationSlider.ValueInt = rand;
             clicker.clicker.randomization_distribution = rand;
             KeyListener.keysToCheck.Remove(left_bind);
             KeyListener.keybinds.Remove(left_bind);
@@ -478,9 +482,9 @@ namespace Sapphire_Reborn {
             );
         }
 
-        private void jitterSlider_Scroll(object sender) {
-            randomizationText.Text = $"{randomizationSlider.Value}%";
-            clicker.clicker.randomization_distribution = randomizationSlider.Value;
+        private void randomizationSlider_Scroll(object sender, ScrollEventArgs e) {
+            randomizationText.Text = $"{randomizationSlider.ValueInt}%";
+            clicker.clicker.randomization_distribution = randomizationSlider.ValueInt;
         }
 
         private void configList_SelectedIndexChanged(object sender, EventArgs e)
@@ -511,46 +515,49 @@ namespace Sapphire_Reborn {
         {
             clicker.clicker.shouldExhaust = ExhaustCheck.Checked;
         }
-
-        private void ExhaustMin_Scroll(object sender)
+        private void ExhaustMin_Scroll(object sender, ScrollEventArgs e)
         {
-            clicker.clicker.minExhaustTime = ExhaustMin.Value;
-            if (ExhaustMax.Value < ExhaustMin.Value)
+            clicker.clicker.minExhaustTime = ExhaustMin.ValueInt;
+            if (ExhaustMax.ValueInt < ExhaustMin.ValueInt)
             {
-                ExhaustMax.Value = ExhaustMin.Value;
+                ExhaustMax.ValueInt = ExhaustMin.ValueInt;
+                exhaustMaxText.Text = $"{ExhaustMin.ValueInt}MS";
             }
-            exhaustMinText.Text = $"{ExhaustMin.Value}MS";
-            clicker.clicker.goExhaust.Interval = ExhaustMin.Value;
+            exhaustMinText.Text = $"{ExhaustMin.ValueInt}MS";
+            clicker.clicker.goExhaust.Interval = ExhaustMin.ValueInt;
         }
 
-        private void ExhaustMax_Scroll(object sender)
+        private void ExhaustMax_Scroll(object sender, ScrollEventArgs e)
         {
-            clicker.clicker.maxExhaustTime = ExhaustMax.Value;
-            if (ExhaustMax.Value < ExhaustMin.Value)
+            clicker.clicker.maxExhaustTime = ExhaustMax.ValueInt;
+            if (ExhaustMax.ValueInt < ExhaustMin.ValueInt)
             {
-                ExhaustMin.Value = ExhaustMax.Value;
+                ExhaustMin.ValueInt = ExhaustMax.ValueInt;
+                exhaustMinText.Text = $"{ExhaustMax.ValueInt}MS";
             }
-            exhaustMaxText.Text = $"{ExhaustMax.Value}MS";
+            exhaustMaxText.Text = $"{ExhaustMax.ValueInt}MS";
         }
 
-        private void exhaustEndMin_Scroll(object sender)
+        private void ExhaustEndMin_Scroll(object sender, ScrollEventArgs e)
         {
-            clicker.clicker.minExhaustEndTime = exhaustEndMin.Value;
-            if (exhaustEndMax.Value < exhaustEndMin.Value)
+            clicker.clicker.minExhaustEndTime = ExhaustEndMin.ValueInt;
+            if (ExhaustEndMax.ValueInt < ExhaustEndMin.ValueInt)
             {
-                exhaustEndMax.Value = exhaustEndMin.Value;
+                ExhaustEndMax.ValueInt = ExhaustEndMin.ValueInt;
+                exhaustEndMaxText.Text = $"{ExhaustEndMin.ValueInt}MS";
             }
-            exhaustEndMinText.Text = $"{exhaustEndMin.Value}MS";
+            exhaustEndMinText.Text = $"{ExhaustEndMin.ValueInt}MS";
         }
 
-        private void exhaustEndMax_Scroll(object sender)
+        private void ExhaustEndMax_Scroll(object sender, ScrollEventArgs e)
         {
-            clicker.clicker.maxExhaustEndTime = exhaustEndMax.Value;
-            if (exhaustEndMax.Value < exhaustEndMin.Value)
+            clicker.clicker.maxExhaustEndTime = ExhaustEndMax.ValueInt;
+            if (ExhaustEndMax.ValueInt < ExhaustEndMin.ValueInt)
             {
-                exhaustEndMin.Value = exhaustEndMax.Value;
+                ExhaustEndMin.ValueInt = ExhaustEndMax.ValueInt;
+                exhaustEndMinText.Text = $"{ExhaustEndMin.ValueInt}MS";
             }
-            exhaustEndMaxText.Text = $"{exhaustEndMax.Value}MS";
+            exhaustEndMinText.Text = $"{ExhaustEndMax.ValueInt}MS";
         }
 
         private void toggleSmartMode_CheckedChanged(object sender, EventArgs e) {

@@ -29,6 +29,10 @@
             this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.miscConfigs1 = new System.Windows.Forms.Panel();
+            this.ExhaustEndMax = new FlatTrackBarSmooth();
+            this.ExhaustEndMin = new FlatTrackBarSmooth();
+            this.ExhaustMax = new FlatTrackBarSmooth();
+            this.ExhaustMin = new FlatTrackBarSmooth();
             this.inMenuBindCheck = new Guna.UI2.WinForms.Guna2GradientButton();
             this.label10 = new System.Windows.Forms.Label();
             this.ExhaustCheck = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -40,15 +44,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.ExhaustMin = new FlatUI.FlatTrackBar();
             this.exhaustEndMinText = new System.Windows.Forms.Label();
             this.exhaustMinText = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
-            this.ExhaustMax = new FlatUI.FlatTrackBar();
-            this.exhaustEndMin = new FlatUI.FlatTrackBar();
-            this.exhaustEndMax = new FlatUI.FlatTrackBar();
             this.page = new FlatUI.FlatTrackBar();
             this.Repair = new Guna.UI2.WinForms.Guna2Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -74,25 +74,25 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.rightMaxCpsSlider = new FlatUI.FlatTrackBar();
-            this.leftMaxCpsSlider = new FlatUI.FlatTrackBar();
-            this.leftMinCpsSlider = new FlatUI.FlatTrackBar();
             this.rightClickerBindButton = new System.Windows.Forms.Label();
             this.leftClickerBindButton = new System.Windows.Forms.Label();
             this.toggleSmartMode = new Guna.UI2.WinForms.Guna2CheckBox();
             this.randomizationText = new System.Windows.Forms.Label();
             this.toggleAlwaysOn = new Guna.UI2.WinForms.Guna2CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.randomizationSlider = new FlatUI.FlatTrackBar();
             this.toggleShiftDisable = new Guna.UI2.WinForms.Guna2CheckBox();
             this.rightMinCpsText = new System.Windows.Forms.Label();
             this.toggleRandomization = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.rightMinCpsSlider = new FlatUI.FlatTrackBar();
             this.leftMinCpsText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.leftMinCpsSlider = new FlatTrackBarSmooth();
+            this.leftMaxCpsSlider = new FlatTrackBarSmooth();
+            this.rightMinCpsSlider = new FlatTrackBarSmooth();
+            this.rightMaxCpsSlider = new FlatTrackBarSmooth();
+            this.randomizationSlider = new FlatTrackBarSmooth();
             this.controlbar = new System.Windows.Forms.Panel();
             this.watermarkImage = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -145,6 +145,10 @@
             // miscConfigs1
             // 
             this.miscConfigs1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.miscConfigs1.Controls.Add(this.ExhaustEndMax);
+            this.miscConfigs1.Controls.Add(this.ExhaustEndMin);
+            this.miscConfigs1.Controls.Add(this.ExhaustMax);
+            this.miscConfigs1.Controls.Add(this.ExhaustMin);
             this.miscConfigs1.Controls.Add(this.inMenuBindCheck);
             this.miscConfigs1.Controls.Add(this.label10);
             this.miscConfigs1.Controls.Add(this.ExhaustCheck);
@@ -156,21 +160,121 @@
             this.miscConfigs1.Controls.Add(this.label13);
             this.miscConfigs1.Controls.Add(this.label14);
             this.miscConfigs1.Controls.Add(this.label15);
-            this.miscConfigs1.Controls.Add(this.ExhaustMin);
             this.miscConfigs1.Controls.Add(this.exhaustEndMinText);
             this.miscConfigs1.Controls.Add(this.exhaustMinText);
             this.miscConfigs1.Controls.Add(this.label16);
             this.miscConfigs1.Controls.Add(this.panel8);
             this.miscConfigs1.Controls.Add(this.label17);
-            this.miscConfigs1.Controls.Add(this.ExhaustMax);
-            this.miscConfigs1.Controls.Add(this.exhaustEndMin);
-            this.miscConfigs1.Controls.Add(this.exhaustEndMax);
             this.PanelTransition.SetDecoration(this.miscConfigs1, Guna.UI2.AnimatorNS.DecorationType.None);
             this.miscConfigs1.Location = new System.Drawing.Point(14, 56);
             this.miscConfigs1.Name = "miscConfigs1";
             this.miscConfigs1.Size = new System.Drawing.Size(407, 259);
             this.miscConfigs1.TabIndex = 35;
             this.miscConfigs1.Visible = false;
+            // 
+            // ExhaustEndMax
+            // 
+            this.ExhaustEndMax.Boolean_0 = false;
+            this.ExhaustEndMax.Boolean_1 = true;
+            this.ExhaustEndMax.Color_0 = System.Drawing.Color.Empty;
+            this.ExhaustEndMax.Color_1 = System.Drawing.Color.Empty;
+            this.ExhaustEndMax.Color_2 = System.Drawing.Color.Empty;
+            this.ExhaustEndMax.Color_3 = System.Drawing.Color.Black;
+            this.ExhaustEndMax.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ExhaustEndMax.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.ExhaustEndMax, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ExhaustEndMax.Int32_3 = 8;
+            this.ExhaustEndMax.Location = new System.Drawing.Point(16, 190);
+            this.ExhaustEndMax.Max = 30000;
+            this.ExhaustEndMax.Min = 1;
+            this.ExhaustEndMax.Name = "ExhaustEndMax";
+            this.ExhaustEndMax.ShowText = false;
+            this.ExhaustEndMax.Single_0 = 1F;
+            this.ExhaustEndMax.Single_1 = 1F;
+            this.ExhaustEndMax.Size = new System.Drawing.Size(317, 12);
+            this.ExhaustEndMax.TabIndex = 46;
+            this.ExhaustEndMax.Text = "flatTrackBarSmooth1";
+            this.ToolTip.SetToolTip(this.ExhaustEndMax, "Max time to stay exhausted");
+            this.ExhaustEndMax.ValueInt = 10000;
+            this.ExhaustEndMax.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.ExhaustEndMax_Scroll);
+            // 
+            // ExhaustEndMin
+            // 
+            this.ExhaustEndMin.Boolean_0 = false;
+            this.ExhaustEndMin.Boolean_1 = true;
+            this.ExhaustEndMin.Color_0 = System.Drawing.Color.Empty;
+            this.ExhaustEndMin.Color_1 = System.Drawing.Color.Empty;
+            this.ExhaustEndMin.Color_2 = System.Drawing.Color.Empty;
+            this.ExhaustEndMin.Color_3 = System.Drawing.Color.Black;
+            this.ExhaustEndMin.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ExhaustEndMin.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.ExhaustEndMin, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ExhaustEndMin.Int32_3 = 8;
+            this.ExhaustEndMin.Location = new System.Drawing.Point(16, 161);
+            this.ExhaustEndMin.Max = 30000;
+            this.ExhaustEndMin.Min = 1;
+            this.ExhaustEndMin.Name = "ExhaustEndMin";
+            this.ExhaustEndMin.ShowText = false;
+            this.ExhaustEndMin.Single_0 = 1F;
+            this.ExhaustEndMin.Single_1 = 1F;
+            this.ExhaustEndMin.Size = new System.Drawing.Size(317, 12);
+            this.ExhaustEndMin.TabIndex = 45;
+            this.ExhaustEndMin.Text = "flatTrackBarSmooth1";
+            this.ToolTip.SetToolTip(this.ExhaustEndMin, "Min time to stay exhausted");
+            this.ExhaustEndMin.ValueInt = 10000;
+            this.ExhaustEndMin.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.ExhaustEndMin_Scroll);
+            // 
+            // ExhaustMax
+            // 
+            this.ExhaustMax.Boolean_0 = false;
+            this.ExhaustMax.Boolean_1 = true;
+            this.ExhaustMax.Color_0 = System.Drawing.Color.Empty;
+            this.ExhaustMax.Color_1 = System.Drawing.Color.Empty;
+            this.ExhaustMax.Color_2 = System.Drawing.Color.Empty;
+            this.ExhaustMax.Color_3 = System.Drawing.Color.Black;
+            this.ExhaustMax.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ExhaustMax.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.ExhaustMax, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ExhaustMax.Int32_3 = 8;
+            this.ExhaustMax.Location = new System.Drawing.Point(16, 124);
+            this.ExhaustMax.Max = 30000;
+            this.ExhaustMax.Min = 1;
+            this.ExhaustMax.Name = "ExhaustMax";
+            this.ExhaustMax.ShowText = false;
+            this.ExhaustMax.Single_0 = 1F;
+            this.ExhaustMax.Single_1 = 1F;
+            this.ExhaustMax.Size = new System.Drawing.Size(317, 12);
+            this.ExhaustMax.TabIndex = 44;
+            this.ExhaustMax.Text = "ExhaustMax";
+            this.ToolTip.SetToolTip(this.ExhaustMax, "Max amount of time before exhaust kicks in");
+            this.ExhaustMax.ValueInt = 10000;
+            this.ExhaustMax.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.ExhaustMax_Scroll);
+            // 
+            // ExhaustMin
+            // 
+            this.ExhaustMin.Boolean_0 = false;
+            this.ExhaustMin.Boolean_1 = true;
+            this.ExhaustMin.Color_0 = System.Drawing.Color.Empty;
+            this.ExhaustMin.Color_1 = System.Drawing.Color.Empty;
+            this.ExhaustMin.Color_2 = System.Drawing.Color.Empty;
+            this.ExhaustMin.Color_3 = System.Drawing.Color.Black;
+            this.ExhaustMin.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.ExhaustMin.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.ExhaustMin, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.ExhaustMin.Int32_3 = 8;
+            this.ExhaustMin.Location = new System.Drawing.Point(16, 93);
+            this.ExhaustMin.Max = 30000;
+            this.ExhaustMin.Min = 1;
+            this.ExhaustMin.Name = "ExhaustMin";
+            this.ExhaustMin.ShowText = false;
+            this.ExhaustMin.Single_0 = 1F;
+            this.ExhaustMin.Single_1 = 1F;
+            this.ExhaustMin.Size = new System.Drawing.Size(317, 12);
+            this.ExhaustMin.TabIndex = 43;
+            this.ExhaustMin.Text = "flatTrackBar1";
+            this.ToolTip.SetToolTip(this.ExhaustMin, "Min amount of time before exhaust kicks in");
+            this.ExhaustMin.ValueInt = 10000;
+            this.ExhaustMin.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.ExhaustMin_Scroll);
             // 
             // inMenuBindCheck
             // 
@@ -355,28 +459,6 @@
             this.label15.Text = "MIN";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ExhaustMin
-            // 
-            this.ExhaustMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ExhaustMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ExhaustMin.Decimal = false;
-            this.PanelTransition.SetDecoration(this.ExhaustMin, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ExhaustMin.FloatValue = 0D;
-            this.ExhaustMin.Full = false;
-            this.ExhaustMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMin.Location = new System.Drawing.Point(16, 93);
-            this.ExhaustMin.Maximum = 30000;
-            this.ExhaustMin.Minimum = 1;
-            this.ExhaustMin.Name = "ExhaustMin";
-            this.ExhaustMin.ShowValue = false;
-            this.ExhaustMin.Size = new System.Drawing.Size(317, 12);
-            this.ExhaustMin.TabIndex = 2;
-            this.ToolTip.SetToolTip(this.ExhaustMin, "Min amount of time before exhaust kicks in");
-            this.ExhaustMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMin.Value = 10000;
-            this.ExhaustMin.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.ExhaustMin_Scroll);
-            // 
             // exhaustEndMinText
             // 
             this.PanelTransition.SetDecoration(this.exhaustEndMinText, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -437,72 +519,6 @@
             this.ToolTip.SetToolTip(this.label17, "Clicks faster while in inventory to speed up refill \r\nDisable this on servers tha" +
         "t check for inventory item movements");
             // 
-            // ExhaustMax
-            // 
-            this.ExhaustMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ExhaustMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ExhaustMax.Decimal = false;
-            this.PanelTransition.SetDecoration(this.ExhaustMax, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.ExhaustMax.FloatValue = 0D;
-            this.ExhaustMax.Full = false;
-            this.ExhaustMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMax.Location = new System.Drawing.Point(16, 124);
-            this.ExhaustMax.Maximum = 30000;
-            this.ExhaustMax.Minimum = 1;
-            this.ExhaustMax.Name = "ExhaustMax";
-            this.ExhaustMax.ShowValue = false;
-            this.ExhaustMax.Size = new System.Drawing.Size(317, 12);
-            this.ExhaustMax.TabIndex = 36;
-            this.ToolTip.SetToolTip(this.ExhaustMax, "Max amount of time before exhaust kicks in");
-            this.ExhaustMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.ExhaustMax.Value = 10000;
-            this.ExhaustMax.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.ExhaustMax_Scroll);
-            // 
-            // exhaustEndMin
-            // 
-            this.exhaustEndMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.exhaustEndMin.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMin.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.exhaustEndMin.Decimal = false;
-            this.PanelTransition.SetDecoration(this.exhaustEndMin, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.exhaustEndMin.FloatValue = 0D;
-            this.exhaustEndMin.Full = false;
-            this.exhaustEndMin.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMin.Location = new System.Drawing.Point(16, 161);
-            this.exhaustEndMin.Maximum = 10000;
-            this.exhaustEndMin.Minimum = 100;
-            this.exhaustEndMin.Name = "exhaustEndMin";
-            this.exhaustEndMin.ShowValue = false;
-            this.exhaustEndMin.Size = new System.Drawing.Size(317, 12);
-            this.exhaustEndMin.TabIndex = 37;
-            this.ToolTip.SetToolTip(this.exhaustEndMin, "Min amount of time the clicker will stay in exhausted mode");
-            this.exhaustEndMin.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMin.Value = 5000;
-            this.exhaustEndMin.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.exhaustEndMin_Scroll);
-            // 
-            // exhaustEndMax
-            // 
-            this.exhaustEndMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.exhaustEndMax.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMax.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.exhaustEndMax.Decimal = false;
-            this.PanelTransition.SetDecoration(this.exhaustEndMax, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.exhaustEndMax.FloatValue = 0D;
-            this.exhaustEndMax.Full = false;
-            this.exhaustEndMax.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMax.Location = new System.Drawing.Point(16, 190);
-            this.exhaustEndMax.Maximum = 10000;
-            this.exhaustEndMax.Minimum = 100;
-            this.exhaustEndMax.Name = "exhaustEndMax";
-            this.exhaustEndMax.ShowValue = false;
-            this.exhaustEndMax.Size = new System.Drawing.Size(317, 12);
-            this.exhaustEndMax.TabIndex = 38;
-            this.ToolTip.SetToolTip(this.exhaustEndMax, "Max amount of time the clicker will stay in exhausted mode");
-            this.exhaustEndMax.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.exhaustEndMax.Value = 5000;
-            this.exhaustEndMax.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.exhaustEndMax_Scroll);
-            // 
             // page
             // 
             this.page.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -561,25 +577,25 @@
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.rightMaxCpsSlider);
-            this.panel4.Controls.Add(this.leftMaxCpsSlider);
-            this.panel4.Controls.Add(this.leftMinCpsSlider);
             this.panel4.Controls.Add(this.rightClickerBindButton);
             this.panel4.Controls.Add(this.leftClickerBindButton);
             this.panel4.Controls.Add(this.toggleSmartMode);
             this.panel4.Controls.Add(this.randomizationText);
             this.panel4.Controls.Add(this.toggleAlwaysOn);
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.randomizationSlider);
             this.panel4.Controls.Add(this.toggleShiftDisable);
             this.panel4.Controls.Add(this.rightMinCpsText);
             this.panel4.Controls.Add(this.toggleRandomization);
-            this.panel4.Controls.Add(this.rightMinCpsSlider);
             this.panel4.Controls.Add(this.leftMinCpsText);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.leftMinCpsSlider);
+            this.panel4.Controls.Add(this.leftMaxCpsSlider);
+            this.panel4.Controls.Add(this.rightMinCpsSlider);
+            this.panel4.Controls.Add(this.rightMaxCpsSlider);
+            this.panel4.Controls.Add(this.randomizationSlider);
             this.PanelTransition.SetDecoration(this.panel4, Guna.UI2.AnimatorNS.DecorationType.None);
             this.panel4.Location = new System.Drawing.Point(14, 56);
             this.panel4.Name = "panel4";
@@ -1002,75 +1018,6 @@
             this.label3.Text = "MIN";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // rightMaxCpsSlider
-            // 
-            this.rightMaxCpsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.rightMaxCpsSlider.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMaxCpsSlider.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.rightMaxCpsSlider.Decimal = false;
-            this.PanelTransition.SetDecoration(this.rightMaxCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.rightMaxCpsSlider.FloatValue = 0D;
-            this.rightMaxCpsSlider.Full = false;
-            this.rightMaxCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMaxCpsSlider.Location = new System.Drawing.Point(14, 161);
-            this.rightMaxCpsSlider.Maximum = 400;
-            this.rightMaxCpsSlider.Minimum = 50;
-            this.rightMaxCpsSlider.Name = "rightMaxCpsSlider";
-            this.rightMaxCpsSlider.ShowValue = false;
-            this.rightMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
-            this.rightMaxCpsSlider.TabIndex = 17;
-            this.rightMaxCpsSlider.Text = "RMax";
-            this.ToolTip.SetToolTip(this.rightMaxCpsSlider, "The max cps to click while autoclicking");
-            this.rightMaxCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMaxCpsSlider.Value = 125;
-            this.rightMaxCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.rightMaxCpsSlider_Scroll);
-            // 
-            // leftMaxCpsSlider
-            // 
-            this.leftMaxCpsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.leftMaxCpsSlider.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMaxCpsSlider.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.leftMaxCpsSlider.Decimal = false;
-            this.PanelTransition.SetDecoration(this.leftMaxCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.leftMaxCpsSlider.FloatValue = 0D;
-            this.leftMaxCpsSlider.Full = false;
-            this.leftMaxCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMaxCpsSlider.Location = new System.Drawing.Point(14, 95);
-            this.leftMaxCpsSlider.Maximum = 400;
-            this.leftMaxCpsSlider.Minimum = 50;
-            this.leftMaxCpsSlider.Name = "leftMaxCpsSlider";
-            this.leftMaxCpsSlider.ShowValue = false;
-            this.leftMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
-            this.leftMaxCpsSlider.TabIndex = 16;
-            this.leftMaxCpsSlider.Text = "LMax";
-            this.ToolTip.SetToolTip(this.leftMaxCpsSlider, "The max cps to click while autoclicking");
-            this.leftMaxCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMaxCpsSlider.Value = 125;
-            this.leftMaxCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.leftMaxCpsSlider_Scroll);
-            // 
-            // leftMinCpsSlider
-            // 
-            this.leftMinCpsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.leftMinCpsSlider.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMinCpsSlider.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.leftMinCpsSlider.Decimal = false;
-            this.PanelTransition.SetDecoration(this.leftMinCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.leftMinCpsSlider.FloatValue = 0D;
-            this.leftMinCpsSlider.Full = false;
-            this.leftMinCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMinCpsSlider.Location = new System.Drawing.Point(16, 64);
-            this.leftMinCpsSlider.Maximum = 400;
-            this.leftMinCpsSlider.Minimum = 50;
-            this.leftMinCpsSlider.Name = "leftMinCpsSlider";
-            this.leftMinCpsSlider.ShowValue = false;
-            this.leftMinCpsSlider.Size = new System.Drawing.Size(355, 12);
-            this.leftMinCpsSlider.TabIndex = 2;
-            this.leftMinCpsSlider.Text = "LMin";
-            this.ToolTip.SetToolTip(this.leftMinCpsSlider, "The min cps to click while autoclicking");
-            this.leftMinCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.leftMinCpsSlider.Value = 125;
-            this.leftMinCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.leftMinCpsSlider_Scroll);
-            // 
             // rightClickerBindButton
             // 
             this.PanelTransition.SetDecoration(this.rightClickerBindButton, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -1170,30 +1117,6 @@
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ToolTip.SetToolTip(this.label7, "The slight MS adjustment applied to the existing randomized cps.");
             // 
-            // randomizationSlider
-            // 
-            this.randomizationSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.randomizationSlider.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.randomizationSlider.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.randomizationSlider.Decimal = false;
-            this.PanelTransition.SetDecoration(this.randomizationSlider, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.randomizationSlider.FloatValue = 0D;
-            this.randomizationSlider.Full = false;
-            this.randomizationSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.randomizationSlider.Location = new System.Drawing.Point(13, 198);
-            this.randomizationSlider.Maximum = 100;
-            this.randomizationSlider.Minimum = 1;
-            this.randomizationSlider.Name = "randomizationSlider";
-            this.randomizationSlider.ShowValue = false;
-            this.randomizationSlider.Size = new System.Drawing.Size(355, 12);
-            this.randomizationSlider.TabIndex = 10;
-            this.randomizationSlider.Text = "flatTrackBar3";
-            this.ToolTip.SetToolTip(this.randomizationSlider, "The amount of deviation the randomization is allowed to have from its intended cp" +
-        "s");
-            this.randomizationSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.randomizationSlider.Value = 25;
-            this.randomizationSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.jitterSlider_Scroll);
-            // 
             // toggleShiftDisable
             // 
             this.toggleShiftDisable.Animated = true;
@@ -1257,29 +1180,6 @@
             this.toggleRandomization.UseVisualStyleBackColor = true;
             this.toggleRandomization.CheckedChanged += new System.EventHandler(this.toggleRandomization_CheckedChanged);
             // 
-            // rightMinCpsSlider
-            // 
-            this.rightMinCpsSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.rightMinCpsSlider.ColorScheme1 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMinCpsSlider.ColorScheme2 = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.rightMinCpsSlider.Decimal = false;
-            this.PanelTransition.SetDecoration(this.rightMinCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.rightMinCpsSlider.FloatValue = 0D;
-            this.rightMinCpsSlider.Full = false;
-            this.rightMinCpsSlider.HatchColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMinCpsSlider.Location = new System.Drawing.Point(14, 132);
-            this.rightMinCpsSlider.Maximum = 400;
-            this.rightMinCpsSlider.Minimum = 50;
-            this.rightMinCpsSlider.Name = "rightMinCpsSlider";
-            this.rightMinCpsSlider.ShowValue = false;
-            this.rightMinCpsSlider.Size = new System.Drawing.Size(355, 12);
-            this.rightMinCpsSlider.TabIndex = 7;
-            this.rightMinCpsSlider.Text = "RMin";
-            this.ToolTip.SetToolTip(this.rightMinCpsSlider, "The min cps to click while autoclicking");
-            this.rightMinCpsSlider.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
-            this.rightMinCpsSlider.Value = 125;
-            this.rightMinCpsSlider.Scroll += new FlatUI.FlatTrackBar.ScrollEventHandler(this.rightMinCpsSlider_Scroll);
-            // 
             // leftMinCpsText
             // 
             this.PanelTransition.SetDecoration(this.leftMinCpsText, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -1337,6 +1237,132 @@
             this.label8.Size = new System.Drawing.Size(85, 13);
             this.label8.TabIndex = 35;
             this.label8.Text = "Right Clicker";
+            // 
+            // leftMinCpsSlider
+            // 
+            this.leftMinCpsSlider.Boolean_0 = false;
+            this.leftMinCpsSlider.Boolean_1 = true;
+            this.leftMinCpsSlider.Color_0 = System.Drawing.Color.Empty;
+            this.leftMinCpsSlider.Color_1 = System.Drawing.Color.Empty;
+            this.leftMinCpsSlider.Color_2 = System.Drawing.Color.Empty;
+            this.leftMinCpsSlider.Color_3 = System.Drawing.Color.Black;
+            this.leftMinCpsSlider.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.leftMinCpsSlider.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.leftMinCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.leftMinCpsSlider.Int32_3 = 8;
+            this.leftMinCpsSlider.Location = new System.Drawing.Point(16, 64);
+            this.leftMinCpsSlider.Max = 400;
+            this.leftMinCpsSlider.Min = 50;
+            this.leftMinCpsSlider.Name = "leftMinCpsSlider";
+            this.leftMinCpsSlider.ShowText = false;
+            this.leftMinCpsSlider.Single_0 = 1F;
+            this.leftMinCpsSlider.Single_1 = 1F;
+            this.leftMinCpsSlider.Size = new System.Drawing.Size(355, 12);
+            this.leftMinCpsSlider.TabIndex = 36;
+            this.leftMinCpsSlider.Text = "flatTrackBarSmooth1";
+            this.leftMinCpsSlider.ValueInt = 125;
+            this.leftMinCpsSlider.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.leftMinCpsSlider_Scroll);
+            // 
+            // leftMaxCpsSlider
+            // 
+            this.leftMaxCpsSlider.Boolean_0 = false;
+            this.leftMaxCpsSlider.Boolean_1 = true;
+            this.leftMaxCpsSlider.Color_0 = System.Drawing.Color.Empty;
+            this.leftMaxCpsSlider.Color_1 = System.Drawing.Color.Empty;
+            this.leftMaxCpsSlider.Color_2 = System.Drawing.Color.Empty;
+            this.leftMaxCpsSlider.Color_3 = System.Drawing.Color.Black;
+            this.leftMaxCpsSlider.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.leftMaxCpsSlider.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.leftMaxCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.leftMaxCpsSlider.Int32_3 = 8;
+            this.leftMaxCpsSlider.Location = new System.Drawing.Point(14, 95);
+            this.leftMaxCpsSlider.Max = 400;
+            this.leftMaxCpsSlider.Min = 50;
+            this.leftMaxCpsSlider.Name = "leftMaxCpsSlider";
+            this.leftMaxCpsSlider.ShowText = false;
+            this.leftMaxCpsSlider.Single_0 = 1F;
+            this.leftMaxCpsSlider.Single_1 = 1F;
+            this.leftMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
+            this.leftMaxCpsSlider.TabIndex = 37;
+            this.leftMaxCpsSlider.Text = "flatTrackBarSmooth1";
+            this.leftMaxCpsSlider.ValueInt = 125;
+            this.leftMaxCpsSlider.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.leftMaxCpsSlider_Scroll);
+            // 
+            // rightMinCpsSlider
+            // 
+            this.rightMinCpsSlider.Boolean_0 = false;
+            this.rightMinCpsSlider.Boolean_1 = true;
+            this.rightMinCpsSlider.Color_0 = System.Drawing.Color.Empty;
+            this.rightMinCpsSlider.Color_1 = System.Drawing.Color.Empty;
+            this.rightMinCpsSlider.Color_2 = System.Drawing.Color.Empty;
+            this.rightMinCpsSlider.Color_3 = System.Drawing.Color.Black;
+            this.rightMinCpsSlider.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.rightMinCpsSlider.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.rightMinCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.rightMinCpsSlider.Int32_3 = 8;
+            this.rightMinCpsSlider.Location = new System.Drawing.Point(14, 132);
+            this.rightMinCpsSlider.Max = 400;
+            this.rightMinCpsSlider.Min = 50;
+            this.rightMinCpsSlider.Name = "rightMinCpsSlider";
+            this.rightMinCpsSlider.ShowText = false;
+            this.rightMinCpsSlider.Single_0 = 1F;
+            this.rightMinCpsSlider.Single_1 = 1F;
+            this.rightMinCpsSlider.Size = new System.Drawing.Size(355, 12);
+            this.rightMinCpsSlider.TabIndex = 38;
+            this.rightMinCpsSlider.Text = "flatTrackBarSmooth1";
+            this.rightMinCpsSlider.ValueInt = 125;
+            this.rightMinCpsSlider.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.rightMinCpsSlider_Scroll);
+            // 
+            // rightMaxCpsSlider
+            // 
+            this.rightMaxCpsSlider.Boolean_0 = false;
+            this.rightMaxCpsSlider.Boolean_1 = true;
+            this.rightMaxCpsSlider.Color_0 = System.Drawing.Color.Empty;
+            this.rightMaxCpsSlider.Color_1 = System.Drawing.Color.Empty;
+            this.rightMaxCpsSlider.Color_2 = System.Drawing.Color.Empty;
+            this.rightMaxCpsSlider.Color_3 = System.Drawing.Color.Black;
+            this.rightMaxCpsSlider.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.rightMaxCpsSlider.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.rightMaxCpsSlider, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.rightMaxCpsSlider.Int32_3 = 8;
+            this.rightMaxCpsSlider.Location = new System.Drawing.Point(14, 161);
+            this.rightMaxCpsSlider.Max = 400;
+            this.rightMaxCpsSlider.Min = 50;
+            this.rightMaxCpsSlider.Name = "rightMaxCpsSlider";
+            this.rightMaxCpsSlider.ShowText = false;
+            this.rightMaxCpsSlider.Single_0 = 1F;
+            this.rightMaxCpsSlider.Single_1 = 1F;
+            this.rightMaxCpsSlider.Size = new System.Drawing.Size(355, 12);
+            this.rightMaxCpsSlider.TabIndex = 39;
+            this.rightMaxCpsSlider.Text = "flatTrackBarSmooth1";
+            this.rightMaxCpsSlider.ValueInt = 125;
+            this.rightMaxCpsSlider.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.rightMaxCpsSlider_Scroll);
+            // 
+            // randomizationSlider
+            // 
+            this.randomizationSlider.Boolean_0 = false;
+            this.randomizationSlider.Boolean_1 = true;
+            this.randomizationSlider.Color_0 = System.Drawing.Color.Empty;
+            this.randomizationSlider.Color_1 = System.Drawing.Color.Empty;
+            this.randomizationSlider.Color_2 = System.Drawing.Color.Empty;
+            this.randomizationSlider.Color_3 = System.Drawing.Color.Black;
+            this.randomizationSlider.Color_4 = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(126)))), ((int)(((byte)(226)))));
+            this.randomizationSlider.Color_5 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PanelTransition.SetDecoration(this.randomizationSlider, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.randomizationSlider.Int32_3 = 8;
+            this.randomizationSlider.Location = new System.Drawing.Point(14, 198);
+            this.randomizationSlider.Min = 1;
+            this.randomizationSlider.Name = "randomizationSlider";
+            this.randomizationSlider.ShowText = false;
+            this.randomizationSlider.Single_0 = 1F;
+            this.randomizationSlider.Single_1 = 1F;
+            this.randomizationSlider.Size = new System.Drawing.Size(355, 12);
+            this.randomizationSlider.TabIndex = 40;
+            this.randomizationSlider.Text = "flatTrackBarSmooth1";
+            this.ToolTip.SetToolTip(this.randomizationSlider, "The amount of deviation the randomization is allowed to have from its intended cp" +
+        "s");
+            this.randomizationSlider.ValueInt = 25;
+            this.randomizationSlider.Event_1 += new System.Windows.Forms.ScrollEventHandler(this.randomizationSlider_Scroll);
             // 
             // controlbar
             // 
@@ -1555,16 +1581,13 @@
 
         private System.Windows.Forms.Timer FadeInTimer;
         private System.Windows.Forms.Panel panel1;
-        private FlatUI.FlatTrackBar leftMinCpsSlider;
         private System.Windows.Forms.Panel controlbar;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label randomizationText;
         private System.Windows.Forms.Label label7;
-        private FlatUI.FlatTrackBar randomizationSlider;
         private System.Windows.Forms.Label rightMinCpsText;
-        private FlatUI.FlatTrackBar rightMinCpsSlider;
         private System.Windows.Forms.Label leftMinCpsText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
@@ -1581,8 +1604,6 @@
         private System.Windows.Forms.Label leftClickerBindButton;
         private System.Windows.Forms.PictureBox pictureBox2;
         private Guna.UI2.WinForms.Guna2DragControl DragControl2;
-        private FlatUI.FlatTrackBar rightMaxCpsSlider;
-        private FlatUI.FlatTrackBar leftMaxCpsSlider;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -1632,12 +1653,17 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private FlatUI.FlatTrackBar ExhaustMin;
         private System.Windows.Forms.Label exhaustEndMinText;
         private System.Windows.Forms.Label exhaustMinText;
-        private FlatUI.FlatTrackBar ExhaustMax;
-        private FlatUI.FlatTrackBar exhaustEndMin;
-        private FlatUI.FlatTrackBar exhaustEndMax;
+        private FlatTrackBarSmooth ExhaustMin;
+        private FlatTrackBarSmooth ExhaustMax;
+        private FlatTrackBarSmooth ExhaustEndMin;
+        private FlatTrackBarSmooth ExhaustEndMax;
+        private FlatTrackBarSmooth leftMinCpsSlider;
+        private FlatTrackBarSmooth leftMaxCpsSlider;
+        private FlatTrackBarSmooth rightMinCpsSlider;
+        private FlatTrackBarSmooth rightMaxCpsSlider;
+        private FlatTrackBarSmooth randomizationSlider;
     }
 }
 
